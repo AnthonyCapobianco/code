@@ -1,17 +1,17 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include <time.h>
-#ifndef ARR_END
-#define ARR_END 0.0L
+
+#ifndef DRUGIO_ARR_END
+#define DRUGIO_ARR_END 0.0L
 #endif
-#ifndef DEBUG
-#define DEBUG 0
+#ifndef DRUGIO_DEBUG
+#define DRUGIO_DEBUG 0
 #endif
+
 #ifndef DRUGIO_H_INCLUDED
 #define DRUGIO_H_INCLUDED
-
-#define uint unsigned int 
 
 /* Type drug of type struct */
 typedef struct D
@@ -20,56 +20,47 @@ typedef struct D
 } drug;
 
 /* Functions Definitions */
-drug newDrug(char*, float*); 
+drug newDrug(char*, float*);
+void printd(drug* arrPtr[]);
+
 drug* showObj(drug* ptr[]); 
-int showDoses(drug*);
-void printd(char* FILE_PATH, drug* arrPtr[]);
-
-/* Make Selection (read user input) */
-int makeSelection(char* lastObj)
-{
-    char c[20];
-
-    do
-    {
-        printf("> "); 
-        
-        #define ERR(x) fprintf(stderr, x); exit(-1)
-        #define _EOF "Error: Your choice isn't correct\n"
-        #define OOR "Error: The character you entered is not part of the selection\n"
-        
-        if (!fgets(c, 20, stdin)) { ERR(_EOF); }
-        if (c[0] >= 'a' && c[0] <= *lastObj) break; 
-        else { ERR(OOR); }
-        
-        c[strlen(c) - 1] = 0;
-        if (!strcmp(c, "exit")) exit(0);
-        
-    } while (c + strlen(c) != NULL);
-    
-    return((int) (c[0] - 'a'));
-}
-
-/* Print the end result */
-void printd(char* FILE_PATH, drug* arrPtr[])
-{
-    drug* p = showObj(arrPtr); 
-    int d = showDoses(p);
-
-    FILE *fp; fp = fopen(FILE_PATH, "a+");
-    char* formatedDate(void); char* theDate = (char *) (formatedDate());
-    
-    #define FILE (DEBUG) ? stdout : fp
-    
-    fprintf(FILE,"[%s] %s %2.2g mg\n", theDate, p->name, p->doses[d]);
-    
-    fclose(fp);
-}
+int showDoses(drug*); 
+int makeSelection(char*);
 
 /* Struct constructor for type drug */
 drug newDrug(char* dName, float* dDoses)
 {
     return((drug) {.name = dName, .doses = dDoses});
+}
+
+/* File Path */
+#ifndef DRUGIO_FILE_PATH
+#define DRUGIO_FILE_PATH
+
+    const char* drugioFilePath;
+    void drugioSetPath(char* s)
+    {
+        drugioFilePath = s;
+    }
+
+#endif
+
+/* Print the end result */
+void printd(drug* arrPtr[])
+{
+    FILE *fp; fp = fopen(drugioFilePath, "a+");
+    
+    char* formatedDate(void); char* theDate = (char *) (formatedDate());
+
+    drug* p = showObj(arrPtr); int d = showDoses(p);
+    
+    #ifndef DRUGIO_USE_FILE
+    #define DRUGIO_USE_FILE (DRUGIO_DEBUG) ? stdout : fp
+    #endif
+    
+    fprintf(DRUGIO_USE_FILE,"[%s] %s %2g mg\n", theDate, p->name, p->doses[d]);
+    
+    fclose(fp);
 }
 
 /* Print drug names */
@@ -92,7 +83,7 @@ int showDoses(drug* ptr)
     
     printf("\nDoses for %s:\n\n", ptr->name);
     
-    for (int i = 0; ptr->doses[i] != ARR_END ; ++i, ++ident) printf("[%c] %2g\n", ident, ptr->doses[i]); 
+    for (int i = 0; ptr->doses[i] != DRUGIO_ARR_END ; ++i, ++ident) printf("[%c] %2g mg\n", ident, ptr->doses[i]); 
 
     return( (int) (makeSelection(&ident)) );
 }
@@ -102,14 +93,51 @@ char* formatedDate()
 {
     size_t strftime(char *, size_t, const char *, const struct tm *);
     
-    time_t rawtime;
-    struct tm *info;
-    static char buffer[16];
-    
+    time_t rawtime; struct tm *info;
+    static char buffer[17]; /* 16 + '\0' */
     time(&rawtime); info = localtime(&rawtime);
     
-    strftime(buffer, 16, "%x - %H:%M", info);
+    strftime(buffer, 17, "%x - %H:%M", info);
     
     return(buffer);
+}
+
+/* Make Selection (read user input) */
+int makeSelection(char* lastObj)
+{
+    char c[20];
+
+    do
+    {
+        printf("> "); 
+        
+        #ifndef DRUGIO_ERR
+        #define DRUGIO_ERR(x) fprintf(stderr, x)
+        #endif
+        #ifndef DRUGIO_EOF
+        #define DRUGIO_EOF "Error: Your choice isn't correct\n"
+        #endif
+        #ifndef DRUGIO_OOR
+        #define DRUGIO_OOR "Error: The character you entered is not part of the selection\n"
+        #endif
+        
+        if (!fgets(c, 20, stdin)) 
+        { 
+            DRUGIO_ERR(DRUGIO_EOF); 
+            exit(-1); 
+        } 
+        else 
+        {
+            if (!strncmp(c, "exit", 4) || !strncmp(c, "quit", 4)) exit(0);
+            if (c[0] >= 'a' && c[0] <= *lastObj) break; 
+            else 
+            { 
+                DRUGIO_ERR(DRUGIO_OOR); 
+                exit(-1); 
+            }
+        }
+    } while (c + strlen(c) != NULL);
+    
+    return((int) (c[0] - 'a'));
 }
 #endif

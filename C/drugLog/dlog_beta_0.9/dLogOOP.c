@@ -1,12 +1,10 @@
-#include <stdio.h>
-
-#define DEBUG 1
+#define DRUGIO_DEBUG 0
 #include "drugio.h"
 
 #define f(...) (float[]) {__VA_ARGS__, 0.0} 
 
 int main(void)
-{
+{ 
     drug ritalin = newDrug("Ritalin", f(5.0, 10.0, 15.0, 20.0))
        , concerta = newDrug("Concerta", f(36.0, 72.0))
        , effexor = newDrug("Effexor", f(225.0))
@@ -18,16 +16,17 @@ int main(void)
     /* TODO: Automate this part */
     /* arrPtr[] is an array of pointer to drugs */
     drug* arrPtr[] =
-    {  &ritalin
-    ,  &concerta
-    ,  &effexor
-    ,  &xanax
-    ,  &akton
-    ,  &zolpidem
-    ,  NULL
+    {    &ritalin
+    ,    &concerta
+    ,    &effexor
+    ,    &xanax
+    ,    &akton
+    ,    &zolpidem
+    ,    NULL
     };
-        
-    printd("~/Desktop/log.txt", arrPtr);
-            
+
+    drugioSetPath("/Users/Muddy/Desktop/log.txt"); 
+    printd(arrPtr);
+
     return(0);
 }
