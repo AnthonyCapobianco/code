@@ -6,62 +6,117 @@
 
 using namespace std;
 
-typedef vector<string> stringArray;
-typedef vector<int> intArray;
-typedef unsigned long Ulong;
+typedef vector<string>  stringArray;
+typedef vector<int>     intArray;
+typedef unsigned long   Ulong;
 
 class Word{
 private:
           Ulong     lengthOfTheWord;
-       intArray     matches;
+       intArray     matches
+                   ,userWordsPicked;
     stringArray     word;
-           char     predictedWord[14];
 public:
-    void setWord(){
+    bool setWord(){
 
         string      theWord;
-           int      theNumber;
+          bool      isDone = 0;
+           int      i = 1;
 
-        cout << "Please enter the word: " << flush;
-        cin  >> theWord;
+        cout        << "Type \":DONE\" once you're done."
+                    << endl;
 
-        lengthOfTheWord = theWord.length();
-
-        cout << "Please enter the number of matches: " << flush;
-        cin  >> theNumber;
-
-        if (theNumber > 0)
+        while (!isDone)
         {
-	    word.push_back(theWord);
-            matches.push_back(theNumber);
-	}
+            cout    << "Please enter the word: "
+                    << flush;
+
+            cin     >> theWord;
+
+            isDone = ((theWord == ":DONE") || (theWord == ":done")) ? 1 : 0;
+
+            word.push_back(theWord);
+            matches.push_back(0);
+
+        }
+
+        word.pop_back();
+
+        while (isDone)
+        {
+
+            for (auto words : word)
+            {
+                cout    << "[" << i <<"] "
+                        << words
+                        << endl;
+                ++i;
+            }
+
+            break;
+        }
+
+        return isDone;
 
     }// setWord();
 
+    void setMatchesForWord()
+    {
+        int     userPick
+               ,theNumber;
+        for (int i = 0; i <= 2; i++)
+        {
+            cout    << "Please insert the number corresponding to one of the words:"
+                    << flush;
+            cin     >> userPick;
+            userWordsPicked.push_back(userPick-1);
+
+            cout    << "Please insert the number of matches of \""
+                    << word[userPick-1]
+                    << "\": "
+                    << flush;
+            cin     >> theNumber;
+            matches[userPick-1] = theNumber;
+        }
+
+    }
+
     void searchWordsForMatches()
     {
-        static int x = 0;
 
-        for(int i = 0; i <= word[x].length(); ++i)
+        for(auto x : userWordsPicked)
         {
-	    predictedWord[i]  =  (word[x][i] == word[x+1][i]) ? word[x][i] : '.';
-	}
+            for(auto w : word)
+            {
+                if(checkForNumberOfMatches(w, word[x]) == matches[x])
+                {
+                    cout    << w;
+                }
+            }
 
-        ++x;
+        }
 
-        cout << predictedWord << endl;
     }// searchWordForMatches();
+
+    int checkForNumberOfMatches(string w,string wordx)
+    {
+        int     foundMatches = 0;
+        for(int i = 0; i <= w.length() ; i++ )
+        {
+            foundMatches += (wordx[i] == w[i]) ? 1 : 0;
+        }
+        return foundMatches;
+    }// checkForNumberOfMatches();
 
 }Word;
 
-int main(int argc, const char * argv[]) {
-    int    it = 4;
-
-    while (it --> 0)
+int main() {
+    while ( !Word.setWord() )
     {
-	Word.setWord();
-        Word.searchWordsForMatches();
+        Word.setWord();
     }
 
+    Word.setMatchesForWord();
+    Word.searchWordsForMatches();
     return 0;
 }// main();

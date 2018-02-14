@@ -1,11 +1,3 @@
-//
-//  main.c
-//  med.c
-//
-//  Created by Anthony Capobianco on 05/11/2017.
-//  Copyright © 2017 Anthony Capobianco. All rights reserved.
-//
-
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -13,42 +5,44 @@
 
 size_t strftime(char *, size_t, const char *, const struct tm *);
 
-
-
-typedef struct drugUsed{
+typedef struct drugUsed
+{
     int dose[6];
     char doseUsed[4]
-         ,drugUsed[3];
+       , drugUsed[3]
+       ;
     char * drugName[3];
     
-}drug;
+} drug;
 
-int logger(void) {
-    //fucking time function
+int main(void) 
+{
     time_t rawtime;
     struct tm *info;
     char buffer[80];
     
-    time( &rawtime );
+    time(&rawtime);
     
-    info = localtime( &rawtime );
+    info = localtime(&rawtime);
     
     strftime(buffer,80,"%x - %I:%M%p", info);
     
-    drug med = {
-        .dose = {5, 10, 15, 20, 72, 225}
-        ,.doseUsed = {'A','B','C','D'}
-        ,.drugUsed = {'A','B','C'}
-        ,.drugName = {"Concerta", "Effexor", "Rilatin"}
+    drug med = 
+    { .dose = {5, 10, 15, 20, 72, 225}
+    , .doseUsed = {'A','B','C','D'}
+    , .drugUsed = {'A','B','C'}
+    , .drugName = {"Concerta", "Effexor", "Rilatin"}
     };
     
     int v = 0;
     char drugChoice
         ,doseChoice = '\0';
     !drugChoice?drugChoice='\0':drugChoice;
-    while (drugChoice == '\0') {
+    while (drugChoice == '\0') 
+    {
         printf("Please select the drug used from the list:\n");
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++)
+        {
             printf("[%c]%s\n", med.drugUsed[i], med.drugName[i]);
         }
         
@@ -76,9 +70,11 @@ int logger(void) {
     v == 1 ? x = 5 : x;
     
     //ask for dose
-    while (doseChoice == '\0' && x < 3) {
+    while (doseChoice == '\0' && x < 3) 
+    {
         printf("Please select the dose used from the list:\n");
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++)
+        {
             printf("[%c]%i mg\n", med.doseUsed[i], med.dose[i]);
         }
         
@@ -86,8 +82,10 @@ int logger(void) {
     }
     //put input to uppercase
     doseChoice = toupper(doseChoice);
-    if (x == 0 ) {
-        while(doseChoice != med.doseUsed[x] && x < 3){
+    if (x == 0 ) 
+    {
+        while(doseChoice != med.doseUsed[x] && x < 3)
+        {
             (doseChoice == med.doseUsed[x]) ? x : x++;
         }
     }
@@ -100,12 +98,12 @@ int logger(void) {
     }
     
     //FOR DEBUG
-    //printf("%s %i mg\n",med.drugName[v], med.dose[x]);
+    //fprintf(stdout,"%s %i mg\n",med.drugName[v], med.dose[x]);
     
     FILE *fp;
     
     fp = fopen("/Users/Muddy/Desktop/drugLog/log.txt", "a+");
-    fprintf(fp,"\n[%s] %s %i mg\n", buffer, med.drugName[v], med.dose[x]);
+    fprintf(fp,"\n[%s] %s %img", buffer, med.drugName[v], med.dose[x]);
     //fputs("This is testing for fputs...\n", fp);
     fclose(fp);
     
