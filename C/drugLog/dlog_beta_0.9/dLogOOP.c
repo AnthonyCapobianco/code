@@ -1,18 +1,19 @@
 #define DRUGIO_DEBUG 0
 #include "drugio.h"
 
-#define f(...) (float[]) {__VA_ARGS__, 0.0} 
+#define mg(...) (int[]) {__VA_ARGS__, 0}, 0
+#define ng(...) (int[]) {__VA_ARGS__, 0}, 1
 
 int main(void)
-{ 
-    drug ritalin = newDrug("Ritalin", f(5.0, 10.0, 15.0, 20.0))
-       , concerta = newDrug("Concerta", f(36.0, 72.0))
-       , effexor = newDrug("Effexor", f(225.0))
-       , xanax = newDrug("Xanax", f(0.25, 0.5, 1.0, 1.5, 2.0))
-       , akton = newDrug("Akton", f(1.0, 2.0, 3.0, 4.0))
-       , zolpidem = newDrug("Zolpidem", f(5.0, 10.0))
-       ;
-     
+{    
+    drug ritalin = newDrug("Ritalin", mg(5, 10, 15, 20))
+        , concerta = newDrug("Concerta", mg(36, 72))
+        , effexor = newDrug("Effexor", mg(225))
+        , xanax = newDrug("Xanax", ng(250, 500, 1000, 1500, 2000))
+        , akton = newDrug("Akton", mg(1, 2, 3, 4))
+        , zolpidem = newDrug("Zolpidem", mg(5, 10))
+        ;
+    
     /* TODO: Automate this part */
     /* arrPtr[] is an array of pointer to drugs */
     drug* arrPtr[] =

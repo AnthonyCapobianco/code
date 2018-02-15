@@ -4,7 +4,7 @@
 #include <time.h>
 
 #ifndef DRUGIO_ARR_END
-#define DRUGIO_ARR_END 0.0L
+#define DRUGIO_ARR_END 0
 #endif
 #ifndef DRUGIO_DEBUG
 #define DRUGIO_DEBUG 0
@@ -14,23 +14,29 @@
 #define DRUGIO_H_INCLUDED
 
 /* Type drug of type struct */
-typedef struct D
+typedef struct DRUG
 {   char* name;
-    float* doses;
+    int* doses;
+    short isNanoGram;
 } drug;
 
+/* Type diPtr of type struct */
+typedef struct PRT_DRUG_INT
+{    int iPtr;
+     drug* dPtr;
+} diPtr;
+
 /* Functions Definitions */
-drug newDrug(char*, float*);
+drug newDrug(char*, int*, short);
 void printd(drug* arrPtr[]);
 
-drug* showObj(drug* ptr[]); 
-int showDoses(drug*); 
+diPtr drugioMenu(drug* ptr[]);
 int makeSelection(char*);
 
 /* Struct constructor for type drug */
-drug newDrug(char* dName, float* dDoses)
+drug newDrug(char* dName, int* dDoses, short isNG)
 {
-    return((drug) {.name = dName, .doses = dDoses});
+    return((drug) {.name = dName, .doses = dDoses, .isNanoGram = isNG});
 }
 
 /* File Path */
@@ -52,54 +58,50 @@ void printd(drug* arrPtr[])
     
     char* formatedDate(void); char* theDate = (char *) (formatedDate());
 
-    drug* p = showObj(arrPtr); int d = showDoses(p);
+    diPtr dip = drugioMenu(arrPtr);
+    drug* p = dip.dPtr; int d = dip.iPtr;
     
     #ifndef DRUGIO_USE_FILE
     #define DRUGIO_USE_FILE (DRUGIO_DEBUG) ? stdout : fp
     #endif
     
-    fprintf(DRUGIO_USE_FILE,"[%s] %s %2g mg\n", theDate, p->name, p->doses[d]);
+    if (p->isNanoGram) fprintf(DRUGIO_USE_FILE,"[%s] %s %2g mg\n", theDate, p->name, (    (float) p->doses[d] / 1000));
+    else fprintf(DRUGIO_USE_FILE,"[%s] %s %d mg\n", theDate, p->name, p->doses[d]);
     
     fclose(fp);
 }
 
 /* Print drug names */
-drug* showObj(drug* ptr[])
+diPtr drugioMenu(drug* ptr[])
 {
-    char ident = 'a';
+    char ident; 
+    int i;
+    int d;
+    drug* idedDrug;
 
-    puts("Please type the letter conresponding to the drug taken");
-    puts("then press the enter key.\n");
+DRUGIO_MENU:
+    while(1)
+    {
+        puts("Please type the letter conresponding to the drug taken");
+        puts("then press the enter key.\n");
     
-    for (int i = 0; ptr[i] != NULL; ++i, ++ident) printf("[%c] %s\n", ident, ptr[i]->name);
+        for (ident = 'a', i = 0; ptr[i] != NULL; ++i, ++ident) printf("[%c] %s\n", ident, ptr[i]->name);
     
-    return( ptr[(int) (makeSelection(&ident))] );
-}
-
-/* Print drug doses */
-int showDoses(drug* ptr)
-{
-    char ident = 'a';
-    
-    printf("\nDoses for %s:\n\n", ptr->name);
-    
-    for (int i = 0; ptr->doses[i] != DRUGIO_ARR_END ; ++i, ++ident) printf("[%c] %2g mg\n", ident, ptr->doses[i]); 
-
-    return( (int) (makeSelection(&ident)) );
-}
-
-/* Date parsing and formating */
-char* formatedDate()
-{
-    size_t strftime(char *, size_t, const char *, const struct tm *);
-    
-    time_t rawtime; struct tm *info;
-    static char buffer[17]; /* 16 + '\0' */
-    time(&rawtime); info = localtime(&rawtime);
-    
-    strftime(buffer, 17, "%x - %H:%M", info);
-    
-    return(buffer);
+        d = (int) (makeSelection(&ident));
+        if (d == -1) goto DRUGIO_MENU;
+        else idedDrug = ptr[d];
+        
+        printf("\nDoses for %s:\n\n", idedDrug->name);
+        for (ident = 'a', i = 0; idedDrug->doses[i] != DRUGIO_ARR_END ; ++i, ++ident) 
+        {
+            if (idedDrug->isNanoGram) printf("[%c] %2g mg\n", ident, (float) (idedDrug->doses[i] / 1000.0)); 
+            else printf("[%c] %d mg\n", ident, idedDrug->doses[i]);
+        }   
+        
+        d = (int) (makeSelection(&ident));
+        if (d == -1) goto DRUGIO_MENU;
+        else return((diPtr) { .iPtr = d, .dPtr = idedDrug});
+    }
 }
 
 /* Make Selection (read user input) */
@@ -129,15 +131,29 @@ int makeSelection(char* lastObj)
         else 
         {
             if (!strncmp(c, "exit", 4) || !strncmp(c, "quit", 4)) exit(0);
-            if (c[0] >= 'a' && c[0] <= *lastObj) break; 
+            if (!strncmp(c, "back", 4)) return(-1);
+            if (c[0] >= 'a' && c[0] <= (*lastObj - 1)) return((int) (c[0] - 'a')); 
             else 
             { 
                 DRUGIO_ERR(DRUGIO_OOR); 
-                exit(-1); 
+                return(-1); 
             }
         }
     } while (c + strlen(c) != NULL);
-    
-    return((int) (c[0] - 'a'));
 }
+
+/* Date parsing and formating */
+char* formatedDate()
+{
+    size_t strftime(char *, size_t, const char *, const struct tm *);
+    
+    time_t rawtime; struct tm *info;
+    static char buffer[17]; /* 16 + '\0' */
+    time(&rawtime); info = localtime(&rawtime);
+    
+    strftime(buffer, 17, "%x - %H:%M", info);
+    
+    return(buffer);
+}
+
 #endif
