@@ -65,7 +65,7 @@ void printd(drug* arrPtr[])
     #define DRUGIO_USE_FILE (DRUGIO_DEBUG) ? stdout : fp
     #endif
     
-    if (p->isNanoGram) fprintf(DRUGIO_USE_FILE,"[%s] %s %2g mg\n", theDate, p->name, (    (float) p->doses[d] / 1000));
+    if (p->isNanoGram) fprintf(DRUGIO_USE_FILE,"[%s] %s %2g mg\n", theDate, p->name, ((float) p->doses[d] / 1000));
     else fprintf(DRUGIO_USE_FILE,"[%s] %s %d mg\n", theDate, p->name, p->doses[d]);
     
     fclose(fp);
