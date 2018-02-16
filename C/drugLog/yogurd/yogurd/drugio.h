@@ -117,8 +117,8 @@ int makeSelection(char* lastObj)
 
         if (!fgets(c, 20, stdin))
         {
-            DRUGIO_ERR(DRUGIO_EOF);
-            exit(EXIT_FAILURE);
+            DRUGIO_ERR(DRUGIO_EOF); /* Print error end-of-file */
+            exit(EXIT_FAILURE); /* Bail out */
         }
         else
         {
@@ -127,11 +127,11 @@ int makeSelection(char* lastObj)
             if (c[0] >= 'a' && c[0] <= (*lastObj - 1)) return((int) (c[0] - 'a'));
             else
             {
-                DRUGIO_ERR(DRUGIO_OOR);
-                return(-1);
+                DRUGIO_ERR(DRUGIO_OOR); /* Print error out of range to console */
+                return(-1); /* Try again */
             }
         }
-    } while (c + strlen(c) != NULL);
+    } while (c + strlen(c) != NULL); /* While nothing is horribly wrong */
 }
 
 /* Function prototype */
@@ -153,11 +153,14 @@ DRUGIO_MENU:
         for (ident = 'a', i = 0; ptr[i] != NULL; ++i, ++ident) printf("[%c] %s\n", ident, ptr[i]->name);
 
         d = (int) (makeSelection(&ident));
+        /* User typed "back" */
         if (d == -1) goto DRUGIO_MENU;
+        /* Early out if only one dose */
+        else if (!ptr[d]->doses[1]) return((diPtr) { .iPtr = 0, .dPtr = ptr[d]});
         else idedDrug = ptr[d];
 
         printf("\nDoses for %s:\n\n", idedDrug->name);
-        for (ident = 'a', i = 0; idedDrug->doses[i] != DRUGIO_ARR_END ; ++i, ++ident)
+        for (ident = 'a', i = 0; idedDrug->doses[i] != 0 ; ++i, ++ident)
         {
             if (idedDrug->isNanoGram) printf("[%c] %2g mg\n", ident, (float) (idedDrug->doses[i] / 1000.0));
             else printf("[%c] %d mg\n", ident, idedDrug->doses[i]);
