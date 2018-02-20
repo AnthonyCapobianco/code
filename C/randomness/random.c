@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-enum { UP = 160000
+enum { UP = 120000
      , PATROL = 1000
      , EVENT = 2000 
      , HEROIC_MISSION = 5750
@@ -61,8 +61,8 @@ int main(void)
       , v
       , h
       ;
-    int sum
-      , sup
+    int sum = 0
+      , sup = 0
       ;
     float mul;
     

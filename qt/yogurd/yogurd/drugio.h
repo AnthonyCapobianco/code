@@ -22,7 +22,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <unistd.h>
 
 #ifndef DRUGIO_H_INCLUDED
 #define DRUGIO_H_INCLUDED
@@ -183,24 +182,19 @@ char* formatedDate(short isFullFormat)
 
     time_t rawtime; struct tm *info;
     time(&rawtime); info = localtime(&rawtime);
-
-    static char fileDate[19]
-              , fullDate[19]
-              , fullTime[6]
-              ;
     
-    switch (isFullFormat) 
+    static char fullTime[19]; /* 18 + '\0' */
+    static char fileTime[19];
+    
+    if (isFullFormat) 
     {
-        default:
-        case 0 : 
-            strftime(fileDate, 19, "log-%F.txt", info);
-            return(fileDate);
-        case 1 : 
-            strftime(fullDate, 19, "%F - %H:%M", info);
-            return(fullDate);
-        case 2 :
-            strftime(fullTime, 6, "%H:%M", info);
-            return(fullTime);
+        strftime(fullTime, 19, "%F - %H:%M", info);
+        return(fullTime);
+    }
+    else 
+    {
+        strftime(fileTime, 19, "log-%F.txt", info);
+        return(fileTime);
     }
 }
 
@@ -239,64 +233,35 @@ short runAgain()
     }
 
 #endif
-/* Function prototype */
-void showLogs(char**);
-/* Show yesterday's log */
-void showLogs(char** fpString)
-{
-    FILE* f = fopen(*fpString, "r");
-    int c;
-    
-    /* Go to eof */
-    fseek(f, 0, SEEK_END);
-    /* Check if eof is at 0 (aka empty file) */
-    if (ftell(f))
-    {
-        printf("—————————————————————————————————————————————\n"
-               "|%*s%*c\n"
-               "—————————————————————————————————————————————\n", 
-                24, (char *) (formatedDate(2)), 20, '|'
-              );
-        fseek(f, 0, SEEK_SET);
-        while(1) 
-        {
-            c = fgetc(f); 
-            if (feof(f)) break;
-            printf("%c", c);
-        }
-        printf("—————————————————————————————————————————————\n");
-    }
-    fclose(f);
-}
 
 /* Function prototype */
 void printd(drug* arrPtr[]);
 /* Print the end result */
 void printd(drug* arrPtr[])
 {
+    char* formatedDate(short);
     char* theDate = (char *) (formatedDate(1));
     char* theFileDate = (char*) (formatedDate(0));
     
     char* buffer = (char*) malloc((strlen(theFileDate) + strlen(drugioFilePath) + sizeof(char)));
-    strcpy(buffer, drugioFilePath); strcat(buffer, theFileDate);
 
-    FILE *ftoday; ftoday = fopen(buffer, "a+");
-    
+    strcpy(buffer, drugioFilePath); strcat(buffer, theFileDate);
+    FILE *fp; fp = fopen(buffer, "a+");
+
     do
     {
-        showLogs(&buffer);
         diPtr dip = drugioMenu(arrPtr);
         drug* p = dip.dPtr; int d = dip.iPtr;
         
         #ifndef DRUGIO_USE_FILE
-        #define DRUGIO_USE_FILE (DRUGIO_DEBUG) ? stdout : ftoday
+        #define DRUGIO_USE_FILE (DRUGIO_DEBUG) ? stdout : fp
         #endif
 
         if (p->isNanoGram) fprintf(DRUGIO_USE_FILE,"[%s] %s %2g mg\n", theDate, p->name, ((float) p->doses[d] / 1000));
         else fprintf(DRUGIO_USE_FILE,"[%s] %s %d mg\n", theDate, p->name, p->doses[d]);
     } while (runAgain());
     
-    fclose(ftoday); 
+    fclose(fp); 
     free(buffer); drugioDestructor(arrPtr); /* Free objects we used malloc for */
 }
 

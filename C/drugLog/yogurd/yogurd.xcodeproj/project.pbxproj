@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EA24EB102036F59A009968AA /* yogurd in Sources */ = {isa = PBXBuildFile; fileRef = EA24EAFF2035CCB5009968AA /* yogurd */; };
-		EA24EB132036FCA0009968AA /* dLogOOP.c in Sources */ = {isa = PBXBuildFile; fileRef = EA24EB122036FCA0009968AA /* dLogOOP.c */; };
+		EABD82F02037A99100261D67 /* yogurd.c in Sources */ = {isa = PBXBuildFile; fileRef = EABD82EF2037A99100261D67 /* yogurd.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -27,7 +27,7 @@
 		EA24EAFF2035CCB5009968AA /* yogurd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = yogurd; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA24EB0F2035D589009968AA /* yogurd.profdata */ = {isa = PBXFileReference; lastKnownFileType = file; path = yogurd.profdata; sourceTree = "<group>"; };
 		EA24EB112036FCA0009968AA /* drugio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drugio.h; sourceTree = "<group>"; };
-		EA24EB122036FCA0009968AA /* dLogOOP.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dLogOOP.c; sourceTree = "<group>"; };
+		EABD82EF2037A99100261D67 /* yogurd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yogurd.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -51,7 +51,7 @@
 		EA24EB012035CCB5009968AA /* yogurd */ = {
 			isa = PBXGroup;
 			children = (
-				EA24EB122036FCA0009968AA /* dLogOOP.c */,
+				EABD82EF2037A99100261D67 /* yogurd.c */,
 				EA24EB112036FCA0009968AA /* drugio.h */,
 			);
 			path = yogurd;
@@ -122,7 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA24EB102036F59A009968AA /* yogurd in Sources */,
-				EA24EB132036FCA0009968AA /* dLogOOP.c in Sources */,
+				EABD82F02037A99100261D67 /* yogurd.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
