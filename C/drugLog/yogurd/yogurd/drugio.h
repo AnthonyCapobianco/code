@@ -17,12 +17,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <unistd.h>
+#include <stdlib.h> /* Need it for NULL */
 
 #ifndef DRUGIO_H_INCLUDED
 #define DRUGIO_H_INCLUDED
@@ -71,6 +66,10 @@
     #endif
 #endif
 
+#ifndef DRUGIO_USE_FILE
+#define DRUGIO_USE_FILE (DRUGIO_DEBUG) ? stdout : ftoday
+#endif
+
 /* Type drug of type struct */
 typedef struct DRUG
 {   char* name;
@@ -84,220 +83,18 @@ typedef struct PRT_DRUG_INT
      drug* dPtr;
 } diPtr;
 
-/* Function prototype */
-static drug* newDrug( char*, int*, short);
-/* Struct constructor for type drug pointer */
-static drug* newDrug(char* dName, int* dDoses, short isNG)
-{
-    drug* p = malloc(sizeof(drug));
-    
-    p->name = dName; 
-    p->doses = dDoses; 
-    p->isNanoGram = isNG;
-    
-    return(p);
-}
-
-/* Function prototype */
+/* Functions prototypes */
+extern drug* newDrug( char*, int*, short);
 static void drugioDestructor(drug* arrPtr[]);
-/* Struct destructor for drugs */
-static void drugioDestructor(drug* arrPtr[])
-{
-    for (int i = 0; arrPtr[i] != NULL; i++) free(*(arrPtr + i));
-}
-
-/* Function prototype */
 int makeSelection(char*);
-/* Make Selection (read user input) */
-int makeSelection(char* lastObj)
-{
-    char c[20];
-
-    do
-    {
-        printf("> ");
-
-        if (!fgets(c, 20, stdin))
-        {
-            DRUGIO_ERR(DRUGIO_EOF); /* Print error end-of-file */
-            exit(EXIT_FAILURE); /* Bail out */
-        }
-        else
-        {
-            if (!strncmp(c, "exit", 4) || !strncmp(c, "quit", 4)) exit(0);
-            if (!strncmp(c, "back", 4)) return(-1);
-            if (c[0] >= 'a' && c[0] <= (*lastObj - 1)) return((int) (c[0] - 'a'));
-            else
-            {
-                DRUGIO_ERR(DRUGIO_OOR); /* Print error out of range to console */
-                return(-1); /* Try again */
-            }
-        }
-    } while (c + strlen(c) != NULL); /* While nothing is horribly wrong */
-}
-
-/* Function prototype */
 static diPtr drugioMenu(drug* ptr[]);
-/* Print drug names */
-static diPtr drugioMenu(drug* ptr[])
-{
-    char ident;
-    int i;
-    int d;
-    drug* idedDrug;
-
-DRUGIO_MENU:
-    while(1)
-    {
-        puts("Please type the letter conresponding to the drug taken");
-        puts("then press the enter key.\n");
-
-        for (ident = 'a', i = 0; ptr[i] != NULL; ++i, ++ident) printf("[%c] %s\n", ident, ptr[i]->name);
-
-        d = (int) (makeSelection(&ident));
-        /* User typed "back" */
-        if (d == -1) goto DRUGIO_MENU;
-        /* Early out if only one dose */
-        else if (!ptr[d]->doses[1]) return((diPtr) { .iPtr = 0, .dPtr = ptr[d]});
-        else idedDrug = ptr[d];
-
-        printf("\nDoses for %s:\n\n", idedDrug->name);
-        for (ident = 'a', i = 0; idedDrug->doses[i] != 0 ; ++i, ++ident)
-        {
-            if (idedDrug->isNanoGram) printf("[%c] %2g mg\n", ident, (float) (idedDrug->doses[i] / 1000.0));
-            else printf("[%c] %d mg\n", ident, idedDrug->doses[i]);
-        }
-
-        d = (int) (makeSelection(&ident));
-        if (d == -1) goto DRUGIO_MENU;
-        else return((diPtr) { .iPtr = d, .dPtr = idedDrug});
-    }
-}
-
-/* Function prototype */
 char* formatedDate(short);
-/* Date parsing and formating */
-char* formatedDate(short isFullFormat)
-{
-    size_t strftime(char *, size_t, const char *, const struct tm *);
-
-    time_t rawtime; struct tm *info;
-    time(&rawtime); info = localtime(&rawtime);
-
-    static char fileDate[19]
-              , fullDate[19]
-              , fullTime[6]
-              ;
-    
-    switch (isFullFormat) 
-    {
-        default:
-        case 0 : 
-            strftime(fileDate, 19, "log-%F.txt", info);
-            return(fileDate);
-        case 1 : 
-            strftime(fullDate, 19, "%F - %H:%M", info);
-            return(fullDate);
-        case 2 :
-            strftime(fullTime, 6, "%H:%M", info);
-            return(fullTime);
-    }
-}
-
-/* Function prototype */
 short runAgain(void);
-/* Ask to run again */
-short runAgain()
-{
-    char c[4];
-
-    printf("Do you want to run this again? (Y/N): ");
-    if(!fgets(c, 4, stdin))
-    {
-        DRUGIO_ERR(DRUGIO_EOF);
-        exit(EXIT_FAILURE);
-    }
-    else
-    {
-        if (c[0] == 'y' || c[0] == 'Y') return(1);
-        else return(0);
-    }
-}
-
-/* File Path */
-#ifndef DRUGIO_FILE_PATH
-#define DRUGIO_FILE_PATH
-
-    /* Global constant */
-    const char* drugioFilePath;    
-    /* Function prototype */
-    void drugioSetPath(char*);
-    /* Set path of file to log to */
-    void drugioSetPath(char* s)
-    {
-        drugioFilePath = s;
-    }
-
-#endif
-/* Function prototype */
 void showLogs(char**);
-/* Show yesterday's log */
-void showLogs(char** fpString)
-{
-    FILE* f = fopen(*fpString, "r");
-    int c;
-    
-    /* Go to eof */
-    fseek(f, 0, SEEK_END);
-    /* Check if eof is at 0 (aka empty file) */
-    if (ftell(f))
-    {
-        printf("—————————————————————————————————————————————\n"
-               "|%*s%*c\n"
-               "—————————————————————————————————————————————\n", 
-                24, (char *) (formatedDate(2)), 20, '|'
-              );
-        fseek(f, 0, SEEK_SET);
-        while(1) 
-        {
-            c = fgetc(f); 
-            if (feof(f)) break;
-            printf("%c", c);
-        }
-        printf("—————————————————————————————————————————————\n");
-    }
-    fclose(f);
-}
-
-/* Function prototype */
 void printd(drug* arrPtr[]);
-/* Print the end result */
-void printd(drug* arrPtr[])
-{
-    char* theDate = (char *) (formatedDate(1));
-    char* theFileDate = (char*) (formatedDate(0));
-    
-    char* buffer = (char*) malloc((strlen(theFileDate) + strlen(drugioFilePath) + sizeof(char)));
-    strcpy(buffer, drugioFilePath); strcat(buffer, theFileDate);
+void drugioSetPath(char*);
 
-    FILE *ftoday; ftoday = fopen(buffer, "a+");
-    
-    do
-    {
-        showLogs(&buffer);
-        diPtr dip = drugioMenu(arrPtr);
-        drug* p = dip.dPtr; int d = dip.iPtr;
-        
-        #ifndef DRUGIO_USE_FILE
-        #define DRUGIO_USE_FILE (DRUGIO_DEBUG) ? stdout : ftoday
-        #endif
-
-        if (p->isNanoGram) fprintf(DRUGIO_USE_FILE,"[%s] %s %2g mg\n", theDate, p->name, ((float) p->doses[d] / 1000));
-        else fprintf(DRUGIO_USE_FILE,"[%s] %s %d mg\n", theDate, p->name, p->doses[d]);
-    } while (runAgain());
-    
-    fclose(ftoday); 
-    free(buffer); drugioDestructor(arrPtr); /* Free objects we used malloc for */
-}
+/* Global constant */
+const char* drugioFilePath;
 
 #endif
