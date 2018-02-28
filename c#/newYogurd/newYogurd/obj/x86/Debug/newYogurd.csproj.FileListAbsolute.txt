@@ -1,0 +1,14 @@
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/actool/partial-info.plist
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/actool/asset-manifest.plist
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/actool/bundle/AppIcon.icns
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/actool/bundle/Assets.car
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/ibtool-manifests/Main.storyboardc
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/ibtool/Main.storyboardc/Info.plist
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/ibtool/Main.storyboardc/MainMenu.nib
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/ibtool/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/ibtool/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/newYogurd.csproj.CoreCompileInputs.cache
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/bin/Debug/newYogurd.exe
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/bin/Debug/newYogurd.pdb
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/newYogurd.exe
+/Users/Muddy/Google Drive/code/c#/newYogurd/newYogurd/obj/x86/Debug/newYogurd.pdb

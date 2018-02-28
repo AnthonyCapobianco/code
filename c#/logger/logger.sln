@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logger", "logger\logger.csproj", "{4EE3EC81-AF24-49F0-90FE-54279CD4427D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EE3EC81-AF24-49F0-90FE-54279CD4427D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EE3EC81-AF24-49F0-90FE-54279CD4427D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EE3EC81-AF24-49F0-90FE-54279CD4427D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EE3EC81-AF24-49F0-90FE-54279CD4427D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $2
+		$2.FileWidth = 80
+		$2.TabsToSpaces = True
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.scope = text/x-csharp
+		$0.StandardHeader = $4
+	EndGlobalSection
+EndGlobal

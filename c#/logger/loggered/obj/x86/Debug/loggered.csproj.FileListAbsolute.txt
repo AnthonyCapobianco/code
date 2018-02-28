@@ -1,0 +1,5 @@
+/Users/Muddy/Google Drive/code/c#/logger/loggered/bin/Debug/loggered.exe
+/Users/Muddy/Google Drive/code/c#/logger/loggered/bin/Debug/loggered.pdb
+/Users/Muddy/Google Drive/code/c#/logger/loggered/obj/x86/Debug/loggered.csproj.CoreCompileInputs.cache
+/Users/Muddy/Google Drive/code/c#/logger/loggered/obj/x86/Debug/loggered.exe
+/Users/Muddy/Google Drive/code/c#/logger/loggered/obj/x86/Debug/loggered.pdb

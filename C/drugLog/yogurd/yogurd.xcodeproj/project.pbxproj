@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EA24EB102036F59A009968AA /* yogurd in Sources */ = {isa = PBXBuildFile; fileRef = EA24EAFF2035CCB5009968AA /* yogurd */; };
-		EABD82F02037A99100261D67 /* yogurd.c in Sources */ = {isa = PBXBuildFile; fileRef = EABD82EF2037A99100261D67 /* yogurd.c */; };
+		EAFC4E4220432334004EDBD6 /* yogurd.c in Sources */ = {isa = PBXBuildFile; fileRef = EAFC4E3F20432334004EDBD6 /* yogurd.c */; };
+		EAFC4E4320432334004EDBD6 /* drugio.c in Sources */ = {isa = PBXBuildFile; fileRef = EAFC4E4020432334004EDBD6 /* drugio.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -25,9 +26,10 @@
 
 /* Begin PBXFileReference section */
 		EA24EAFF2035CCB5009968AA /* yogurd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = yogurd; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA24EB0F2035D589009968AA /* yogurd.profdata */ = {isa = PBXFileReference; lastKnownFileType = file; path = yogurd.profdata; sourceTree = "<group>"; };
-		EA24EB112036FCA0009968AA /* drugio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drugio.h; sourceTree = "<group>"; };
-		EABD82EF2037A99100261D67 /* yogurd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yogurd.c; sourceTree = "<group>"; };
+		EAFC4E3F20432334004EDBD6 /* yogurd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = yogurd.c; path = ../../../../../../Desktop/revised/yogurd/yogurd.c; sourceTree = "<group>"; };
+		EAFC4E4020432334004EDBD6 /* drugio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = drugio.c; path = ../../../../../../Desktop/revised/yogurd/drugio.c; sourceTree = "<group>"; };
+		EAFC4E4120432334004EDBD6 /* drugio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = drugio.h; path = ../../../../../../Desktop/revised/yogurd/drugio.h; sourceTree = "<group>"; };
+		EAFC4E44204328ED004EDBD6 /* yogurd */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = yogurd; path = ../../../../../Desktop/yogurd/yogurd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -36,7 +38,7 @@
 			children = (
 				EA24EB012035CCB5009968AA /* yogurd */,
 				EA24EB002035CCB5009968AA /* Products */,
-				EA24EB0E2035D589009968AA /* OptimizationProfiles */,
+				EAFC4E44204328ED004EDBD6 /* yogurd */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,18 +53,11 @@
 		EA24EB012035CCB5009968AA /* yogurd */ = {
 			isa = PBXGroup;
 			children = (
-				EABD82EF2037A99100261D67 /* yogurd.c */,
-				EA24EB112036FCA0009968AA /* drugio.h */,
+				EAFC4E4020432334004EDBD6 /* drugio.c */,
+				EAFC4E4120432334004EDBD6 /* drugio.h */,
+				EAFC4E3F20432334004EDBD6 /* yogurd.c */,
 			);
 			path = yogurd;
-			sourceTree = "<group>";
-		};
-		EA24EB0E2035D589009968AA /* OptimizationProfiles */ = {
-			isa = PBXGroup;
-			children = (
-				EA24EB0F2035D589009968AA /* yogurd.profdata */,
-			);
-			path = OptimizationProfiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,7 +117,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA24EB102036F59A009968AA /* yogurd in Sources */,
-				EABD82F02037A99100261D67 /* yogurd.c in Sources */,
+				EAFC4E4320432334004EDBD6 /* drugio.c in Sources */,
+				EAFC4E4220432334004EDBD6 /* yogurd.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +156,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -235,30 +231,32 @@
 		EA24EB072035CCB5009968AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.4;
 				DEVELOPMENT_TEAM = 88L87CZSR7;
-				EXECUTABLE_EXTENSION = .out;
+				EXECUTABLE_EXTENSION = "";
 				GCC_C_LANGUAGE_STANDARD = c11;
-				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_PREPROCESS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
 		EA24EB082035CCB5009968AA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1.0.4;
 				DEVELOPMENT_TEAM = 88L87CZSR7;
-				EXECUTABLE_EXTENSION = .out;
+				EXECUTABLE_EXTENSION = "";
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
@@ -266,6 +264,7 @@
 				INFOPLIST_PREPROCESS = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};

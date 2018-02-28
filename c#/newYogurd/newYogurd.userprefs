@@ -1,0 +1,18 @@
+﻿<Properties StartupConfiguration="{AA2DF2F6-BAC8-419C-A489-B447A9599AB9}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="newYogurd/AppDelegate.cs">
+    <Files>
+      <File FileName="newYogurd/AppDelegate.cs" Line="7" Column="1" />
+      <File FileName="newYogurd/Main.cs" Line="14" Column="1" />
+      <File FileName="newYogurd/ViewController.designer.cs" Line="1" Column="1" />
+      <File FileName="newYogurd/ViewController.cs" Line="1" Column="1" />
+      <File FileName="newYogurd/newYogurd.csproj" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.newYogurd PreferredExecutionTarget="Test1" />
+</Properties>

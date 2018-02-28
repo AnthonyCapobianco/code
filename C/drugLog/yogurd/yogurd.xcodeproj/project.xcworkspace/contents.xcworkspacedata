@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:yogurd.xcodeproj">
+      location = "group:/Users/Muddy/Google Drive/code/C/drugLog/yogurd/yogurd/drugio.c">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
