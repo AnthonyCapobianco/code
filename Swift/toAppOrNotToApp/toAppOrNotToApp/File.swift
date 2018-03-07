@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+func myApp() -> String{
+    return "hello";
+}

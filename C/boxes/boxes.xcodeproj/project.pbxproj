@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA6A2B2B20461C0800FF2F02 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = EA6A2B2A20461C0800FF2F02 /* main.c */; };
+		EA6A2B3420461C2000FF2F02 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = EA6A2B3120461C2000FF2F02 /* main.c */; };
+		EA6A2B3520461C2000FF2F02 /* boxes.c in Sources */ = {isa = PBXBuildFile; fileRef = EA6A2B3320461C2000FF2F02 /* boxes.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,9 @@
 
 /* Begin PBXFileReference section */
 		EA6A2B2720461C0800FF2F02 /* boxes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = boxes; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA6A2B2A20461C0800FF2F02 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		EA6A2B3120461C2000FF2F02 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = ../../box/main.c; sourceTree = "<group>"; };
+		EA6A2B3220461C2000FF2F02 /* boxes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = boxes.h; path = ../../box/boxes.h; sourceTree = "<group>"; };
+		EA6A2B3320461C2000FF2F02 /* boxes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = boxes.c; path = ../../box/boxes.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +60,9 @@
 		EA6A2B2920461C0800FF2F02 /* boxes */ = {
 			isa = PBXGroup;
 			children = (
-				EA6A2B2A20461C0800FF2F02 /* main.c */,
+				EA6A2B3320461C2000FF2F02 /* boxes.c */,
+				EA6A2B3220461C2000FF2F02 /* boxes.h */,
+				EA6A2B3120461C2000FF2F02 /* main.c */,
 			);
 			path = boxes;
 			sourceTree = "<group>";
@@ -119,7 +124,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA6A2B2B20461C0800FF2F02 /* main.c in Sources */,
+				EA6A2B3420461C2000FF2F02 /* main.c in Sources */,
+				EA6A2B3520461C2000FF2F02 /* boxes.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

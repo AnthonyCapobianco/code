@@ -1,7 +1,26 @@
+/*
+ *  This project provides an easy way for users to 
+ *  create boxes to surround their text. 
+ *  Copyright (C) 2018 Anthony Capobianco
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
 #include <string.h>
+#include <stdarg.h>
 
 #ifndef _BOXES_H_INCLUDED_
 #define _BOXES_H_INCLUDED_
@@ -18,10 +37,27 @@
 #define P_TOP 0
 #define P_BOTTOM 1
 
-/* Functions prototypes */
-extern void _closedBox(const int variableArgumentsCount, ...);
+typedef struct A
+{
+    char *string;
+} StringArray;
 
-#define NUMBER_OF_ARGS(...)  (sizeof((char*) {0, ##__VA_ARGS__}) / sizeof((char*) - 1))
-#define closedBox(x, ...) _closedBox(x, (char*[]) {__VA_ARGS__})
+/* Functions prototypes */
+extern void _mkBox(const char* string, const unsigned long stringLength);
+
+#define mkBox(x) _mkBox(x, (strlen(x) + 1))
+#define makeBox(x) mkBox(x)
+
+#ifndef stringList
+#define stringList(...) StringArray* stringList[] = {__VA_ARGS__, NULL}
+#endif
+
+extern StringArray* newLine(char *string);
+
+extern void _multilineBox(StringArray *stringList[]);
+extern void stringArrayDestructor(StringArray *stringList[]);
+
+#define multilineBox(...) stringList(__VA_ARGS__); _multilineBox(stringList); stringArrayDestructor(stringList)
+
 
 #endif

@@ -13,6 +13,8 @@
 		EABD82C2203790CD00261D67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EABD82C0203790CD00261D67 /* Main.storyboard */; };
 		EABD82CE203790CD00261D67 /* toAppOrNotToAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD82CD203790CD00261D67 /* toAppOrNotToAppTests.swift */; };
 		EABD82D9203790CD00261D67 /* toAppOrNotToAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD82D8203790CD00261D67 /* toAppOrNotToAppUITests.swift */; };
+		EABD82E92037977300261D67 /* dLogOOP.c in Sources */ = {isa = PBXBuildFile; fileRef = EABD82E82037977300261D67 /* dLogOOP.c */; };
+		EABD82EE20379BFC00261D67 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD82ED20379BFC00261D67 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,10 @@
 		EABD82D4203790CD00261D67 /* toAppOrNotToAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = toAppOrNotToAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EABD82D8203790CD00261D67 /* toAppOrNotToAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toAppOrNotToAppUITests.swift; sourceTree = "<group>"; };
 		EABD82DA203790CD00261D67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EABD82E72037915300261D67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		EABD82E82037977300261D67 /* dLogOOP.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dLogOOP.c; path = "/Users/Muddy/Google Drive/code/Swift/toAppOrNotToApp/toAppOrNotToApp/dLogOOP.c"; sourceTree = "<absolute>"; };
+		EABD82EC20379B2A00261D67 /* drugio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = drugio.h; path = "/Users/Muddy/Google Drive/code/Swift/toAppOrNotToApp/toAppOrNotToApp/drugio.h"; sourceTree = "<absolute>"; };
+		EABD82ED20379BFC00261D67 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = File.swift; path = "/Users/Muddy/Google Drive/code/Swift/toAppOrNotToApp/toAppOrNotToApp/File.swift"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,9 @@
 		EABD82B9203790CD00261D67 /* toAppOrNotToApp */ = {
 			isa = PBXGroup;
 			children = (
+				EABD82E82037977300261D67 /* dLogOOP.c */,
+				EABD82EC20379B2A00261D67 /* drugio.h */,
+				EABD82ED20379BFC00261D67 /* File.swift */,
 				EABD82BA203790CD00261D67 /* AppDelegate.swift */,
 				EABD82BC203790CD00261D67 /* ViewController.swift */,
 				EABD82BE203790CD00261D67 /* Assets.xcassets */,
@@ -258,7 +267,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EABD82BD203790CD00261D67 /* ViewController.swift in Sources */,
+				EABD82EE20379BFC00261D67 /* File.swift in Sources */,
 				EABD82BB203790CD00261D67 /* AppDelegate.swift in Sources */,
+				EABD82E92037977300261D67 /* dLogOOP.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +309,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				EABD82C1203790CD00261D67 /* Base */,
+				EABD82E72037915300261D67 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
