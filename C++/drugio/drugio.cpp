@@ -121,15 +121,22 @@ namespace Command
         }
         
         void
-        PrintLast()
+        PrintLogsFromToday()
         {
                 sqlite::database db(DBConfig::DBName);
-                PrintLine();
+
+                bool need_line = true;
                 
                 const std::string STATEMENT = "SELECT theTime, name, dose FROM logs WHERE theDate == ? ;";
                 
                 for (auto &&row : db << STATEMENT << Time::DateNow()) 
                 {
+                        if (need_line) 
+                        {
+                                PrintLine();
+                                need_line = false;
+                        }
+                        
                         std::string theTime; std::string name; double dose;
                         
                         row >> theTime >> name >> dose;
@@ -138,19 +145,27 @@ namespace Command
                         std::cout << "[" << theTime << "]" << ' ' << name << tabs << dose << " mg" << std::endl;
                 }
                 
-                PrintLine();
+                if (!need_line) PrintLine();
         }
         
         void
         PrintMoreLogs(std::string name_of_drug)
         {
                 sqlite::database db(DBConfig::DBName);
-                PrintLine();
                 
-                const std::string STATEMENT = "SELECT theDate, theTime, name, dose FROM logs WHERE name is ? ORDER BY ID ASC LIMIT 10;";
+                bool need_line = true;
+                
+                const std::string STATEMENT = "SELECT theDate, theTime, name, dose FROM logs "
+                                              "WHERE name is ? ORDER BY ID ASC LIMIT 10;";
                 
                 for (auto &&row : db <<  STATEMENT << name_of_drug)
                 {
+                        if (need_line) 
+                        {
+                                PrintLine();
+                                need_line = false;
+                        }
+                        
                         std::string theDate; std::string theTime; std::string name; 
                         double dose; 
                         
@@ -158,8 +173,9 @@ namespace Command
                         std::string tabs = (dose > 10) ? "\t" : "\t\t";
                         
                         std::cout << "[" << theDate << " - " << theTime << "] " << name << tabs << dose << " mg" << std::endl; 
+                        
                 }
-                PrintLine();
+                if (!need_line) PrintLine();
                 
         }
         
@@ -171,7 +187,8 @@ namespace Command
                 uint64_t ID = 0;
                 std::string name;
                 
-                db << "SELECT MAX(ID) AS last_id FROM logs AS l;" >> ID;
+                db << "SELECT MAX(ID) AS last_id FROM logs AS l;" 
+                   >> ID;
                 
                 db << "SELECT name FROM logs where ID == ?;" << ID
                    >> name;
@@ -202,18 +219,27 @@ namespace Command
         
         
         int
-        Menu(std::string command)
+        Menu(std::string &command)
         {
-                if (command.compare(".help") == 0) PrintHelp();
+                if (command.compare(".help") == 0) 
+                {
+                        PrintHelp();
+                }
                 
-                if (command.compare(".quit") == 0 or command.compare(".exit") == 0) exit(EXIT_SUCCESS);
+                if (command.compare(".quit") == 0 or command.compare(".exit") == 0) 
+                {
+                        exit(EXIT_SUCCESS);
+                }
                 
-                if (command.compare(".cls") == 0 or command.compare(".clear") == 0) ClearScreen();
+                if (command.compare(".cls") == 0 or command.compare(".clear") == 0) 
+                {
+                        ClearScreen();
+                }
                 
                 if (command.compare(".back") == 0)
                 {
                         ClearScreen();
-                        PrintLast();
+                        PrintLogsFromToday();
                 }
                 
                 if (command.compare(".last") == 0)
@@ -230,7 +256,7 @@ namespace Command
  *  Make command to show logs with user given limit   * 
  ******************************************************/
 
-                        Command::PrintLast();
+                        PrintLogsFromToday();
                         return 2;
                 }
                 
@@ -258,8 +284,10 @@ namespace Drugio
                 {
                         char c = 'a';
                         
-                        for (auto it: d.GetDoses()) 
+                        for (auto it: d.GetDoses())
+                        {
                                 std::cout << "[" << c++ << "] " << it << std::endl;
+                        }
                         
                         std::cout << "\n" << "> ";
                         
@@ -288,6 +316,8 @@ namespace Drugio
                         do 
                         {       
                                 Command::Info("dose");
+                                
+                                if (d._doses.size() == 1) break;
                                 
                                 PrintDoses(d);
                                 std::cin >> user_input; 
@@ -334,6 +364,7 @@ namespace Drugio
                 {
                         Drug d = this->GetSelection(user_input, last);
                         
+                        
                         const double dose_used = d.GetSelection(d);
                         
                         if (dose_used == -1.0) return { "", 0.0, true };
@@ -355,7 +386,7 @@ namespace Drugio
                         {
                         
                                 Command::Info("drug");
-                                Command::PrintLast();
+                                Command::PrintLogsFromToday();
                                 
                                 char last = PrintNames();
                                 
@@ -366,7 +397,7 @@ namespace Drugio
                                 {
                                         int menu_returned = Command::Menu(key_or_string);
                                         
-                                        if (menu_returned == 1) continue;
+                                        if (menu_returned == 1) break;
                                         if (menu_returned == 2)
                                         {
                                                 last = PrintNames();
