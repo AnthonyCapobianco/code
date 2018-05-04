@@ -122,6 +122,7 @@ int main(void)
         v = scanf("%s", answer);
         if(!strcmp(answer, "oui") && v) uA = 1;
     }
+    
     // find if perfect deficient or abondant
     if(v)
     {
