@@ -1,9 +1,7 @@
 #include <stdio.h>
 
 #define endl printf("\n")
-
-
-#define swap(x, y) x ^= y; y ^= x; x ^= y
+#define swap(x,y) x ^= y ^= x ^= y
 /*
  * The reason as to why this work is actually quite simple. 
  * We start by x = x XOR y. So if x = 1 and y = 0: 
@@ -14,13 +12,11 @@
  *
  */
 
-int 
-main(void) 
+int main(void) 
 {
     int x = 10
       , y = 90
       ;
-    
     printf("x:%i\ty:%i", x, y); endl;
     swap(x, y);
     printf("x:%i\ty:%i", x, y); endl;
@@ -28,7 +24,6 @@ main(void)
     char s = 's'
        , t = 't'
        ;
-      
     printf("s:%c\tt:%c", s, t); endl;
     swap(s, t);
     printf("s:%c\tt:%c", s, t); endl;
