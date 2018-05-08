@@ -24,6 +24,12 @@
 
 #include "resources/sqlite_modern_cpp.h"
 
+/*
+ * sqlite modern cpp can be obtained here: https://github.com/SqliteModernCpp/sqlite_modern_cpp
+ * I love it and I'm sure if you ever need an sqlite wrapper you'll love it too!
+ *
+ */
+
 #include "classes/includes/Command.hpp"
 #include "classes/includes/Time.hpp"
 #include "classes/includes/DBConfig.hpp"

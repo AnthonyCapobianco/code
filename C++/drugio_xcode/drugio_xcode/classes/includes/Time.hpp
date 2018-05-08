@@ -18,8 +18,7 @@
  *
  */
 
-#ifndef Time_hpp
-#define Time_hpp
+#pragma once
 
 #include "../Time.cpp"
 
@@ -29,5 +28,3 @@ namespace Time
         
         std::string TimeNow();
 }
-
-#endif /* Time_hpp */

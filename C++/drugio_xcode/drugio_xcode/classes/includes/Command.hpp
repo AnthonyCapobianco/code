@@ -18,8 +18,7 @@
  *
  */
 
-#ifndef Command_h
-#define Command_h
+#pragma once
 
 #include "../Command.cpp"
 
@@ -49,5 +48,3 @@ namespace Command
   
         int Menu(std::string &command);
 }
-
-#endif /* Command_h */

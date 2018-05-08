@@ -150,9 +150,9 @@ namespace sqlite {
 			}
 			template<class ...Types>
 			operator std::tuple<Types...>() {
-				std::tuple<Types...> value;
-				*this >> value;
-				return value;
+				std::tuple<Types...> values;
+				*this >> values;
+				return values;
 			}
 			explicit operator bool() {
 				return sqlite3_column_count(_binder->_stmt.get()) >= next_index;

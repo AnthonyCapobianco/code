@@ -18,12 +18,10 @@
  *
  */
 
-#ifndef DBConfig_hpp
-#define DBConfig_hpp
+#pragma once
 
 namespace DBConfig
 {
         static const std::string DBName = "/Users/tony/Desktop/yogurd/logs/debug.db";
 }
 
-#endif /* DBConfig_hpp */

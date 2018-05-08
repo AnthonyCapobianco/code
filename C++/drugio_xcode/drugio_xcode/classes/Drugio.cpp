@@ -18,12 +18,12 @@
  *
  */
 
+#pragma once
+
 #include "includes/Command.hpp"
 #include "includes/Time.hpp"
 #include "includes/DBConfig.hpp"
 
-#ifndef Drugio_cpp
-#define Drugio_cpp
 
 namespace Drugio
 {
@@ -82,7 +82,7 @@ namespace Drugio
                                 if (it == -1) return { 0, false};
                         }
                         
-                        return {this->_doses.at(it), true};
+                        return {this->_doses.at(static_cast<size_t>(it)), true};
                 }
         };
         
@@ -111,10 +111,10 @@ namespace Drugio
                 }
                 
                 Drug
-                GetSelection(int user_input) { return this->_list.at(user_input); }
+                GetSelection(int user_input) { return this->_list.at(static_cast<size_t> (user_input)); }
                 
                 UserSelection
-                GetUsedDose(int &user_input, int &last)
+                GetUsedDose(int &user_input)
                 {
                         try
                         {
@@ -141,7 +141,6 @@ namespace Drugio
                 void
                 Menu()
                 {
-                        int last = -1;
                         int it = -1;
                         
                         while (true)
@@ -149,16 +148,16 @@ namespace Drugio
                                 Command::Info("drug");
                                 Command::PrintLogsFromToday();
                                 
-                                last = PrintNames();
+                                PrintNames();
                                 
                                 it = Command::GetKey();
                                 
-                                if (it >= 0 and it < this->_list.size()) break;
+                                if (it >= 0 and it < static_cast<int>(this->_list.size())) break;
                                 else if (it == -2)
                                 {
                                         it = Command::GetKey();
                                         
-                                        if (it >= 0 and it < this->_list.size())
+                                        if (it >= 0 and it < static_cast<int>(this->_list.size()))
                                         {
                                                 Drug d = this->GetSelection(it);
                                                 Command::PrintMoreLogs(d.GetName());
@@ -167,7 +166,7 @@ namespace Drugio
                                 continue;
                         }
                         
-                        UserSelection us = this->GetUsedDose(it, last);
+                        UserSelection us = this->GetUsedDose(it);
                         
                         if (us.is_escape) return;
                         
@@ -183,4 +182,3 @@ namespace Drugio
         };
 }
 
-#endif

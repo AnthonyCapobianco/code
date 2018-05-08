@@ -59,30 +59,28 @@ namespace Command
                 std::cout << "Please type the letter conresponding to the drug\n"
                           << "you want to see the logs for then press the return key."
                           << "\n> ";
+                
                 std::cout.flush();
         }
         
         void
         PrintHelp()
         {
-                using std::cout;
-                using std::endl;
+                PrintLine();
+                
+                std::cout << "Help menu:\n" << std::endl;
+                
+                std::cout << "\tType \"exit\" or \"quit\" to exit the program\n"
+                          << "\tType \"back\" to go back to the previous menu\n"
+                          << "\tType \"last\" to show logs for a specific medication\n"
+                          << "\tType \"rmlast\" to remove the last log entry\n"
+                          << "\tType \"clear\" or \"cls\" to clear the screen\n"
+                          << "\tType \"help\" to show this menu\n"
+                          << std::endl;
                 
                 PrintLine();
                 
-                cout << "Help menu:\n" << endl;
-                
-                cout << "\tType \"exit\" or \"quit\" to exit the program\n"
-                     << "\tType \"back\" to go back to the previous menu\n"
-                     << "\tType \"last\" to show logs for a specific medication\n"
-                     << "\tType \"rmlast\" to remove the last log entry\n"
-                     << "\tType \"clear\" or \"cls\" to clear the screen\n"
-                     << "\tType \"help\" to show this menu\n"
-                     << endl;
-                
-                PrintLine();
-                
-                cout << "Press the return key to go back to the main menu." << std::endl;
+                std::cout << "Press the return key to go back to the main menu." << std::endl;
                 
                 std::cin.ignore();
                 std::cin.get();
@@ -154,13 +152,13 @@ namespace Command
                         double dose;
                         
                         row >> theDate >> theTime >> name >> dose;
+                        
                         std::string tabs = (dose > 10) ? "\t" : "\t\t";
                         
                         std::cout << "[" + theDate + " - " + theTime + "] " + name + tabs
-                        << dose << " mg" << std::endl;
+                                  << dose << " mg" << std::endl;
                         
-                        std::cout.flush();
-                        
+                        std::cout.flush();    
                 }
                 if (!need_line) PrintLine();
         }
@@ -170,6 +168,13 @@ namespace Command
         {
                 sqlite::database db(DBConfig::DBName);
                 std::string name;
+                
+                /*
+                 * Fun fact: remember how I said the operator&& was overloaded to make prepared statements?
+                 * So is the operator<<
+                 * I just love it.
+                 *
+                 */
                 
                 db << "SELECT name FROM logs WHERE ID IS (SELECT MAX(ID) FROM logs);"
                    >> name;
@@ -199,37 +204,21 @@ namespace Command
         int
         Menu(std::string &command)
         {
+                if (command.find("logs") != std::string::npos) PrintLogsFromToday();
+                
+                if (command == "quit" or command == "exit") exit(EXIT_SUCCESS);
+                
+                if (command == "cls" or command == "clear") ClearScreen();
+                
                 if (command == "help")
                 {
                         ClearScreen();
                         PrintHelp();
                 }
                 
-                if (command == "quit" or command == "exit")
-                {
-                        exit(EXIT_SUCCESS);
-                }
-                
-                if (command == "cls" or command == "clear")
-                {
-                        ClearScreen();
-                }
-                
                 if (command == "back")
                 {
                         ClearScreen();
-                        PrintLogsFromToday();
-                }
-                
-                if (command == "last")
-                {
-                        ClearScreen();
-                        InfoLogs();
-                        return -2;
-                }
-                
-                if (command.find("logs") != std::string::npos)
-                {
                         PrintLogsFromToday();
                 }
                 
@@ -239,6 +228,13 @@ namespace Command
                         ClearScreen();
                 }
                 
+                if (command == "last")
+                {
+                        ClearScreen();
+                        InfoLogs();
+                        return -2;
+                }
+
                 return -1;
         }
         

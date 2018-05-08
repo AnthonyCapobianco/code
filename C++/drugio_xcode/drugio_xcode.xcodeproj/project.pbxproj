@@ -28,7 +28,7 @@
 		EA763EF2209DC6E80055AFC7 /* logs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = logs; sourceTree = "<group>"; };
 		EA763EF3209DC6E80055AFC7 /* classes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = classes; sourceTree = "<group>"; };
 		EA763EF620A111FE0055AFC7 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		EA96BFA0209DBC3F00BD44F2 /* drugio_xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = drugio_xcode; path = /Users/tony/Desktop/drugio_xcode/build/Debug/drugio_xcode; sourceTree = "<absolute>"; };
+		EA8B217F20A14BAF0003FE55 /* drugio_xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = drugio_xcode; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA96BFAF209DBD8500BD44F2 /* debug.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = debug.db; sourceTree = "<group>"; };
 		EA96BFB3209DBE3300BD44F2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -50,6 +50,7 @@
 			children = (
 				EA96BFA2209DBC3F00BD44F2 /* drugio_xcode */,
 				EA96BFB2209DBE3300BD44F2 /* Frameworks */,
+				EA8B217F20A14BAF0003FE55 /* drugio_xcode */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,7 +99,7 @@
 			);
 			name = drugio_xcode;
 			productName = drugio_xcode;
-			productReference = EA96BFA0209DBC3F00BD44F2 /* drugio_xcode */;
+			productReference = EA8B217F20A14BAF0003FE55 /* drugio_xcode */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -256,18 +257,56 @@
 		EA96BFA8209DBC3F00BD44F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_FLOAT_CONVERSION = NO;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88L87CZSR7;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
 			name = Debug;
 		};
 		EA96BFA9209DBC3F00BD44F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_FLOAT_CONVERSION = NO;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88L87CZSR7;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
 			name = Release;
 		};
