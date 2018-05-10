@@ -21,16 +21,17 @@
 #pragma once
 
 #include "../Command.cpp"
+#include "../ReturnStructures.cpp"
 
 namespace Command
 {
-        int GetKey();
-        
-        bool DoesUserAgree(const std::string &query);
+        ReturnStructures::InputReturn GetKey();
+
+        bool DoesUserAgree(const std::string &);
         
         void PrintLine();
         
-        void Info(const std::string &name);
+        void Info(const std::string &);
         
         void InfoLogs();
         
@@ -40,11 +41,11 @@ namespace Command
         
         void PrintLogsFromToday();
         
-        void PrintMoreLogs(const std::string &name_of_drug);
+        void PrintMoreLogs(const std::string &);
         
         const std::string GetLastNameInDatabase();
         
         void RemoveLastLogEntry();
   
-        int Menu(std::string &command);
+        ReturnStructures::InputReturn Menu(std::string &);
 }

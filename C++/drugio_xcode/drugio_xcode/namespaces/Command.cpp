@@ -24,6 +24,9 @@
 #include "includes/Command.hpp"
 #include "includes/Time.hpp"
 #include "includes/DBConfig.hpp"
+#include "includes/Actions.hpp"
+
+#include "ReturnStructures.cpp"
 
 namespace Command
 {
@@ -169,13 +172,6 @@ namespace Command
                 sqlite::database db(DBConfig::DBName);
                 std::string name;
                 
-                /*
-                 * Fun fact: remember how I said the operator&& was overloaded to make prepared statements?
-                 * So is the operator<<
-                 * I just love it.
-                 *
-                 */
-                
                 db << "SELECT name FROM logs WHERE ID IS (SELECT MAX(ID) FROM logs);"
                    >> name;
                 
@@ -201,7 +197,7 @@ namespace Command
         }
         
         
-        int
+        ReturnStructures::InputReturn
         Menu(std::string &command)
         {
                 if (command.find("logs") != std::string::npos) PrintLogsFromToday();
@@ -214,6 +210,7 @@ namespace Command
                 {
                         ClearScreen();
                         PrintHelp();
+                        return {-1, true, false};
                 }
                 
                 if (command == "back")
@@ -232,15 +229,23 @@ namespace Command
                 {
                         ClearScreen();
                         InfoLogs();
-                        return -2;
+                        return {Actions::SHOW_LAST, true, false};
                 }
 
-                return -1;
+                return {Actions::RUN_AGAIN, false, false};
         }
         
-        int
+        ReturnStructures::InputReturn
         GetKey()
         {
+                /*
+                 * class InputReturn:
+                 * int key;
+                 * bool is_action;
+                 * bool is_error;
+                 *
+                 */
+
                 std::string it = "";
                 
                 try
@@ -249,12 +254,12 @@ namespace Command
                         
                         if (it.length() > 1) return Command::Menu(it);
                         
-                        return (int) (it[0] - 'a');
+                        return { static_cast<int>(it[0] - 'a'), false, false};
                 }
                 catch (const std::exception& e)
                 {
                         std::cerr << "ERROR: " << e.what() << std::endl;
-                        return -1;
+                        return {Actions::RUN_AGAIN, false, true};
                 }
         }
 }

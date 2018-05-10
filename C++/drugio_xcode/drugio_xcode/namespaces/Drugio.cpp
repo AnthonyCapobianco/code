@@ -23,15 +23,12 @@
 #include "includes/Command.hpp"
 #include "includes/Time.hpp"
 #include "includes/DBConfig.hpp"
+#include "includes/Actions.hpp"
 
+#include "ReturnStructures.cpp"
 
 namespace Drugio
 {
-        struct MaybeDouble
-        {       const double dosage;
-                bool is_double;
-        };
-        
         class Drug
         {
         private:
@@ -67,10 +64,10 @@ namespace Drugio
                 const std::string
                 GetName() { return this->_name; }
                 
-                MaybeDouble
+                ReturnStructures::MaybeDouble
                 GetSelection()
                 {
-                        int it = 0;
+                        ReturnStructures::InputReturn it;
                         
                         if (this->_doses.size() != 1)
                         {
@@ -79,10 +76,10 @@ namespace Drugio
                                 this->PrintDoses();
                                 it = Command::GetKey();
                                 
-                                if (it == -1) return { 0, false};
+                                if (it.is_action or it.is_error) return {0, false};
                         }
                         
-                        return {this->_doses.at(static_cast<size_t>(it)), true};
+                        return {this->_doses.at(static_cast<size_t> (it.key)), true};
                 }
         };
         
@@ -90,13 +87,6 @@ namespace Drugio
         {
         private:
                 const std::vector<Drug> _list;
-                
-                struct UserSelection
-                {
-                        const std::string name;
-                        const double dose;
-                        const bool is_escape;
-                };
                 
                 int
                 PrintNames()
@@ -111,15 +101,15 @@ namespace Drugio
                 }
                 
                 Drug
-                GetSelection(int user_input) { return this->_list.at(static_cast<size_t> (user_input)); }
+                GetSelection(int &user_input) { return this->_list.at(static_cast<size_t> (user_input)); }
                 
-                UserSelection
+                ReturnStructures::UserSelection
                 GetUsedDose(int &user_input)
                 {
                         try
                         {
                                 Drug d = this->GetSelection(user_input);
-                                MaybeDouble dose_used = d.GetSelection();
+                                ReturnStructures::MaybeDouble dose_used = d.GetSelection();
                                 
                                 if (dose_used.is_double) return { d.GetName(), dose_used.dosage, false };
                         }
@@ -141,7 +131,7 @@ namespace Drugio
                 void
                 Menu()
                 {
-                        int it = -1;
+                        ReturnStructures::InputReturn it;
                         
                         while (true)
                         {
@@ -152,21 +142,23 @@ namespace Drugio
                                 
                                 it = Command::GetKey();
                                 
-                                if (it >= 0 and it < static_cast<int>(this->_list.size())) break;
-                                else if (it == -2)
+                                if (it.is_action and it.key == Actions::SHOW_LAST)
                                 {
                                         it = Command::GetKey();
                                         
-                                        if (it >= 0 and it < static_cast<int>(this->_list.size()))
+                                        if (!it.is_action and !it.is_error
+                                            and it.key >= 0 and it.key < static_cast<int> (this->_list.size()))
                                         {
-                                                Drug d = this->GetSelection(it);
+                                                Drug d = this->GetSelection(it.key);
                                                 Command::PrintMoreLogs(d.GetName());
                                         }
                                 }
+                                else if (it.is_error or (it.is_action and it.key == Actions::RUN_AGAIN)) continue;
+                                else if (it.key >= 0 and it.key < static_cast<int> (this->_list.size())) break;
                                 continue;
                         }
                         
-                        UserSelection us = this->GetUsedDose(it);
+                        ReturnStructures::UserSelection us = this->GetUsedDose(it.key);
                         
                         if (us.is_escape) return;
                         
@@ -177,7 +169,7 @@ namespace Drugio
                         sqlite::database db(DBConfig::DBName);
                         
                         db << "INSERT INTO logs (theDate, theTime, name, dose) VALUES (?, ?, ?, ?);"
-                        << Time::DateNow() << Time::TimeNow() << name << dose;
+                           << Time::DateNow() << Time::TimeNow() << name << dose;
                 }
         };
 }

@@ -15,3 +15,7 @@ To see previous builds reffer to the C project at: https://github.com/AnthonyCap
 * C++ conversion is really starting to take shape
 * Reorganised file structure. 
 * Bug fixes
+
+# 1.2.0~a
+
+* Bug fixes and minor improvements to the file and class structure
