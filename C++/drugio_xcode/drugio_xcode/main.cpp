@@ -30,10 +30,10 @@
  *
  */
 
-#include "classes/includes/Command.hpp"
-#include "classes/includes/Time.hpp"
-#include "classes/includes/DBConfig.hpp"
-#include "classes/Drugio.cpp"
+#include "namespaces/includes/Command.hpp"
+#include "namespaces/includes/Time.hpp"
+#include "namespaces/includes/DBConfig.hpp"
+#include "namespaces/Drugio.cpp"
   
 int 
 main() 
@@ -55,5 +55,5 @@ main()
                  , Drug("Weed", {125, 250, 500})
                  });
         
-        do medications.Menu(); while (Command::DoesUserAgree("Do you want to run this again? (Y/N): "));
+        medications.Menu();
 }

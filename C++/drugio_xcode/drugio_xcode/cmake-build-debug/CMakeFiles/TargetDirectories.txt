@@ -1,0 +1,3 @@
+/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/CMakeFiles/drugio_xcode.dir

@@ -30,6 +30,15 @@
 
 namespace Command
 {
+        void
+        Pause()
+        {
+                std::cout << "Press the return key to go back to the main menu." << std::endl;
+
+                std::cin.ignore();
+                std::cin.get();
+        }
+
         bool
         DoesUserAgree(const std::string &query)
         {
@@ -38,7 +47,8 @@ namespace Command
                 std::cout << query << std::endl;
                 std::cin >> ua;
                 
-                return (std::toupper(ua[0]) == 'Y');
+                if (std::toupper(ua[0]) == 'Y' or ua == "yes") return true;
+                return false;
         }
         
         void
@@ -83,10 +93,7 @@ namespace Command
                 
                 PrintLine();
                 
-                std::cout << "Press the return key to go back to the main menu." << std::endl;
-                
-                std::cin.ignore();
-                std::cin.get();
+                Pause();
         }
         
         void
@@ -104,16 +111,16 @@ namespace Command
         {
                 sqlite::database db(DBConfig::DBName);
                 
-                bool need_line = true;
+                bool has_line = false;
                 
                 const std::string STATEMENT = "SELECT theTime, name, dose FROM logs WHERE theDate IS ? ;";
                 
                 for (auto &&row: db << STATEMENT << Time::DateNow())
                 {
-                        if (need_line)
+                        if (not has_line)
                         {
                                 PrintLine();
-                                need_line = false;
+                                has_line = true;
                         }
                         
                         std::string theTime;
@@ -121,13 +128,12 @@ namespace Command
                         double dose;
                         
                         row >> theTime >> name >> dose;
-                        std::string tabs = (dose > 10) ? "\t" : "\t\t";
-                        
-                        std::cout << "[" + theTime + "] " + name + tabs
+
+                        std::cout << "[" + theTime + "] " + name + "\t\t"
                         << dose << " mg" << std::endl;
                 }
                 
-                if (!need_line) PrintLine();
+                if (has_line) PrintLine(); // No need for a line if there is nothing printed. 
         }
         
         void
@@ -135,17 +141,17 @@ namespace Command
         {
                 sqlite::database db(DBConfig::DBName);
                 
-                bool need_line = true;
+                bool has_line = false;
                 
                 const std::string STATEMENT = "SELECT theDate, theTime, name, dose FROM logs "
                                               "WHERE name IS ? ORDER BY ID ASC LIMIT 10;";
                 
                 for (auto &&row: db << STATEMENT << name_of_drug)
                 {
-                        if (need_line)
+                        if (not has_line)
                         {
                                 PrintLine();
-                                need_line = false;
+                                has_line = true;
                         }
                         
                         std::string theDate;
@@ -155,15 +161,14 @@ namespace Command
                         double dose;
                         
                         row >> theDate >> theTime >> name >> dose;
-                        
-                        std::string tabs = (dose > 10) ? "\t" : "\t\t";
-                        
-                        std::cout << "[" + theDate + " - " + theTime + "] " + name + tabs
-                                  << dose << " mg" << std::endl;
-                        
-                        std::cout.flush();    
+
+                        std::cout << "[" + theDate + " - " + theTime + "] " + name + "\t\t"
+                                  << dose << " mg"
+                                  << std::endl;   
                 }
-                if (!need_line) PrintLine();
+                if (has_line) PrintLine();
+
+                Pause();
         }
         
         const std::string
@@ -189,34 +194,34 @@ namespace Command
                 std::string querry = "Are you sure you want to delete the last dose of "
                                      +  name + " from the database? (Y/N)";
                 
-                DoesUserAgree(querry);
-                
-                db << "DELETE FROM logs WHERE ID IS (SELECT MAX(ID) FROM logs);";
-                
-                std::cout << "The last dose of " << name << " has been removed from the database." << std::endl;
+                if (DoesUserAgree(querry))
+                {
+
+                        db << "DELETE FROM logs WHERE ID IS (SELECT MAX(ID) FROM logs);";
+
+                        std::cout << "The last dose of " << name << " has been removed from the database." << std::endl;
+                }
+                else
+                {
+                        std::cout << "Canceled." << std::endl;
+                }
+
         }
         
         
         ReturnStructures::InputReturn
         Menu(std::string &command)
         {
+                if (command == "quit" or command == "exit") exit(EXIT_SUCCESS);
+
                 if (command.find("logs") != std::string::npos) PrintLogsFromToday();
                 
-                if (command == "quit" or command == "exit") exit(EXIT_SUCCESS);
-                
-                if (command == "cls" or command == "clear") ClearScreen();
+                if (command == "cls" or command == "clear" or command == "back") ClearScreen();
                 
                 if (command == "help")
                 {
                         ClearScreen();
                         PrintHelp();
-                        return {-1, true, false};
-                }
-                
-                if (command == "back")
-                {
-                        ClearScreen();
-                        PrintLogsFromToday();
                 }
                 
                 if (command == "rmlast")
@@ -227,12 +232,11 @@ namespace Command
                 
                 if (command == "last")
                 {
-                        ClearScreen();
                         InfoLogs();
-                        return {Actions::SHOW_LAST, true, false};
+                        return { Actions::SHOW_LAST, true, false };
                 }
 
-                return {Actions::RUN_AGAIN, false, false};
+                return { Actions::RUN_AGAIN, true, false };
         }
         
         ReturnStructures::InputReturn

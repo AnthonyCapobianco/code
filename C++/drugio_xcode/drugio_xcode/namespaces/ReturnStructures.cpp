@@ -29,9 +29,9 @@ namespace ReturnStructures
         };
 
         struct UserSelection
-        {       const std::string name;
-                const double dose;
-                const bool is_escape;
+        {       std::string name;
+                double dose;
+                bool has_dosage;
         };
 
         struct MaybeDouble

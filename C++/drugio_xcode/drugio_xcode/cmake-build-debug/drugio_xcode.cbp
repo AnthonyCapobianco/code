@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="drugio_xcode"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="drugio_xcode">
+				<Option output="/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/drugio_xcode" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces/includes"/>
+					<Add directory="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources"/>
+					<Add directory="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp"/>
+					<Add directory="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/lists"/>
+					<Add directory="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/utility"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.1.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 drugio_xcode"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="drugio_xcode/fast">
+				<Option output="/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/drugio_xcode" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces/includes"/>
+					<Add directory="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources"/>
+					<Add directory="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp"/>
+					<Add directory="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/lists"/>
+					<Add directory="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/utility"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.1.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 drugio_xcode/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/tony/code/C++/drugio_xcode/drugio_xcode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/main.cpp">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces/Command.cpp">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces/Drugio.cpp">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces/ReturnStructures.cpp">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces/Time.cpp">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces/includes/Actions.hpp">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces/includes/Command.hpp">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces/includes/DBConfig.hpp">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces/includes/Time.hpp">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp.h">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/errors.h">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/lists/error_codes.h">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/log.h">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/sqlcipher.h">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/type_wrapper.h">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/utility/function_traits.h">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/utility/uncaught_exceptions.h">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/resources/sqlite_modern_cpp/utility/utf16_utf8.h">
+			<Option target="drugio_xcode"/>
+		</Unit>
+		<Unit filename="/Users/tony/code/C++/drugio_xcode/drugio_xcode/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

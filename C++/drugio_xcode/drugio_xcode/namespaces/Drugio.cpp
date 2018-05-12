@@ -51,7 +51,7 @@ namespace Drugio
                 }
                 
         public:
-                Drug(const std::string& drug_name, const std::initializer_list<double> &dose_array)
+                Drug(const std::string &drug_name, const std::initializer_list<double> &dose_array)
                 : _name{drug_name}, _doses{ dose_array.begin(), dose_array.end()}
                 {
                 }
@@ -68,21 +68,28 @@ namespace Drugio
                 GetSelection()
                 {
                         ReturnStructures::InputReturn it;
-                        
-                        if (this->_doses.size() != 1)
+
+                        if (this->_doses.empty()) return { 0, false };
+
+                        else if (this->_doses.size() != 1)
                         {
                                 Command::Info("dose");
-                                
+
                                 this->PrintDoses();
                                 it = Command::GetKey();
-                                
-                                if (it.is_action or it.is_error) return {0, false};
+
+                                if (it.is_action or it.is_error) return { 0, false };
+
+                                return {this->_doses.at(static_cast<size_t> (it.key)), true };
                         }
-                        
-                        return {this->_doses.at(static_cast<size_t> (it.key)), true};
+
+                        else
+                        {
+                                return { this->_doses.at(0), true };
+                        }
                 }
-        };
-        
+        } /* class Drug */;
+
         class DrugList
         {
         private:
@@ -95,7 +102,8 @@ namespace Drugio
                         
                         for (auto d: this->_list) std::cout << "[" << c++ << "] " << d.GetName() << std::endl;
                         
-                        std::cout << "\n" << "> ";
+                        std::cout << "\n> ";
+                        std::cout.flush();
                         
                         return (c - 'a') - 1;
                 }
@@ -111,14 +119,28 @@ namespace Drugio
                                 Drug d = this->GetSelection(user_input);
                                 ReturnStructures::MaybeDouble dose_used = d.GetSelection();
                                 
-                                if (dose_used.is_double) return { d.GetName(), dose_used.dosage, false };
+                                if (dose_used.is_double) return { d.GetName(), dose_used.dosage, true };
                         }
                         catch (std::out_of_range &oor)
                         {
                                 std::cerr << "ERROR: Out of range (" << oor.what() << ")." << std::endl;
                         }
                         
-                        return { "", 0.0, true };
+                        return { "", 0.0, false };
+                }
+
+                void
+                ShowLast()
+                {
+                        ReturnStructures::InputReturn it = Command::GetKey();
+                        Command::ClearScreen();
+
+                        if (not it.is_action and not it.is_error
+                            and it.key >= 0 and it.key < static_cast<int> (this->_list.size()))
+                        {
+                                Drug d = this->GetSelection(it.key);
+                                Command::PrintMoreLogs(d.GetName());
+                        }
                 }
                 
         public:
@@ -131,46 +153,47 @@ namespace Drugio
                 void
                 Menu()
                 {
-                        ReturnStructures::InputReturn it;
-                        
                         while (true)
                         {
-                                Command::Info("drug");
-                                Command::PrintLogsFromToday();
-                                
-                                PrintNames();
-                                
-                                it = Command::GetKey();
-                                
-                                if (it.is_action and it.key == Actions::SHOW_LAST)
+                                ReturnStructures::InputReturn it;
+
+                                while (true)
                                 {
+                                        Command::Info("drug");
+                                        Command::PrintLogsFromToday();
+
+                                        PrintNames();
+
                                         it = Command::GetKey();
-                                        
-                                        if (!it.is_action and !it.is_error
-                                            and it.key >= 0 and it.key < static_cast<int> (this->_list.size()))
+
+                                        if (it.is_action and it.key == Actions::SHOW_LAST)
                                         {
-                                                Drug d = this->GetSelection(it.key);
-                                                Command::PrintMoreLogs(d.GetName());
+                                                ShowLast();
                                         }
-                                }
-                                else if (it.is_error or (it.is_action and it.key == Actions::RUN_AGAIN)) continue;
-                                else if (it.key >= 0 and it.key < static_cast<int> (this->_list.size())) break;
-                                continue;
-                        }
-                        
-                        ReturnStructures::UserSelection us = this->GetUsedDose(it.key);
-                        
-                        if (us.is_escape) return;
-                        
-                        const std::string name = us.name;
-                        const double dose = us.dose;
-                        
-                        
-                        sqlite::database db(DBConfig::DBName);
-                        
-                        db << "INSERT INTO logs (theDate, theTime, name, dose) VALUES (?, ?, ?, ?);"
-                           << Time::DateNow() << Time::TimeNow() << name << dose;
-                }
-        };
-}
+                                        else
+                                        {
+                                                if (it.is_error or (it.is_action and it.key == Actions::RUN_AGAIN)) continue;
+
+                                                if (it.key >= 0 and it.key < static_cast<int>(this->_list.size())) break;
+                                        }
+                                        continue;
+                                } /* while (true)  */
+
+                                ReturnStructures::UserSelection us = this->GetUsedDose(it.key);
+
+                                if (not us.has_dosage) continue;
+
+                                const std::string name = us.name;
+                                const double dose = us.dose;
+
+
+                                sqlite::database db(DBConfig::DBName);
+
+                                db << "INSERT INTO logs (theDate, theTime, name, dose) VALUES (?, ?, ?, ?);"
+                                   << Time::DateNow() << Time::TimeNow() << name << dose;
+
+                        } /* while (true) */
+                } /* Menu() */
+        }/* class DrugList */;
+} /* namespace Drugio */
 

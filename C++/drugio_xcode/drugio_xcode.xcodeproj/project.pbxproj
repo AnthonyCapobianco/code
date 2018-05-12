@@ -26,9 +26,9 @@
 /* Begin PBXFileReference section */
 		EA763EF1209DC6E80055AFC7 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
 		EA763EF2209DC6E80055AFC7 /* logs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = logs; sourceTree = "<group>"; };
-		EA763EF3209DC6E80055AFC7 /* classes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = classes; sourceTree = "<group>"; };
 		EA763EF620A111FE0055AFC7 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EA8B217F20A14BAF0003FE55 /* drugio_xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = drugio_xcode; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA8B218420A4233F0003FE55 /* namespaces */ = {isa = PBXFileReference; lastKnownFileType = folder; name = namespaces; path = "/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces"; sourceTree = "<absolute>"; };
 		EA96BFAF209DBD8500BD44F2 /* debug.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = debug.db; sourceTree = "<group>"; };
 		EA96BFB3209DBE3300BD44F2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -57,7 +57,7 @@
 		EA96BFA2209DBC3F00BD44F2 /* drugio_xcode */ = {
 			isa = PBXGroup;
 			children = (
-				EA763EF3209DC6E80055AFC7 /* classes */,
+				EA8B218420A4233F0003FE55 /* namespaces */,
 				EA763EF620A111FE0055AFC7 /* main.cpp */,
 				EA763EF2209DC6E80055AFC7 /* logs */,
 				EA763EF1209DC6E80055AFC7 /* resources */,
@@ -260,7 +260,7 @@
 				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_FLOAT_CONVERSION = NO;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88L87CZSR7;
@@ -287,8 +287,8 @@
 			buildSettings = {
 				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_FLOAT_CONVERSION = NO;
-				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88L87CZSR7;
