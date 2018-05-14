@@ -22,6 +22,7 @@
 
 #include "../Command.cpp"
 #include "../ReturnStructures.cpp"
+#include "../../resources/sqlite_modern_cpp.h"
 
 namespace Command
 {

@@ -19,3 +19,8 @@ To see previous builds reffer to the C project at: https://github.com/AnthonyCap
 # 1.2.0~a
 
 * Bug fixes and minor improvements to the file and class structure
+
+# 1.2.1
+
+* Bug fixes. 
+* `last` finally works properly. 

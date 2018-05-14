@@ -112,8 +112,8 @@ namespace Command
                 sqlite::database db(DBConfig::DBName);
                 
                 bool has_line = false;
-                
-                const std::string STATEMENT = "SELECT theTime, name, dose FROM logs WHERE theDate IS ? ;";
+
+                std::string STATEMENT = "SELECT theTime, name, dose FROM logs WHERE theDate IS ? ;";
                 
                 for (auto &&row: db << STATEMENT << Time::DateNow())
                 {
@@ -125,12 +125,15 @@ namespace Command
                         
                         std::string theTime;
                         std::string name;
+
+                        std::string tabs = (name.length() < 7) ? "\t\t" : "\t";
+
                         double dose;
                         
                         row >> theTime >> name >> dose;
 
-                        std::cout << "[" + theTime + "] " + name + "\t\t"
-                        << dose << " mg" << std::endl;
+                        std::cout << "[" + theTime + "] " + name + tabs
+                                  << dose << " mg" << std::endl;
                 }
                 
                 if (has_line) PrintLine(); // No need for a line if there is nothing printed. 
@@ -144,7 +147,7 @@ namespace Command
                 bool has_line = false;
                 
                 const std::string STATEMENT = "SELECT theDate, theTime, name, dose FROM logs "
-                                              "WHERE name IS ? ORDER BY ID ASC LIMIT 10;";
+                                              "WHERE name IS ? ORDER BY ID DESC LIMIT 10;";
                 
                 for (auto &&row: db << STATEMENT << name_of_drug)
                 {
@@ -157,12 +160,14 @@ namespace Command
                         std::string theDate;
                         std::string theTime;
                         std::string name;
-                        
+
+                        std::string tabs = (name.length() < 7) ? "\t\t" : "\t";
+
                         double dose;
                         
                         row >> theDate >> theTime >> name >> dose;
 
-                        std::cout << "[" + theDate + " - " + theTime + "] " + name + "\t\t"
+                        std::cout << "[" + theDate + " - " + theTime + "] " + name + tabs
                                   << dose << " mg"
                                   << std::endl;   
                 }

@@ -31,6 +31,8 @@
 		EA8B218420A4233F0003FE55 /* namespaces */ = {isa = PBXFileReference; lastKnownFileType = folder; name = namespaces; path = "/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces"; sourceTree = "<absolute>"; };
 		EA96BFAF209DBD8500BD44F2 /* debug.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = debug.db; sourceTree = "<group>"; };
 		EA96BFB3209DBE3300BD44F2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		EADC4D8720A924D200BD030A /* changelog.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
+		EADC4D8820A924D200BD030A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,8 @@
 		EA96BFA2209DBC3F00BD44F2 /* drugio_xcode */ = {
 			isa = PBXGroup;
 			children = (
+				EADC4D8720A924D200BD030A /* changelog.md */,
+				EADC4D8820A924D200BD030A /* README.md */,
 				EA8B218420A4233F0003FE55 /* namespaces */,
 				EA763EF620A111FE0055AFC7 /* main.cpp */,
 				EA763EF2209DC6E80055AFC7 /* logs */,
