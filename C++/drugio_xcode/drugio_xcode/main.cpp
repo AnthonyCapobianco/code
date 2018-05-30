@@ -24,12 +24,6 @@
 
 #include "resources/sqlite_modern_cpp.h"
 
-/*
- * sqlite modern cpp can be obtained here: https://github.com/SqliteModernCpp/sqlite_modern_cpp
- * I love it and I'm sure if you ever need an sqlite wrapper you'll love it too!
- *
- */
-
 #include "namespaces/includes/Command.hpp"
 #include "namespaces/includes/Time.hpp"
 #include "namespaces/includes/DBConfig.hpp"
@@ -50,7 +44,7 @@ main()
                  , Drug("Pantomed", {20, 40})
                  , Drug("Dafalgan", {500, 1000})
                  , Drug("DXM", {50, 100, 150, 200, 250})
-                 , Drug("chlorphenamine", {3.4})
+                 , Drug("Diclofenac", {25, 50, 75})
                  , Drug("Ibuprofen", {200, 300, 400, 600})
                  , Drug("Weed", {125, 250, 500})
                  });

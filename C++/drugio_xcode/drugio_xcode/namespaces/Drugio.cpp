@@ -40,10 +40,7 @@ namespace Drugio
                 {
                         char c = 'a';
                         
-                        for (auto it: this->GetDoses())
-                        {
-                                std::cout << "[" << c++ << "] " << it << std::endl;
-                        }
+                        for (auto it: this->GetDoses()) std::cout << "[" << c++ << "] " << it << std::endl;
                         
                         std::cout << "\n> " << std::flush;
                         
@@ -52,7 +49,7 @@ namespace Drugio
                 
         public:
                 Drug(const std::string &drug_name, const std::initializer_list<double> &dose_array)
-                : _name{drug_name}, _doses{ dose_array.begin(), dose_array.end()}
+                : _name{ drug_name }, _doses{ dose_array.begin(), dose_array.end() }
                 {
                 }
                 
@@ -80,9 +77,8 @@ namespace Drugio
 
                                 if (it.is_action or it.is_error) return { 0, false };
 
-                                return {this->_doses.at(static_cast<size_t> (it.key)), true };
+                                return { this->_doses.at(static_cast<size_t>(it.key)), true };
                         }
-
                         else
                         {
                                 return { this->_doses.at(0), true };
@@ -109,7 +105,7 @@ namespace Drugio
                 }
                 
                 Drug
-                GetSelection(int &user_input) { return this->_list.at(static_cast<size_t> (user_input)); }
+                GetSelection(int &user_input) { return this->_list.at(static_cast<size_t>(user_input)); }
                 
                 ReturnStructures::UserSelection
                 GetUsedDose(int &user_input)
@@ -135,16 +131,19 @@ namespace Drugio
                         ReturnStructures::InputReturn it = Command::GetKey();
                         Command::ClearScreen();
 
-                        if (not it.is_action and not it.is_error
-                            and it.key >= 0 and it.key < static_cast<int> (this->_list.size()))
+                        volatile int list_size = static_cast<int> (this->_list.size());
+
+                        if (!it.is_action && !it.is_error
+                            && it.key >= 0 && it.key < list_size)
                         {
                                 Drug d = this->GetSelection(it.key);
-                                Command::PrintMoreLogs(d.GetName());
+                                Command::PrintLogsForDrugByName(d.GetName());
                         }
                 }
                 
         public:
-                DrugList(const std::initializer_list<Drug> &d) : _list{d}
+                DrugList(const std::initializer_list<Drug> &d)
+                : _list{d}
                 {
                 }
                 
@@ -166,34 +165,27 @@ namespace Drugio
 
                                         it = Command::GetKey();
 
-                                        if (it.is_action and it.key == Actions::SHOW_LAST)
-                                        {
-                                                ShowLast();
-                                        }
+                                        if (it.is_action && it.key == Actions::SHOW_LAST) ShowLast();
                                         else
                                         {
-                                                if (it.is_error or (it.is_action and it.key == Actions::RUN_AGAIN)) continue;
+                                                if (it.is_error or (it.is_action && it.key == Actions::RUN_AGAIN)) continue;
 
-                                                if (it.key >= 0 and it.key < static_cast<int>(this->_list.size())) break;
+                                                volatile int list_size = static_cast<int>(this->_list.size());
+                                                if (it.key >= 0 && it.key < list_size) break;
                                         }
                                         continue;
                                 } /* while (true)  */
 
                                 ReturnStructures::UserSelection us = this->GetUsedDose(it.key);
 
-                                if (not us.has_dosage) continue;
-
-                                const std::string name = us.name;
-                                const double dose = us.dose;
-
+                                if (!us.has_dosage) continue;
 
                                 sqlite::database db(DBConfig::DBName);
 
                                 db << "INSERT INTO logs (theDate, theTime, name, dose) VALUES (?, ?, ?, ?);"
-                                   << Time::DateNow() << Time::TimeNow() << name << dose;
+                                   << Time::DateNow() << Time::TimeNow() << us.name << us.dose;
 
                         } /* while (true) */
                 } /* Menu() */
         }/* class DrugList */;
 } /* namespace Drugio */
-

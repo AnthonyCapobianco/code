@@ -25,5 +25,6 @@ namespace Actions
         enum Actions
         {       SHOW_LAST = -2
         ,       RUN_AGAIN = -1
+        ,       ERROR = -1
         };
 }

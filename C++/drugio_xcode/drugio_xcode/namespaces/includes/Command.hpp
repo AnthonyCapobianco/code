@@ -42,7 +42,11 @@ namespace Command
         
         void PrintLogsFromToday();
         
-        void PrintMoreLogs(const std::string &);
+        void PrintLogsForDrugByName(const std::string &);
+
+        void PrintMoreLogs();
+
+        void PrintMoreLogsFromLast();
         
         const std::string GetLastNameInDatabase();
         

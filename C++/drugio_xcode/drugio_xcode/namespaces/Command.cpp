@@ -39,6 +39,23 @@ namespace Command
                 std::cin.get();
         }
 
+        void
+        ClearScreen()
+        {
+                #if defined (_WIN32) || defined (_WIN64)
+                        std::system("cls");
+                #else
+                        std::cout << "\x1B[2J" << std::endl;
+                #endif
+        }
+
+        void
+        PrintLine()
+        {
+                std::cout << "════════════════════════════════════════════════════════════"
+                          << std::endl;
+        }
+
         bool
         DoesUserAgree(const std::string &query)
         {
@@ -47,15 +64,12 @@ namespace Command
                 std::cout << query << std::endl;
                 std::cin >> ua;
                 
-                if (std::toupper(ua[0]) == 'Y' or ua == "yes") return true;
-                return false;
-        }
-        
-        void
-        PrintLine()
-        {
-                std::cout << "════════════════════════════════════════════════════════════"
-                          << std::endl;
+                if (std::toupper(ua[0]) == 'Y' && (ua == "YES" || ua == "yes")) return true;
+                else
+                {
+                        std::cout << "Canceled." << std::endl;
+                        return false;
+                }
         }
         
         void
@@ -95,85 +109,58 @@ namespace Command
                 
                 Pause();
         }
-        
+
         void
-        ClearScreen()
-        {
-                #if defined (_WIN32) || defined (_WIN64)
-                        std::system("cls");
-                #else
-                        std::cout << "\x1B[2J" << std::endl;
-                #endif
-        }
-        
-        void
-        PrintLogsFromToday()
+        PrintMoreLogs(const std::string &sql_statement, const std::string &variable, bool is_short_format = false)
         {
                 sqlite::database db(DBConfig::DBName);
-                
+
                 bool has_line = false;
 
-                std::string STATEMENT = "SELECT theTime, name, dose FROM logs WHERE theDate IS ? ;";
-                
-                for (auto &&row: db << STATEMENT << Time::DateNow())
+                for (auto &&row: db << sql_statement << variable)
                 {
-                        if (not has_line)
+                        if (!has_line)
                         {
                                 PrintLine();
                                 has_line = true;
                         }
-                        
-                        std::string theTime;
-                        std::string name;
 
-                        std::string tabs = (name.length() < 7) ? "\t\t" : "\t";
-
-                        double dose;
-                        
-                        row >> theTime >> name >> dose;
-
-                        std::cout << "[" + theTime + "] " + name + tabs
-                                  << dose << " mg" << std::endl;
-                }
-                
-                if (has_line) PrintLine(); // No need for a line if there is nothing printed. 
-        }
-        
-        void
-        PrintMoreLogs(const std::string &name_of_drug)
-        {
-                sqlite::database db(DBConfig::DBName);
-                
-                bool has_line = false;
-                
-                const std::string STATEMENT = "SELECT theDate, theTime, name, dose FROM logs "
-                                              "WHERE name IS ? ORDER BY ID DESC LIMIT 10;";
-                
-                for (auto &&row: db << STATEMENT << name_of_drug)
-                {
-                        if (not has_line)
-                        {
-                                PrintLine();
-                                has_line = true;
-                        }
-                        
                         std::string theDate;
                         std::string theTime;
                         std::string name;
 
-                        std::string tabs = (name.length() < 7) ? "\t\t" : "\t";
-
                         double dose;
-                        
+
                         row >> theDate >> theTime >> name >> dose;
 
-                        std::cout << "[" + theDate + " - " + theTime + "] " + name + tabs
+                        std::string tabs = (name.length() < 6) ? "\t\t" : "\t";
+                        std::string header = (!is_short_format) ? theDate + " - " + theTime : theTime;
+
+                        std::cout << "[" + header + "] " + name + tabs
                                   << dose << " mg"
-                                  << std::endl;   
+                                  << std::endl;
                 }
                 if (has_line) PrintLine();
 
-                Pause();
+                if (!is_short_format) Pause();
+        }
+
+        void
+        PrintLogsFromToday()
+        {
+                PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs WHERE theDate IS ? ;", Time::DateNow(), true);
+        }
+
+        void
+        PrintMoreLogsFromLast(std::string &limit)
+        {
+                PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs ORDER BY ID DESC LIMIT ?;", limit);
+        }
+
+        void
+        PrintLogsForDrugByName(const std::string &name_of_drug)
+        {
+                PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs WHERE name IS ? ORDER BY ID DESC LIMIT 10;", name_of_drug);
         }
         
         const std::string
@@ -196,50 +183,70 @@ namespace Command
                 
                 const std::string name = GetLastNameInDatabase();
                 
-                std::string querry = "Are you sure you want to delete the last dose of "
-                                     +  name + " from the database? (Y/N)";
+                std::string querry = "Are you sure you want to delete the last dose of " + name + " from the database? (Y/N)";
                 
                 if (DoesUserAgree(querry))
                 {
-
                         db << "DELETE FROM logs WHERE ID IS (SELECT MAX(ID) FROM logs);";
 
-                        std::cout << "The last dose of " << name << " has been removed from the database." << std::endl;
+                        std::cout << "The last dose of " + name + " has been removed from the database."
+                                  << std::endl;
                 }
-                else
-                {
-                        std::cout << "Canceled." << std::endl;
-                }
-
         }
         
         
         ReturnStructures::InputReturn
         Menu(std::string &command)
         {
-                if (command == "quit" or command == "exit") exit(EXIT_SUCCESS);
-
-                if (command.find("logs") != std::string::npos) PrintLogsFromToday();
-                
-                if (command == "cls" or command == "clear" or command == "back") ClearScreen();
-                
-                if (command == "help")
-                {
-                        ClearScreen();
-                        PrintHelp();
-                }
-                
-                if (command == "rmlast")
-                {
-                        RemoveLastLogEntry();
-                        ClearScreen();
-                }
-                
+                /* This is the only command which returns something different so I check for it first. */
                 if (command == "last")
                 {
                         InfoLogs();
                         return { Actions::SHOW_LAST, true, false };
                 }
+
+                /*
+                 * Since we can't use switches for strings I'll make it myself.
+                 * This is done to avoid checking every condition before returning.
+                 * I know I could have used a goto statement, I tried, I don't like it…
+                 */
+
+                do
+                {
+                        if (command == "quit" || command == "exit")
+                        {
+                                exit(EXIT_SUCCESS);
+                        }
+
+                        if (command.find("logs") != std::string::npos)
+                        {
+                                std::string num;
+                                std::cin >> num;
+                                PrintMoreLogsFromLast(num);
+                                break;
+                        }
+
+                        if (command == "cls" || command == "clear" || command == "back")
+                        {
+                                ClearScreen();
+                                break;
+                        }
+
+                        if (command == "help")
+                        {
+                                ClearScreen();
+                                PrintHelp();
+                                break;
+                        }
+
+                        if (command == "rmlast")
+                        {
+                                RemoveLastLogEntry();
+                                ClearScreen();
+                                break;
+                        }
+
+                } while (false);
 
                 return { Actions::RUN_AGAIN, true, false };
         }
@@ -247,14 +254,6 @@ namespace Command
         ReturnStructures::InputReturn
         GetKey()
         {
-                /*
-                 * class InputReturn:
-                 * int key;
-                 * bool is_action;
-                 * bool is_error;
-                 *
-                 */
-
                 std::string it = "";
                 
                 try
@@ -263,12 +262,13 @@ namespace Command
                         
                         if (it.length() > 1) return Command::Menu(it);
                         
-                        return { static_cast<int>(it[0] - 'a'), false, false};
+                        return { static_cast<int>(it[0] - 'a'), false, false };
                 }
                 catch (const std::exception& e)
                 {
                         std::cerr << "ERROR: " << e.what() << std::endl;
-                        return {Actions::RUN_AGAIN, false, true};
+
+                        return { Actions::ERROR, false, true };
                 }
         }
 }
