@@ -205,48 +205,34 @@ namespace Command
                         return { Actions::SHOW_LAST, true, false };
                 }
 
-                /*
-                 * Since we can't use switches for strings I'll make it myself.
-                 * This is done to avoid checking every condition before returning.
-                 * I know I could have used a goto statement, I tried, I don't like it…
-                 */
-
-                do
+                else if (command == "quit" || command == "exit")
                 {
-                        if (command == "quit" || command == "exit")
-                        {
-                                exit(EXIT_SUCCESS);
-                        }
+                        exit(EXIT_SUCCESS);
+                }
 
-                        if (command.find("logs") != std::string::npos)
-                        {
-                                std::string num;
-                                std::cin >> num;
-                                PrintMoreLogsFromLast(num);
-                                break;
-                        }
+                else if (command.find("logs") != std::string::npos)
+                {
+                        std::string num;
+                        std::cin >> num;
+                        PrintMoreLogsFromLast(num);
+                }
 
-                        if (command == "cls" || command == "clear" || command == "back")
-                        {
-                                ClearScreen();
-                                break;
-                        }
+                else if (command == "cls" || command == "clear" || command == "back")
+                {
+                        ClearScreen();
+                }
 
-                        if (command == "help")
-                        {
-                                ClearScreen();
-                                PrintHelp();
-                                break;
-                        }
+                else if (command == "help")
+                {
+                        ClearScreen();
+                        PrintHelp();
+                }
 
-                        if (command == "rmlast")
-                        {
-                                RemoveLastLogEntry();
-                                ClearScreen();
-                                break;
-                        }
-
-                } while (false);
+                else if (command == "rmlast")
+                {
+                        RemoveLastLogEntry();
+                        ClearScreen();
+                }
 
                 return { Actions::RUN_AGAIN, true, false };
         }
