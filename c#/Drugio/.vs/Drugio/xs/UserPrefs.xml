@@ -1,0 +1,18 @@
+﻿<Properties StartupConfiguration="{AAF0AC4A-0371-473D-B59D-BEEFC466415F}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Drugio/namespaces/Command.cs">
+    <Files>
+      <File FileName="Drugio/Program.cs" Line="14" Column="1" />
+      <File FileName="Drugio/namespaces/Drugio.cs" Line="161" Column="84" />
+      <File FileName="Drugio/main.cpp" Line="1" Column="1" />
+      <File FileName="Drugio/namespaces/ReturnStructures.cs" Line="25" Column="17" />
+      <File FileName="Drugio/namespaces/Command.cs" Line="29" Column="33" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Drugio PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

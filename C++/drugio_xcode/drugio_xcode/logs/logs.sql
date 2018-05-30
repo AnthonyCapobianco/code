@@ -11,3 +11,4 @@ CREATE TABLE IF NOT EXISTS drugs(
 ,	name TEXT
 ,	doses blob
 );
+

@@ -1,0 +1,11 @@
+/Users/tony/code/c#/Drugio/Drugio/bin/Debug/netcoreapp2.0/Drugio.deps.json
+/Users/tony/code/c#/Drugio/Drugio/bin/Debug/netcoreapp2.0/Drugio.runtimeconfig.json
+/Users/tony/code/c#/Drugio/Drugio/bin/Debug/netcoreapp2.0/Drugio.runtimeconfig.dev.json
+/Users/tony/code/c#/Drugio/Drugio/bin/Debug/netcoreapp2.0/Drugio.dll
+/Users/tony/code/c#/Drugio/Drugio/bin/Debug/netcoreapp2.0/Drugio.pdb
+/Users/tony/code/c#/Drugio/Drugio/obj/Debug/netcoreapp2.0/Drugio.csprojResolveAssemblyReference.cache
+/Users/tony/code/c#/Drugio/Drugio/obj/Debug/netcoreapp2.0/Drugio.csproj.CoreCompileInputs.cache
+/Users/tony/code/c#/Drugio/Drugio/obj/Debug/netcoreapp2.0/Drugio.AssemblyInfoInputs.cache
+/Users/tony/code/c#/Drugio/Drugio/obj/Debug/netcoreapp2.0/Drugio.AssemblyInfo.cs
+/Users/tony/code/c#/Drugio/Drugio/obj/Debug/netcoreapp2.0/Drugio.dll
+/Users/tony/code/c#/Drugio/Drugio/obj/Debug/netcoreapp2.0/Drugio.pdb

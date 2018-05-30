@@ -38,4 +38,4 @@ namespace ReturnStructures
         {       const double dosage;
                 bool is_double;
         };
-} ;
+} 
