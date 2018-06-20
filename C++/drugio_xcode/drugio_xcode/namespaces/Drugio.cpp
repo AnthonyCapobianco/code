@@ -75,7 +75,7 @@ namespace Drugio
                                 this->PrintDoses();
                                 it = Command::GetKey();
 
-                                if (it.is_action or it.is_error) return { 0, false };
+                                if (it.is_action || it.is_error) return { 0, false };
 
                                 return { this->_doses.at(static_cast<size_t>(it.key)), true };
                         }
@@ -133,8 +133,7 @@ namespace Drugio
 
                         volatile int list_size = static_cast<int> (this->_list.size());
 
-                        if (!it.is_action && !it.is_error
-                            && it.key >= 0 && it.key < list_size)
+                        if (!it.is_action && !it.is_error && it.key >= 0 && it.key < list_size)
                         {
                                 Drug d = this->GetSelection(it.key);
                                 Command::PrintLogsForDrugByName(d.GetName());
@@ -174,7 +173,7 @@ namespace Drugio
                                                 if (it.key >= 0 && it.key < list_size) break;
                                         }
                                         continue;
-                                } /* while (true)  */
+                                } /* while (true) Input loop */
 
                                 ReturnStructures::UserSelection us = this->GetUsedDose(it.key);
 
@@ -185,7 +184,7 @@ namespace Drugio
                                 db << "INSERT INTO logs (theDate, theTime, name, dose) VALUES (?, ?, ?, ?);"
                                    << Time::DateNow() << Time::TimeNow() << us.name << us.dose;
 
-                        } /* while (true) */
+                        } /* while (true) Program loop */
                 } /* Menu() */
         }/* class DrugList */;
 } /* namespace Drugio */

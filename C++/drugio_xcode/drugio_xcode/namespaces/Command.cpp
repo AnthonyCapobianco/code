@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 
 #include "includes/Command.hpp"
 #include "includes/Time.hpp"
@@ -33,7 +34,8 @@ namespace Command
         void
         Pause()
         {
-                std::cout << "Press the return key to go back to the main menu." << std::endl;
+                std::cout << "Press the return key to go back to the main menu."
+                          << std::endl;
 
                 std::cin.ignore();
                 std::cin.get();
@@ -101,6 +103,7 @@ namespace Command
                           << "\tType \"back\" to go back to the previous menu\n"
                           << "\tType \"last\" to show logs for a specific medication\n"
                           << "\tType \"rmlast\" to remove the last log entry\n"
+                          << "\tType \"csv\" to export your logs to a csv file\n"
                           << "\tType \"clear\" or \"cls\" to clear the screen\n"
                           << "\tType \"help\" to show this menu\n"
                           << std::endl;
@@ -152,15 +155,16 @@ namespace Command
         }
 
         void
-        PrintMoreLogsFromLast(std::string &limit)
+        PrintMoreLogsFromLast(unsigned int &limit)
         {
-                PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs ORDER BY ID DESC LIMIT ?;", limit);
+                std::string limit_string = (limit >= 10 && limit <= 30) ? std::to_string(limit) : "10";
+                PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs ORDER BY ID ASC LIMIT ?;", limit_string);
         }
 
         void
         PrintLogsForDrugByName(const std::string &name_of_drug)
         {
-                PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs WHERE name IS ? ORDER BY ID DESC LIMIT 10;", name_of_drug);
+                PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs WHERE name IS ? ORDER BY ID ASC LIMIT 10;", name_of_drug);
         }
         
         const std::string
@@ -193,8 +197,44 @@ namespace Command
                                   << std::endl;
                 }
         }
-        
-        
+
+        bool
+        ExportLogsToCsv()
+        {
+                sqlite::database db(DBConfig::DBName);
+
+                std::string csv_file_path = DBConfig::DBFolder + "backup.csv";
+
+                std::ofstream csv_file;
+                csv_file.open(csv_file_path, std::ios::trunc);
+
+                if (csv_file.is_open())
+                {
+                        for (auto &&row: db << "SELECT theDate, theTime, name, dose FROM logs WHERE 1")
+                        {
+                                std::string date
+                                          , time
+                                          , name
+                                          ;
+                                double dose;
+
+                                row >> date >> time >> name >> dose;
+
+                                #define sep ", "
+
+                                csv_file << date + sep + time + sep + "\"" + name + "\"" + sep << dose
+                                         << "\n";
+
+                                #undef sep
+                        }
+
+                        csv_file.close();
+
+                        return true;
+                }
+                return false;
+        }
+
         ReturnStructures::InputReturn
         Menu(std::string &command)
         {
@@ -212,8 +252,19 @@ namespace Command
 
                 else if (command.find("logs") != std::string::npos)
                 {
-                        std::string num;
+                        unsigned int num;
                         std::cin >> num;
+                        
+                        if (std::cin.eof() || std::cin.bad())
+                        {
+                                num = 10;
+                        }
+                        else if (std::cin.fail())
+                        {
+                                std::cin.clear();
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        }
+
                         PrintMoreLogsFromLast(num);
                 }
 
@@ -232,6 +283,20 @@ namespace Command
                 {
                         RemoveLastLogEntry();
                         ClearScreen();
+                }
+
+                else if (command == "csv")
+                {
+                       if (ExportLogsToCsv())
+                       {
+                               std::cout << "Success."
+                                         << std::endl;
+                       }
+                       else
+                       {
+                               std::cerr << "ERROR: Couldn't open the file"
+                               << std::endl;
+                       }
                 }
 
                 return { Actions::RUN_AGAIN, true, false };

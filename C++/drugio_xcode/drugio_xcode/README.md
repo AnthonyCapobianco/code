@@ -1,4 +1,4 @@
-# drugio | Beta 1.2.1
+# drugio | Beta 1.2.3
 
 drugio is designed to provide an easy way for users to log doses of the medication(s) they use.
 

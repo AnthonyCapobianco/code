@@ -21,9 +21,9 @@
 #pragma once
 #include <string>
 
-
 namespace DBConfig
 {
         static const std::string DBName = "/Users/tony/Desktop/yogurd/logs/logs.db";
+        static const std::string DBFolder = "/Users/tony/Desktop/yogurd/logs/";
 }
 

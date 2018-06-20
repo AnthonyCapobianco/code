@@ -24,3 +24,9 @@ To see previous builds reffer to the C project at: https://github.com/AnthonyCap
 
 * Bug fixes. 
 * `last` finally works properly. 
+
+# 1.2.2
+* Fixed `logs` command ? 
+
+# 1.2.3
+* Added export as csv command. Type `csv`. 
