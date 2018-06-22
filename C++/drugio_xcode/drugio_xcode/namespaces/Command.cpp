@@ -167,7 +167,7 @@ namespace Command
                 PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs WHERE name IS ? ORDER BY ID ASC LIMIT 10;", name_of_drug);
         }
         
-        const std::string
+        std::string
         GetLastNameInDatabase()
         {
                 sqlite::database db(DBConfig::DBName);
@@ -212,20 +212,16 @@ namespace Command
                 {
                         for (auto &&row: db << "SELECT theDate, theTime, name, dose FROM logs WHERE 1")
                         {
-                                std::string date
-                                          , time
-                                          , name
-                                          ;
+                                std::string date;
+                                std::string time;
+                                std::string name;
+
                                 double dose;
 
                                 row >> date >> time >> name >> dose;
 
-                                #define sep ", "
-
-                                csv_file << date + sep + time + sep + "\"" + name + "\"" + sep << dose
+                                csv_file << date + ", " + time + ", " + "\"" + name + "\"" + ", " << dose
                                          << "\n";
-
-                                #undef sep
                         }
 
                         csv_file.close();
@@ -295,7 +291,7 @@ namespace Command
                        else
                        {
                                std::cerr << "ERROR: Couldn't open the file"
-                               << std::endl;
+                                         << std::endl;
                        }
                 }
 

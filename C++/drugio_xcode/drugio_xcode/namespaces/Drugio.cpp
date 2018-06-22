@@ -24,6 +24,7 @@
 #include "includes/Time.hpp"
 #include "includes/DBConfig.hpp"
 #include "includes/Actions.hpp"
+#include "includes/DrugioExceptions.hpp"
 
 #include "ReturnStructures.cpp"
 
@@ -36,7 +37,7 @@ namespace Drugio
                 const std::vector<double> _doses;
                 
                 char
-                PrintDoses()
+                PrintDoses() const
                 {
                         char c = 'a';
                         
@@ -55,18 +56,27 @@ namespace Drugio
                 
                 ~Drug(){}
                 
-                const std::vector<double>
-                GetDoses() { return this->_doses; }
+                const std::vector<double>&
+                GetDoses() const
+                {
+                        return this->_doses;
+                }
                 
-                const std::string
-                GetName() { return this->_name; }
+                const std::string&
+                GetName() const
+                {
+                        return this->_name;
+                }
                 
-                ReturnStructures::MaybeDouble
-                GetSelection()
+                double
+                GetSelection() const
                 {
                         ReturnStructures::InputReturn it;
 
-                        if (this->_doses.empty()) return { 0, false };
+                        if (this->_doses.empty())
+                        {
+                                throw DrugioException::NotDouble();
+                        }
 
                         else if (this->_doses.size() != 1)
                         {
@@ -75,14 +85,15 @@ namespace Drugio
                                 this->PrintDoses();
                                 it = Command::GetKey();
 
-                                if (it.is_action || it.is_error) return { 0, false };
+                                if (it.is_action || it.is_error)
+                                {
+                                        throw DrugioException::IsAction();
+                                }
 
-                                return { this->_doses.at(static_cast<size_t>(it.key)), true };
+                                return this->_doses.at(static_cast<size_t>(it.key));
                         }
-                        else
-                        {
-                                return { this->_doses.at(0), true };
-                        }
+
+                        return this->_doses.at(0);
                 }
         } /* class Drug */;
 
@@ -92,7 +103,7 @@ namespace Drugio
                 const std::vector<Drug> _list;
                 
                 int
-                PrintNames()
+                PrintNames() const
                 {
                         char c = 'a';
                         
@@ -105,17 +116,33 @@ namespace Drugio
                 }
                 
                 Drug
-                GetSelection(int &user_input) { return this->_list.at(static_cast<size_t>(user_input)); }
+                GetSelection(int &user_input) const
+                {
+                        return this->_list.at(static_cast<size_t>(user_input));
+                }
                 
                 ReturnStructures::UserSelection
-                GetUsedDose(int &user_input)
+                GetUsedDose(int &user_input) const
                 {
                         try
                         {
                                 Drug d = this->GetSelection(user_input);
-                                ReturnStructures::MaybeDouble dose_used = d.GetSelection();
+                                double dose_used;
+
+                                try
+                                {
+                                        dose_used = d.GetSelection();
+                                }
+                                catch (DrugioException::NotDouble &nd)
+                                {
+                                        std::cerr << "ERROR: " << nd.what() << std::endl;
+                                }
+                                catch (DrugioException::IsAction)
+                                {
+                                        // It's fine we can go on, no error message. 
+                                }
                                 
-                                if (dose_used.is_double) return { d.GetName(), dose_used.dosage, true };
+                                return { d.GetName(), dose_used, true };
                         }
                         catch (std::out_of_range &oor)
                         {
@@ -126,7 +153,7 @@ namespace Drugio
                 }
 
                 void
-                ShowLast()
+                ShowLast() const
                 {
                         ReturnStructures::InputReturn it = Command::GetKey();
                         Command::ClearScreen();

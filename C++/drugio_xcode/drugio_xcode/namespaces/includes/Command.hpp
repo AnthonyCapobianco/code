@@ -48,7 +48,7 @@ namespace Command
 
         void PrintMoreLogsFromLast();
         
-        const std::string GetLastNameInDatabase();
+        std::string GetLastNameInDatabase();
         
         void RemoveLastLogEntry();
   

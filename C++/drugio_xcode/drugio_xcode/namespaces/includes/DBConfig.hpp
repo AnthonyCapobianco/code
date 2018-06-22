@@ -23,7 +23,7 @@
 
 namespace DBConfig
 {
-        static const std::string DBName = "/Users/tony/Desktop/yogurd/logs/logs.db";
-        static const std::string DBFolder = "/Users/tony/Desktop/yogurd/logs/";
+        const std::string DBName = "/Users/tony/Desktop/yogurd/logs/logs.db";
+        const std::string DBFolder = "/Users/tony/Desktop/yogurd/logs/";
 }
 
