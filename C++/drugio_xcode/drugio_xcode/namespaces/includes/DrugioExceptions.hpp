@@ -21,15 +21,15 @@
 
 namespace DrugioException
 {
-        struct NotDouble : public std::exception
+        struct NotDouble: public std::exception
         {
-                const char * what () const throw ()
+                const char * what() const throw()
                 {
                         return "Not a double";
                 }
         };
 
-        struct IsAction : public std::exception
+        struct IsAction: public std::exception
         {
         };
 

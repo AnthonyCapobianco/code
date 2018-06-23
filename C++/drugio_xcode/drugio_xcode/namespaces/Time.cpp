@@ -23,8 +23,7 @@
 
 namespace Time
 {
-        std::string
-        DateNow()
+        std::string DateNow()
         {
                 std::time_t t = std::time(nullptr);
                 char now[100] = "";
@@ -34,8 +33,7 @@ namespace Time
                 return now;
         }
         
-        std::string
-        TimeNow()
+        std::string TimeNow()
         {
                 std::time_t t = std::time(nullptr);
                 char now[100] = "";

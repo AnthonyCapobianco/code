@@ -31,8 +31,7 @@
 
 namespace Command
 {
-        void
-        Pause()
+        void Pause()
         {
                 std::cout << "Press the return key to go back to the main menu."
                           << std::endl;
@@ -41,8 +40,7 @@ namespace Command
                 std::cin.get();
         }
 
-        void
-        ClearScreen()
+        void ClearScreen()
         {
                 #if defined (_WIN32) || defined (_WIN64)
                         std::system("cls");
@@ -51,17 +49,15 @@ namespace Command
                 #endif
         }
 
-        void
-        PrintLine()
+        void PrintLine()
         {
                 std::cout << "════════════════════════════════════════════════════════════"
                           << std::endl;
         }
 
-        bool
-        DoesUserAgree(const std::string &query)
+        bool DoesUserAgree(const std::string &query)
         {
-                std::string ua = "";
+                std::string ua;
                 
                 std::cout << query << std::endl;
                 std::cin >> ua;
@@ -74,16 +70,14 @@ namespace Command
                 }
         }
         
-        void
-        Info(const std::string &name)
+        void Info(const std::string &name)
         {
                 std::cout << "Please type the letter conresponding to the " + name + " taken\n"
                           << "then press the return key. Type \"help\" for help.\n"
                           << std::endl;
         }
         
-        void
-        InfoLogs()
+        void InfoLogs()
         {
                 std::cout << "Please type the letter conresponding to the drug\n"
                           << "you want to see the logs for then press the return key."
@@ -92,8 +86,7 @@ namespace Command
                 std::cout.flush();
         }
         
-        void
-        PrintHelp()
+        void PrintHelp()
         {
                 PrintLine();
                 
@@ -113,8 +106,7 @@ namespace Command
                 Pause();
         }
 
-        void
-        PrintMoreLogs(const std::string &sql_statement, const std::string &variable, bool is_short_format = false)
+        void PrintMoreLogs(const std::string &sql_statement, const std::string &variable, bool is_short_format = false)
         {
                 sqlite::database db(DBConfig::DBName);
 
@@ -148,27 +140,23 @@ namespace Command
                 if (!is_short_format) Pause();
         }
 
-        void
-        PrintLogsFromToday()
+        void PrintLogsFromToday()
         {
                 PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs WHERE theDate IS ? ;", Time::DateNow(), true);
         }
 
-        void
-        PrintMoreLogsFromLast(unsigned int &limit)
+        void PrintMoreLogsFromLast(unsigned int &limit)
         {
                 std::string limit_string = (limit >= 10 && limit <= 30) ? std::to_string(limit) : "10";
                 PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs ORDER BY ID ASC LIMIT ?;", limit_string);
         }
 
-        void
-        PrintLogsForDrugByName(const std::string &name_of_drug)
+        void PrintLogsForDrugByName(const std::string &name_of_drug)
         {
                 PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs WHERE name IS ? ORDER BY ID ASC LIMIT 10;", name_of_drug);
         }
         
-        std::string
-        GetLastNameInDatabase()
+        std::string GetLastNameInDatabase()
         {
                 sqlite::database db(DBConfig::DBName);
                 std::string name;
@@ -179,8 +167,7 @@ namespace Command
                 return name;
         }
         
-        void
-        RemoveLastLogEntry()
+        void RemoveLastLogEntry()
         {
                 sqlite::database db(DBConfig::DBName);
                 PrintLine();
@@ -198,8 +185,7 @@ namespace Command
                 }
         }
 
-        bool
-        ExportLogsToCsv()
+        bool ExportLogsToCsv()
         {
                 sqlite::database db(DBConfig::DBName);
 
@@ -231,8 +217,7 @@ namespace Command
                 return false;
         }
 
-        ReturnStructures::InputReturn
-        Menu(std::string &command)
+        ReturnStructures::InputReturn Menu(std::string &command)
         {
                 /* This is the only command which returns something different so I check for it first. */
                 if (command == "last")
@@ -298,8 +283,7 @@ namespace Command
                 return { Actions::RUN_AGAIN, true, false };
         }
         
-        ReturnStructures::InputReturn
-        GetKey()
+        ReturnStructures::InputReturn GetKey()
         {
                 std::string it = "";
                 

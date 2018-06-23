@@ -36,8 +36,7 @@ namespace Drugio
                 const std::string _name;
                 const std::vector<double> _doses;
                 
-                char
-                PrintDoses() const
+                char PrintDoses() const
                 {
                         char c = 'a';
                         
@@ -54,22 +53,17 @@ namespace Drugio
                 {
                 }
                 
-                ~Drug(){}
-                
-                const std::vector<double>&
-                GetDoses() const
+                const std::vector<double>& GetDoses() const
                 {
                         return this->_doses;
                 }
                 
-                const std::string&
-                GetName() const
+                const std::string& GetName() const
                 {
                         return this->_name;
                 }
                 
-                double
-                GetSelection() const
+                double GetSelection() const
                 {
                         ReturnStructures::InputReturn it;
 
@@ -90,10 +84,10 @@ namespace Drugio
                                         throw DrugioException::IsAction();
                                 }
 
-                                return this->_doses.at(static_cast<size_t>(it.key));
+                                return std::move(this->_doses.at(static_cast<size_t>(it.key)));
                         }
 
-                        return this->_doses.at(0);
+                        return std::move(this->_doses.at(0));
                 }
         } /* class Drug */;
 
@@ -102,8 +96,7 @@ namespace Drugio
         private:
                 const std::vector<Drug> _list;
                 
-                int
-                PrintNames() const
+                int PrintNames() const
                 {
                         char c = 'a';
                         
@@ -115,14 +108,12 @@ namespace Drugio
                         return (c - 'a') - 1;
                 }
                 
-                Drug
-                GetSelection(int &user_input) const
+                Drug GetSelection(int &user_input) const
                 {
-                        return this->_list.at(static_cast<size_t>(user_input));
+                        return std::move(this->_list.at(static_cast<size_t>(user_input)));
                 }
                 
-                ReturnStructures::UserSelection
-                GetUsedDose(int &user_input) const
+                ReturnStructures::UserSelection GetUsedDose(int &user_input) const
                 {
                         try
                         {
@@ -139,7 +130,8 @@ namespace Drugio
                                 }
                                 catch (DrugioException::IsAction)
                                 {
-                                        // It's fine we can go on, no error message. 
+                                        // Just leave and return nothing (make it optional)
+                                        return { "", 0.0, false };
                                 }
                                 
                                 return { d.GetName(), dose_used, true };
@@ -152,8 +144,7 @@ namespace Drugio
                         return { "", 0.0, false };
                 }
 
-                void
-                ShowLast() const
+                void ShowLast() const
                 {
                         ReturnStructures::InputReturn it = Command::GetKey();
                         Command::ClearScreen();
@@ -172,8 +163,6 @@ namespace Drugio
                 : _list{d}
                 {
                 }
-                
-                ~DrugList(){}
                 
                 void
                 Menu()
@@ -196,10 +185,9 @@ namespace Drugio
                                         {
                                                 if (it.is_error or (it.is_action && it.key == Actions::RUN_AGAIN)) continue;
 
-                                                volatile int list_size = static_cast<int>(this->_list.size());
+                                                int list_size = static_cast<int>(this->_list.size());
                                                 if (it.key >= 0 && it.key < list_size) break;
                                         }
-                                        continue;
                                 } /* while (true) Input loop */
 
                                 ReturnStructures::UserSelection us = this->GetUsedDose(it.key);

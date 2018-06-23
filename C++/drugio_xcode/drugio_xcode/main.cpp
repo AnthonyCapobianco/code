@@ -29,8 +29,7 @@
 #include "namespaces/includes/DBConfig.hpp"
 #include "namespaces/Drugio.cpp"
   
-int 
-main() 
+int main() 
 {
         using namespace Drugio;
         
