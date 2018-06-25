@@ -25,5 +25,6 @@ namespace DBConfig
 {
         const std::string DBName = "/Users/tony/Desktop/yogurd/logs/logs.db";
         const std::string DBFolder = "/Users/tony/Desktop/yogurd/logs/";
+        const inline std::string select_statement = "SELECT theDate, theTime, name, dose FROM logs ";
 }
 

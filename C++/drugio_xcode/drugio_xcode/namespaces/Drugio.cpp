@@ -87,10 +87,10 @@ namespace Drugio
                                         throw DrugioException::IsAction();
                                 }
 
-                                return std::move(this->_doses.at(static_cast<size_t>(it.key)));
+                                return this->_doses.at(static_cast<size_t>(it.key));
                         }
 
-                        return std::move(this->_doses.at(0));
+                        return this->_doses.at(0);
                 }
         } /* class Drug */;
 
@@ -116,7 +116,7 @@ namespace Drugio
                 
                 Drug GetSelection(int &user_input) const
                 {
-                        return std::move(this->_list.at(static_cast<size_t>(user_input)));
+                        return this->_list.at(static_cast<size_t>(user_input));
                 }
                 
                 ReturnStructures::UserSelection GetUsedDose(int &user_input) const

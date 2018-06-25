@@ -142,18 +142,18 @@ namespace Command
 
         void PrintLogsFromToday()
         {
-                PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs WHERE theDate IS ? ;", Time::DateNow(), true);
+                PrintMoreLogs(DBConfig::select_statement + "WHERE theDate IS ? ;", Time::DateNow(), true);
         }
 
         void PrintMoreLogsFromLast(unsigned int& limit)
         {
                 std::string limit_string = (limit >= 10 && limit <= 30) ? std::to_string(limit) : "10";
-                PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs ORDER BY ID ASC LIMIT ?;", limit_string);
+                PrintMoreLogs(DBConfig::select_statement + "ORDER BY ID ASC LIMIT ?;", limit_string);
         }
 
         void PrintLogsForDrugByName(const std::string &name_of_drug)
         {
-                PrintMoreLogs("SELECT theDate, theTime, name, dose FROM logs WHERE name IS ? ORDER BY ID ASC LIMIT 10;", name_of_drug);
+                PrintMoreLogs(DBConfig::select_statement + "WHERE name IS ? ORDER BY ID ASC LIMIT 10;", name_of_drug);
         }
         
         std::string GetLastNameInDatabase()
