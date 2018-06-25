@@ -40,7 +40,10 @@ namespace Drugio
                 {
                         char c = 'a';
                         
-                        for (auto it: this->GetDoses()) std::cout << "[" << c++ << "] " << it << std::endl;
+                        for (auto it: this->GetDoses())
+                        {
+                                std::cout << "[" << c++ << "] " << it << std::endl;
+                        }
                         
                         std::cout << "\n> " << std::flush;
                         
@@ -79,7 +82,7 @@ namespace Drugio
                                 this->PrintDoses();
                                 it = Command::GetKey();
 
-                                if (it.is_action || it.is_error)
+                                if (it.is_action or it.is_error)
                                 {
                                         throw DrugioException::IsAction();
                                 }
@@ -100,7 +103,10 @@ namespace Drugio
                 {
                         char c = 'a';
                         
-                        for (auto d: this->_list) std::cout << "[" << c++ << "] " << d.GetName() << std::endl;
+                        for (auto d: this->_list)
+                        {
+                                std::cout << "[" << c++ << "] " << d.GetName() << std::endl;
+                        }
                         
                         std::cout << "\n> ";
                         std::cout.flush();
@@ -151,7 +157,7 @@ namespace Drugio
 
                         volatile int list_size = static_cast<int> (this->_list.size());
 
-                        if (!it.is_action && !it.is_error && it.key >= 0 && it.key < list_size)
+                        if (not it.is_action and not it.is_error and it.key >= 0 and it.key < list_size)
                         {
                                 Drug d = this->GetSelection(it.key);
                                 Command::PrintLogsForDrugByName(d.GetName());
@@ -164,8 +170,7 @@ namespace Drugio
                 {
                 }
                 
-                void
-                Menu()
+                inline void Menu()
                 {
                         while (true)
                         {
@@ -180,19 +185,20 @@ namespace Drugio
 
                                         it = Command::GetKey();
 
-                                        if (it.is_action && it.key == Actions::SHOW_LAST) ShowLast();
+                                        if (it.is_action and it.key == Actions::SHOW_LAST) ShowLast();
                                         else
                                         {
-                                                if (it.is_error or (it.is_action && it.key == Actions::RUN_AGAIN)) continue;
+                                                if (it.is_error or (it.is_action and it.key == Actions::RUN_AGAIN)) continue;
 
                                                 int list_size = static_cast<int>(this->_list.size());
-                                                if (it.key >= 0 && it.key < list_size) break;
+
+                                                if (it.key >= 0 and it.key < list_size) break;
                                         }
                                 } /* while (true) Input loop */
 
                                 ReturnStructures::UserSelection us = this->GetUsedDose(it.key);
 
-                                if (!us.has_dosage) continue;
+                                if (not us.has_dosage) continue;
 
                                 sqlite::database db(DBConfig::DBName);
 

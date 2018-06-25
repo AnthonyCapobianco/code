@@ -1,6 +1,7 @@
 /*
-*  This program is designed to do <##>stuff
-*  Copyright (C) 2018 Anthony Capobianco
+ *  This program is designed to provide an easy way for
+ *  users to log doses of the medication(s) they use.
+ *  Copyright (C) 2018 Anthony Capobianco
 *
 *  This program is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -23,7 +24,7 @@ namespace DrugioException
 {
         struct NotDouble: public std::exception
         {
-                const char * what() const throw()
+                const char* what() const throw()
                 {
                         return "Not a double";
                 }

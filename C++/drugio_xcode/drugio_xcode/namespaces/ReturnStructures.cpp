@@ -33,9 +33,4 @@ namespace ReturnStructures
                 double dose;
                 bool has_dosage;
         };
-
-        struct MaybeDouble
-        {       const double dosage;
-                bool is_double;
-        };
 } 
