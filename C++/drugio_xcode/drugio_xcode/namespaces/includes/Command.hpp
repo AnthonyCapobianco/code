@@ -20,37 +20,36 @@
 
 #pragma once
 
+#include "../../resources/sqlite_modern_cpp.h"
 #include "../Command.cpp"
 #include "../ReturnStructures.cpp"
-#include "../../resources/sqlite_modern_cpp.h"
 
-namespace Command
-{
-        ReturnStructures::InputReturn GetKey();
+namespace Command {
+ReturnStructures::InputReturn GetKey();
 
-        bool DoesUserAgree(const std::string &);
-        
-        void PrintLine();
-        
-        void Info(const std::string &);
-        
-        void InfoLogs();
-        
-        void PrintHelp();
-        
-        void ClearScreen();
-        
-        void PrintLogsFromToday();
-        
-        void PrintLogsForDrugByName(const std::string &);
+bool DoesUserAgree(const std::string &);
 
-        void PrintMoreLogs();
+void PrintLine();
 
-        void PrintMoreLogsFromLast();
-        
-        std::string GetLastNameInDatabase();
-        
-        void RemoveLastLogEntry();
-  
-        ReturnStructures::InputReturn Menu(std::string &);
-}
+void Info(const std::string &);
+
+void InfoLogs();
+
+void PrintHelp();
+
+void ClearScreen();
+
+void PrintLogsFromToday();
+
+void PrintLogsForDrugByName(const std::string &, const std::string, bool);
+
+void PrintMoreLogs();
+
+void PrintMoreLogsFromLast();
+
+std::string GetLastNameInDatabase();
+
+void RemoveLastLogEntry();
+
+ReturnStructures::InputReturn Menu(std::string &);
+}  // namespace Command

@@ -29,8 +29,7 @@
 #include "namespaces/includes/DBConfig.hpp"
 #include "namespaces/Drugio.cpp"
   
-int main() 
-{
+int main() {
         using namespace Drugio;
         
         DrugList medications(
@@ -46,8 +45,7 @@ int main()
         ,       Drug("Diclofenac", {25, 50, 75})
         ,       Drug("Ibuprofen", {200, 300, 400, 600})
         ,       Drug("Weed", {125, 250, 500})
-        }
-        );
+        });
         
         medications.Menu();
 }

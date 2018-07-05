@@ -20,17 +20,16 @@
 
 #pragma once
 
-namespace ReturnStructures
-{
-        struct InputReturn
-        {       int key;
-                bool is_action;
-                bool is_error;
-        };
+namespace ReturnStructures {
+struct InputReturn {
+  int key;
+  bool is_action;
+  bool is_error;
+};
 
-        struct UserSelection
-        {       std::string name;
-                double dose;
-                bool has_dosage;
-        };
-} 
+struct UserSelection {
+  std::string name;
+  double dose;
+  bool has_dosage;
+};
+}  // namespace ReturnStructures

@@ -18,28 +18,25 @@
  *
  */
 
-#include <ctime>
 #include "includes/Time.hpp"
+#include <ctime>
 
-namespace Time
-{
-        std::string DateNow()
-        {
-                std::time_t t = std::time(nullptr);
-                char now[100] = "";
-                
-                std::strftime(now, sizeof(now), "%d-%m-%Y", std::localtime(&t));
-                
-                return now;
-        }
-        
-        std::string TimeNow()
-        {
-                std::time_t t = std::time(nullptr);
-                char now[100] = "";
-                
-                std::strftime(now, sizeof(now), "%H:%M", std::localtime(&t));
-                
-                return now;
-        }
+namespace Time {
+std::string DateNow() {
+  std::time_t t = std::time(nullptr);
+  char now[100] = "";
+
+  std::strftime(now, sizeof(now), "%d-%m-%Y", std::localtime(&t));
+
+  return now;
 }
+
+std::string TimeNow() {
+  std::time_t t = std::time(nullptr);
+  char now[100] = "";
+
+  std::strftime(now, sizeof(now), "%H:%M", std::localtime(&t));
+
+  return now;
+}
+}  // namespace Time

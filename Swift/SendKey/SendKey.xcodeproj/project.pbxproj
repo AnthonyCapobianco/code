@@ -1,0 +1,618 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA02D2FD20B16A2500E3C076 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D2FC20B16A2500E3C076 /* AppDelegate.swift */; };
+		EA02D2FF20B16A2500E3C076 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D2FE20B16A2500E3C076 /* ViewController.swift */; };
+		EA02D30120B16A2600E3C076 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA02D30020B16A2600E3C076 /* Assets.xcassets */; };
+		EA02D30420B16A2600E3C076 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02D30220B16A2600E3C076 /* Main.storyboard */; };
+		EA02D31020B16A2600E3C076 /* SendKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D30F20B16A2600E3C076 /* SendKeyTests.swift */; };
+		EA02D31B20B16A2600E3C076 /* SendKeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D31A20B16A2600E3C076 /* SendKeyUITests.swift */; };
+		EA02D32C20B16A3600E3C076 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA02D32920B16A3500E3C076 /* CoreBluetooth.framework */; };
+		EA02D32D20B16A3600E3C076 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA02D32A20B16A3500E3C076 /* IOBluetooth.framework */; };
+		EA02D32E20B16A3600E3C076 /* IOBluetoothUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA02D32B20B16A3500E3C076 /* IOBluetoothUI.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA02D30C20B16A2600E3C076 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA02D2F120B16A2500E3C076 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA02D2F820B16A2500E3C076;
+			remoteInfo = SendKey;
+		};
+		EA02D31720B16A2600E3C076 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA02D2F120B16A2500E3C076 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA02D2F820B16A2500E3C076;
+			remoteInfo = SendKey;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EA02D2F920B16A2500E3C076 /* SendKey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SendKey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA02D2FC20B16A2500E3C076 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EA02D2FE20B16A2500E3C076 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EA02D30020B16A2600E3C076 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA02D30320B16A2600E3C076 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA02D30520B16A2600E3C076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA02D30620B16A2600E3C076 /* SendKey.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SendKey.entitlements; sourceTree = "<group>"; };
+		EA02D30B20B16A2600E3C076 /* SendKeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendKeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA02D30F20B16A2600E3C076 /* SendKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKeyTests.swift; sourceTree = "<group>"; };
+		EA02D31120B16A2600E3C076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA02D31620B16A2600E3C076 /* SendKeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendKeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA02D31A20B16A2600E3C076 /* SendKeyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKeyUITests.swift; sourceTree = "<group>"; };
+		EA02D31C20B16A2600E3C076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA02D32920B16A3500E3C076 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		EA02D32A20B16A3500E3C076 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
+		EA02D32B20B16A3500E3C076 /* IOBluetoothUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetoothUI.framework; path = System/Library/Frameworks/IOBluetoothUI.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA02D2F620B16A2500E3C076 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA02D32C20B16A3600E3C076 /* CoreBluetooth.framework in Frameworks */,
+				EA02D32D20B16A3600E3C076 /* IOBluetooth.framework in Frameworks */,
+				EA02D32E20B16A3600E3C076 /* IOBluetoothUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA02D30820B16A2600E3C076 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA02D31320B16A2600E3C076 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EA02D2F020B16A2500E3C076 = {
+			isa = PBXGroup;
+			children = (
+				EA02D2FB20B16A2500E3C076 /* SendKey */,
+				EA02D30E20B16A2600E3C076 /* SendKeyTests */,
+				EA02D31920B16A2600E3C076 /* SendKeyUITests */,
+				EA02D2FA20B16A2500E3C076 /* Products */,
+				EA02D32820B16A3500E3C076 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EA02D2FA20B16A2500E3C076 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA02D2F920B16A2500E3C076 /* SendKey.app */,
+				EA02D30B20B16A2600E3C076 /* SendKeyTests.xctest */,
+				EA02D31620B16A2600E3C076 /* SendKeyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA02D2FB20B16A2500E3C076 /* SendKey */ = {
+			isa = PBXGroup;
+			children = (
+				EA02D33020B16CF800E3C076 /* group.aj.sendkey.com */,
+			);
+			path = SendKey;
+			sourceTree = "<group>";
+		};
+		EA02D30E20B16A2600E3C076 /* SendKeyTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA02D30F20B16A2600E3C076 /* SendKeyTests.swift */,
+				EA02D31120B16A2600E3C076 /* Info.plist */,
+			);
+			path = SendKeyTests;
+			sourceTree = "<group>";
+		};
+		EA02D31920B16A2600E3C076 /* SendKeyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EA02D31A20B16A2600E3C076 /* SendKeyUITests.swift */,
+				EA02D31C20B16A2600E3C076 /* Info.plist */,
+			);
+			path = SendKeyUITests;
+			sourceTree = "<group>";
+		};
+		EA02D32820B16A3500E3C076 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA02D32920B16A3500E3C076 /* CoreBluetooth.framework */,
+				EA02D32A20B16A3500E3C076 /* IOBluetooth.framework */,
+				EA02D32B20B16A3500E3C076 /* IOBluetoothUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA02D33020B16CF800E3C076 /* group.aj.sendkey.com */ = {
+			isa = PBXGroup;
+			children = (
+				EA02D2FC20B16A2500E3C076 /* AppDelegate.swift */,
+				EA02D2FE20B16A2500E3C076 /* ViewController.swift */,
+				EA02D30020B16A2600E3C076 /* Assets.xcassets */,
+				EA02D30220B16A2600E3C076 /* Main.storyboard */,
+				EA02D30520B16A2600E3C076 /* Info.plist */,
+				EA02D30620B16A2600E3C076 /* SendKey.entitlements */,
+			);
+			path = group.aj.sendkey.com;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA02D2F820B16A2500E3C076 /* SendKey */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA02D31F20B16A2600E3C076 /* Build configuration list for PBXNativeTarget "SendKey" */;
+			buildPhases = (
+				EA02D2F520B16A2500E3C076 /* Sources */,
+				EA02D2F620B16A2500E3C076 /* Frameworks */,
+				EA02D2F720B16A2500E3C076 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SendKey;
+			productName = SendKey;
+			productReference = EA02D2F920B16A2500E3C076 /* SendKey.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EA02D30A20B16A2600E3C076 /* SendKeyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA02D32220B16A2600E3C076 /* Build configuration list for PBXNativeTarget "SendKeyTests" */;
+			buildPhases = (
+				EA02D30720B16A2600E3C076 /* Sources */,
+				EA02D30820B16A2600E3C076 /* Frameworks */,
+				EA02D30920B16A2600E3C076 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA02D30D20B16A2600E3C076 /* PBXTargetDependency */,
+			);
+			name = SendKeyTests;
+			productName = SendKeyTests;
+			productReference = EA02D30B20B16A2600E3C076 /* SendKeyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EA02D31520B16A2600E3C076 /* SendKeyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA02D32520B16A2600E3C076 /* Build configuration list for PBXNativeTarget "SendKeyUITests" */;
+			buildPhases = (
+				EA02D31220B16A2600E3C076 /* Sources */,
+				EA02D31320B16A2600E3C076 /* Frameworks */,
+				EA02D31420B16A2600E3C076 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA02D31820B16A2600E3C076 /* PBXTargetDependency */,
+			);
+			name = SendKeyUITests;
+			productName = SendKeyUITests;
+			productReference = EA02D31620B16A2600E3C076 /* SendKeyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA02D2F120B16A2500E3C076 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = aj;
+				TargetAttributes = {
+					EA02D2F820B16A2500E3C076 = {
+						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					EA02D30A20B16A2600E3C076 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = EA02D2F820B16A2500E3C076;
+					};
+					EA02D31520B16A2600E3C076 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = EA02D2F820B16A2500E3C076;
+					};
+				};
+			};
+			buildConfigurationList = EA02D2F420B16A2500E3C076 /* Build configuration list for PBXProject "SendKey" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EA02D2F020B16A2500E3C076;
+			productRefGroup = EA02D2FA20B16A2500E3C076 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA02D2F820B16A2500E3C076 /* SendKey */,
+				EA02D30A20B16A2600E3C076 /* SendKeyTests */,
+				EA02D31520B16A2600E3C076 /* SendKeyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA02D2F720B16A2500E3C076 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA02D30120B16A2600E3C076 /* Assets.xcassets in Resources */,
+				EA02D30420B16A2600E3C076 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA02D30920B16A2600E3C076 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA02D31420B16A2600E3C076 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA02D2F520B16A2500E3C076 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA02D2FF20B16A2500E3C076 /* ViewController.swift in Sources */,
+				EA02D2FD20B16A2500E3C076 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA02D30720B16A2600E3C076 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA02D31020B16A2600E3C076 /* SendKeyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA02D31220B16A2600E3C076 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA02D31B20B16A2600E3C076 /* SendKeyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EA02D30D20B16A2600E3C076 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA02D2F820B16A2500E3C076 /* SendKey */;
+			targetProxy = EA02D30C20B16A2600E3C076 /* PBXContainerItemProxy */;
+		};
+		EA02D31820B16A2600E3C076 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA02D2F820B16A2500E3C076 /* SendKey */;
+			targetProxy = EA02D31720B16A2600E3C076 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EA02D30220B16A2600E3C076 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA02D30320B16A2600E3C076 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA02D31D20B16A2600E3C076 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EA02D31E20B16A2600E3C076 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		EA02D32020B16A2600E3C076 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SendKey/SendKey.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 88L87CZSR7;
+				INFOPLIST_FILE = SendKey/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = aj.SendKey;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		EA02D32120B16A2600E3C076 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SendKey/SendKey.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 88L87CZSR7;
+				INFOPLIST_FILE = SendKey/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = aj.SendKey;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		EA02D32320B16A2600E3C076 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 88L87CZSR7;
+				INFOPLIST_FILE = SendKeyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = aj.SendKeyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SendKey.app/Contents/MacOS/SendKey";
+			};
+			name = Debug;
+		};
+		EA02D32420B16A2600E3C076 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 88L87CZSR7;
+				INFOPLIST_FILE = SendKeyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = aj.SendKeyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SendKey.app/Contents/MacOS/SendKey";
+			};
+			name = Release;
+		};
+		EA02D32620B16A2600E3C076 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 88L87CZSR7;
+				INFOPLIST_FILE = SendKeyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = aj.SendKeyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = SendKey;
+			};
+			name = Debug;
+		};
+		EA02D32720B16A2600E3C076 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 88L87CZSR7;
+				INFOPLIST_FILE = SendKeyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = aj.SendKeyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = SendKey;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA02D2F420B16A2500E3C076 /* Build configuration list for PBXProject "SendKey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA02D31D20B16A2600E3C076 /* Debug */,
+				EA02D31E20B16A2600E3C076 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA02D31F20B16A2600E3C076 /* Build configuration list for PBXNativeTarget "SendKey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA02D32020B16A2600E3C076 /* Debug */,
+				EA02D32120B16A2600E3C076 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA02D32220B16A2600E3C076 /* Build configuration list for PBXNativeTarget "SendKeyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA02D32320B16A2600E3C076 /* Debug */,
+				EA02D32420B16A2600E3C076 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA02D32520B16A2600E3C076 /* Build configuration list for PBXNativeTarget "SendKeyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA02D32620B16A2600E3C076 /* Debug */,
+				EA02D32720B16A2600E3C076 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA02D2F120B16A2500E3C076 /* Project object */;
+}

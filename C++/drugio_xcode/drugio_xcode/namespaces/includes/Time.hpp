@@ -22,9 +22,8 @@
 
 #include "../Time.cpp"
 
-namespace Time
-{
-        std::string DateNow();
-        
-        std::string TimeNow();
-}
+namespace Time {
+std::string DateNow();
+
+std::string TimeNow();
+}  // namespace Time
