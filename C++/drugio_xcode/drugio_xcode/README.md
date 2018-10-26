@@ -13,7 +13,7 @@ The following updates will introduce features:
 * Version 1.5 Make file.
 * Version 1.6 Brew formulae. 
 
-You can expect the release to happen before the end of August 2018 </br>
+You can expect the release to happen before the end of August 2019 </br>
 (I'm in college, this is a side project I'm making for fun.) 
 
 The original C project can be found here: https://github.com/AnthonyCapobianco/yogurd
