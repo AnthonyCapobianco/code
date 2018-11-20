@@ -177,6 +177,6 @@ class DrugList {
          << Time::DateNow() << Time::TimeNow() << us.name << us.dose;
 
     } /* while (true) Program loop */
-  }   /* Menu() */
+  } /* Menu() */
 } /* class DrugList */;
 } /* namespace Drugio */

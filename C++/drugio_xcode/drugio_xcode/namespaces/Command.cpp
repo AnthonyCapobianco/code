@@ -56,9 +56,9 @@ bool DoesUserAgree(const std::string& query) {
   std::cout << query << std::endl;
   std::cin >> ua;
 
-  if (std::toupper(ua[0]) == 'Y' and (ua == "YES" or ua == "yes"))
+  if (std::toupper(ua[0]) == 'Y' and (ua == "YES" or ua == "yes")) {
     return true;
-  else {
+  } else {
     std::cout << "Canceled." << std::endl;
     return false;
   }
@@ -82,16 +82,14 @@ static inline void InfoLogs() {
 static inline void PrintHelp() {
   PrintLine();
 
-  std::cout << "Help menu:\n" << std::endl;
-
-  std::cout << "\tType \"exit\" or \"quit\" to exit the program\n"
+  std::cout << "Help menu:\n\n"
+            << "\tType \"exit\" or \"quit\" to exit the program\n"
             << "\tType \"back\" to go back to the previous menu\n"
             << "\tType \"last\" to show logs for a specific medication\n"
             << "\tType \"rmlast\" to remove the last log entry\n"
             << "\tType \"csv\" to export your logs to a csv file\n"
             << "\tType \"clear\" or \"cls\" to clear the screen\n"
-            << "\tType \"help\" to show this menu\n"
-            << std::endl;
+            << "\tType \"help\" to show this menu\n\n";
 
   PrintLine();
 
@@ -99,8 +97,8 @@ static inline void PrintHelp() {
 }
 
 void PrintMoreLogs(const std::string& sql_statement,
-                   const std::string& variable, bool is_short_format = false,
-                   bool is_single_screen = true) {
+                   const std::string& variable,
+                   bool is_short_format = false, bool is_single_screen = true) {
   sqlite::database db(DBConfig::DBName);
 
   bool has_line = false;
@@ -136,8 +134,7 @@ void PrintLogsFromToday() {
 }
 
 void PrintMoreLogsFromLast(unsigned int& limit) {
-  std::string limit_string =
-      (limit >= 10 && limit <= 30) ? std::to_string(limit) : "10";
+  std::string limit_string = (limit <= 30) ? std::to_string(limit) : "10";
 
   PrintMoreLogs(DBConfig::select_statement + "ORDER BY ID DESC LIMIT ?;",
                 limit_string);
@@ -208,6 +205,14 @@ bool ExportLogsToCsv() {
   return false;
 }
 
+
+/*
+ *  struct InputReturn {
+ *    int key;
+ *    bool is_action;
+ *    bool is_error;
+ *  };
+ */
 ReturnStructures::InputReturn Menu(std::string& command) {
   /* This is the only command which returns something different so I check for
    * it first. */

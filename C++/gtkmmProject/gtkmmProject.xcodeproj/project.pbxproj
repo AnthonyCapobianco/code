@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		EAC5C26F20E4BD7C0046FF8B /* gtkmmProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gtkmmProject; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAC5C27220E4BD7C0046FF8B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		EAC5C27220E4BD7C0046FF8B /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; name = main.cpp; path = "/Users/tony/code/C++/gtkmmProject/gtkmmProject/main.cpp"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +131,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -157,12 +157,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -189,7 +189,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -215,12 +215,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -237,8 +237,180 @@
 		EAC5C27720E4BD7C0046FF8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88L87CZSR7;
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-D_REENTRANT",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/include/gtkmm-3.0",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/lib/gtkmm-3.0/include",
+					"-I/usr/local/Cellar/atkmm/2.24.2_1/include/atkmm-1.6",
+					"-I/usr/local/Cellar/gtk+3/3.22.30/include/gtk-3.0/unix-print",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/include/gdkmm-3.0",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/lib/gdkmm-3.0/include",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/include/giomm-2.4",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/lib/giomm-2.4/include",
+					"-I/usr/local/Cellar/pangomm/2.40.1_1/include/pangomm-1.4",
+					"-I/usr/local/Cellar/pangomm/2.40.1_1/lib/pangomm-1.4/include",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/include/glibmm-2.4",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/lib/glibmm-2.4/include",
+					"-I/usr/local/Cellar/gtk+3/3.22.30/include/gtk-3.0",
+					"-I/usr/local/Cellar/glib/2.56.1/include/gio-unix-2.0/",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/libepoxy/1.5.2/include",
+					"-I/usr/local/Cellar/pango/1.42.1/include/pango-1.0",
+					"-I/usr/local/Cellar/harfbuzz/1.8.1_1/include/harfbuzz",
+					"-I/usr/local/Cellar/graphite2/1.3.11/include",
+					"-I/usr/local/Cellar/pango/1.42.1/include/pango-1.0",
+					"-I/usr/local/Cellar/fribidi/1.0.4/include/fribidi",
+					"-I/usr/local/Cellar/atk/2.28.1_2/include/atk-1.0",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/cairomm/1.12.2/include/cairomm-1.0",
+					"-I/usr/local/Cellar/cairomm/1.12.2/lib/cairomm-1.0/include",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/pixman/0.34.0_1/include/pixman-1",
+					"-I/usr/local/Cellar/fontconfig/2.13.0/include",
+					"-I/usr/local/opt/freetype/include/freetype2",
+					"-I/usr/local/Cellar/libpng/1.6.34/include/libpng16",
+					"-I/usr/local/Cellar/libsigc++/2.10.0/include/sigc++-2.0",
+					"-I/usr/local/Cellar/libsigc++/2.10.0/lib/sigc++-2.0/include",
+					"-I/usr/local/Cellar/gdk-pixbuf/2.36.12/include/gdk-pixbuf-2.0",
+					"-I/usr/local/Cellar/libpng/1.6.34/include/libpng16",
+					"-I/usr/local/Cellar/glib/2.56.1/include/glib-2.0",
+					"-I/usr/local/Cellar/glib/2.56.1/lib/glib-2.0/include",
+					"-I/usr/local/opt/gettext/include",
+					"-I/usr/local/Cellar/pcre/8.42/include",
+					"-L/usr/local/Cellar/gtkmm3/3.22.2_1/lib",
+					"-L/usr/local/Cellar/atkmm/2.24.2_1/lib",
+					"-L/usr/local/Cellar/gtkmm3/3.22.2_1/lib",
+					"-L/usr/local/Cellar/glibmm/2.56.0_1/lib",
+					"-L/usr/local/Cellar/pangomm/2.40.1_1/lib",
+					"-L/usr/local/Cellar/glibmm/2.56.0_1/lib",
+					"-L/usr/local/Cellar/gtk+3/3.22.30/lib",
+					"-L/usr/local/Cellar/pango/1.42.1/lib",
+					"-L/usr/local/Cellar/fribidi/1.0.4/lib",
+					"-L/usr/local/Cellar/atk/2.28.1_2/lib",
+					"-L/usr/local/Cellar/cairo/1.14.12/lib",
+					"-L/usr/local/Cellar/glib/2.56.1/lib",
+					"-L/usr/local/Cellar/cairomm/1.12.2/lib",
+					"-L/usr/local/Cellar/cairo/1.14.12/lib",
+					"-L/usr/local/Cellar/libsigc++/2.10.0/lib",
+					"-L/usr/local/Cellar/gdk-pixbuf/2.36.12/lib",
+					"-L/usr/local/Cellar/glib/2.56.1/lib",
+					"-L/usr/local/opt/gettext/lib",
+					"-lgtkmm-3.0",
+					"-latkmm-1.6",
+					"-lgdkmm-3.0",
+					"-lgiomm-2.4",
+					"-lpangomm-1.4",
+					"-lglibmm-2.4",
+					"-lgtk-3",
+					"-lgdk-3",
+					"-lpangocairo-1.0",
+					"-lpango-1.0",
+					"-lfribidi",
+					"-latk-1.0",
+					"-lcairo-gobject",
+					"-lgio-2.0",
+					"-lcairomm-1.0",
+					"-lcairo",
+					"-lsigc-2.0",
+					"-lgdk_pixbuf-2.0",
+					"-lgobject-2.0",
+					"-lglib-2.0",
+					"-lintl",
+					"-Wl,-framework",
+					"-Wl,CoreFoundation\n",
+				);
+				OTHER_LDFLAGS = (
+					"-D_REENTRANT",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/include/gtkmm-3.0",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/lib/gtkmm-3.0/include",
+					"-I/usr/local/Cellar/atkmm/2.24.2_1/include/atkmm-1.6",
+					"-I/usr/local/Cellar/gtk+3/3.22.30/include/gtk-3.0/unix-print",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/include/gdkmm-3.0",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/lib/gdkmm-3.0/include",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/include/giomm-2.4",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/lib/giomm-2.4/include",
+					"-I/usr/local/Cellar/pangomm/2.40.1_1/include/pangomm-1.4",
+					"-I/usr/local/Cellar/pangomm/2.40.1_1/lib/pangomm-1.4/include",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/include/glibmm-2.4",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/lib/glibmm-2.4/include",
+					"-I/usr/local/Cellar/gtk+3/3.22.30/include/gtk-3.0",
+					"-I/usr/local/Cellar/glib/2.56.1/include/gio-unix-2.0/",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/libepoxy/1.5.2/include",
+					"-I/usr/local/Cellar/pango/1.42.1/include/pango-1.0",
+					"-I/usr/local/Cellar/harfbuzz/1.8.1_1/include/harfbuzz",
+					"-I/usr/local/Cellar/graphite2/1.3.11/include",
+					"-I/usr/local/Cellar/pango/1.42.1/include/pango-1.0",
+					"-I/usr/local/Cellar/fribidi/1.0.4/include/fribidi",
+					"-I/usr/local/Cellar/atk/2.28.1_2/include/atk-1.0",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/cairomm/1.12.2/include/cairomm-1.0",
+					"-I/usr/local/Cellar/cairomm/1.12.2/lib/cairomm-1.0/include",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/pixman/0.34.0_1/include/pixman-1",
+					"-I/usr/local/Cellar/fontconfig/2.13.0/include",
+					"-I/usr/local/opt/freetype/include/freetype2",
+					"-I/usr/local/Cellar/libpng/1.6.34/include/libpng16",
+					"-I/usr/local/Cellar/libsigc++/2.10.0/include/sigc++-2.0",
+					"-I/usr/local/Cellar/libsigc++/2.10.0/lib/sigc++-2.0/include",
+					"-I/usr/local/Cellar/gdk-pixbuf/2.36.12/include/gdk-pixbuf-2.0",
+					"-I/usr/local/Cellar/libpng/1.6.34/include/libpng16",
+					"-I/usr/local/Cellar/glib/2.56.1/include/glib-2.0",
+					"-I/usr/local/Cellar/glib/2.56.1/lib/glib-2.0/include",
+					"-I/usr/local/opt/gettext/include",
+					"-I/usr/local/Cellar/pcre/8.42/include",
+					"-L/usr/local/Cellar/gtkmm3/3.22.2_1/lib",
+					"-L/usr/local/Cellar/atkmm/2.24.2_1/lib",
+					"-L/usr/local/Cellar/gtkmm3/3.22.2_1/lib",
+					"-L/usr/local/Cellar/glibmm/2.56.0_1/lib",
+					"-L/usr/local/Cellar/pangomm/2.40.1_1/lib",
+					"-L/usr/local/Cellar/glibmm/2.56.0_1/lib",
+					"-L/usr/local/Cellar/gtk+3/3.22.30/lib",
+					"-L/usr/local/Cellar/pango/1.42.1/lib",
+					"-L/usr/local/Cellar/fribidi/1.0.4/lib",
+					"-L/usr/local/Cellar/atk/2.28.1_2/lib",
+					"-L/usr/local/Cellar/cairo/1.14.12/lib",
+					"-L/usr/local/Cellar/glib/2.56.1/lib",
+					"-L/usr/local/Cellar/cairomm/1.12.2/lib",
+					"-L/usr/local/Cellar/cairo/1.14.12/lib",
+					"-L/usr/local/Cellar/libsigc++/2.10.0/lib",
+					"-L/usr/local/Cellar/gdk-pixbuf/2.36.12/lib",
+					"-L/usr/local/Cellar/glib/2.56.1/lib",
+					"-L/usr/local/opt/gettext/lib",
+					"-lgtkmm-3.0",
+					"-latkmm-1.6",
+					"-lgdkmm-3.0",
+					"-lgiomm-2.4",
+					"-lpangomm-1.4",
+					"-lglibmm-2.4",
+					"-lgtk-3",
+					"-lgdk-3",
+					"-lpangocairo-1.0",
+					"-lpango-1.0",
+					"-lfribidi",
+					"-latk-1.0",
+					"-lcairo-gobject",
+					"-lgio-2.0",
+					"-lcairomm-1.0",
+					"-lcairo",
+					"-lsigc-2.0",
+					"-lgdk_pixbuf-2.0",
+					"-lgobject-2.0",
+					"-lglib-2.0",
+					"-lintl",
+					"-Wl,-framework",
+					"-Wl,CoreFoundation\n",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -246,8 +418,180 @@
 		EAC5C27820E4BD7C0046FF8B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88L87CZSR7;
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-D_REENTRANT",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/include/gtkmm-3.0",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/lib/gtkmm-3.0/include",
+					"-I/usr/local/Cellar/atkmm/2.24.2_1/include/atkmm-1.6",
+					"-I/usr/local/Cellar/gtk+3/3.22.30/include/gtk-3.0/unix-print",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/include/gdkmm-3.0",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/lib/gdkmm-3.0/include",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/include/giomm-2.4",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/lib/giomm-2.4/include",
+					"-I/usr/local/Cellar/pangomm/2.40.1_1/include/pangomm-1.4",
+					"-I/usr/local/Cellar/pangomm/2.40.1_1/lib/pangomm-1.4/include",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/include/glibmm-2.4",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/lib/glibmm-2.4/include",
+					"-I/usr/local/Cellar/gtk+3/3.22.30/include/gtk-3.0",
+					"-I/usr/local/Cellar/glib/2.56.1/include/gio-unix-2.0/",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/libepoxy/1.5.2/include",
+					"-I/usr/local/Cellar/pango/1.42.1/include/pango-1.0",
+					"-I/usr/local/Cellar/harfbuzz/1.8.1_1/include/harfbuzz",
+					"-I/usr/local/Cellar/graphite2/1.3.11/include",
+					"-I/usr/local/Cellar/pango/1.42.1/include/pango-1.0",
+					"-I/usr/local/Cellar/fribidi/1.0.4/include/fribidi",
+					"-I/usr/local/Cellar/atk/2.28.1_2/include/atk-1.0",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/cairomm/1.12.2/include/cairomm-1.0",
+					"-I/usr/local/Cellar/cairomm/1.12.2/lib/cairomm-1.0/include",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/pixman/0.34.0_1/include/pixman-1",
+					"-I/usr/local/Cellar/fontconfig/2.13.0/include",
+					"-I/usr/local/opt/freetype/include/freetype2",
+					"-I/usr/local/Cellar/libpng/1.6.34/include/libpng16",
+					"-I/usr/local/Cellar/libsigc++/2.10.0/include/sigc++-2.0",
+					"-I/usr/local/Cellar/libsigc++/2.10.0/lib/sigc++-2.0/include",
+					"-I/usr/local/Cellar/gdk-pixbuf/2.36.12/include/gdk-pixbuf-2.0",
+					"-I/usr/local/Cellar/libpng/1.6.34/include/libpng16",
+					"-I/usr/local/Cellar/glib/2.56.1/include/glib-2.0",
+					"-I/usr/local/Cellar/glib/2.56.1/lib/glib-2.0/include",
+					"-I/usr/local/opt/gettext/include",
+					"-I/usr/local/Cellar/pcre/8.42/include",
+					"-L/usr/local/Cellar/gtkmm3/3.22.2_1/lib",
+					"-L/usr/local/Cellar/atkmm/2.24.2_1/lib",
+					"-L/usr/local/Cellar/gtkmm3/3.22.2_1/lib",
+					"-L/usr/local/Cellar/glibmm/2.56.0_1/lib",
+					"-L/usr/local/Cellar/pangomm/2.40.1_1/lib",
+					"-L/usr/local/Cellar/glibmm/2.56.0_1/lib",
+					"-L/usr/local/Cellar/gtk+3/3.22.30/lib",
+					"-L/usr/local/Cellar/pango/1.42.1/lib",
+					"-L/usr/local/Cellar/fribidi/1.0.4/lib",
+					"-L/usr/local/Cellar/atk/2.28.1_2/lib",
+					"-L/usr/local/Cellar/cairo/1.14.12/lib",
+					"-L/usr/local/Cellar/glib/2.56.1/lib",
+					"-L/usr/local/Cellar/cairomm/1.12.2/lib",
+					"-L/usr/local/Cellar/cairo/1.14.12/lib",
+					"-L/usr/local/Cellar/libsigc++/2.10.0/lib",
+					"-L/usr/local/Cellar/gdk-pixbuf/2.36.12/lib",
+					"-L/usr/local/Cellar/glib/2.56.1/lib",
+					"-L/usr/local/opt/gettext/lib",
+					"-lgtkmm-3.0",
+					"-latkmm-1.6",
+					"-lgdkmm-3.0",
+					"-lgiomm-2.4",
+					"-lpangomm-1.4",
+					"-lglibmm-2.4",
+					"-lgtk-3",
+					"-lgdk-3",
+					"-lpangocairo-1.0",
+					"-lpango-1.0",
+					"-lfribidi",
+					"-latk-1.0",
+					"-lcairo-gobject",
+					"-lgio-2.0",
+					"-lcairomm-1.0",
+					"-lcairo",
+					"-lsigc-2.0",
+					"-lgdk_pixbuf-2.0",
+					"-lgobject-2.0",
+					"-lglib-2.0",
+					"-lintl",
+					"-Wl,-framework",
+					"-Wl,CoreFoundation\n",
+				);
+				OTHER_LDFLAGS = (
+					"-D_REENTRANT",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/include/gtkmm-3.0",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/lib/gtkmm-3.0/include",
+					"-I/usr/local/Cellar/atkmm/2.24.2_1/include/atkmm-1.6",
+					"-I/usr/local/Cellar/gtk+3/3.22.30/include/gtk-3.0/unix-print",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/include/gdkmm-3.0",
+					"-I/usr/local/Cellar/gtkmm3/3.22.2_1/lib/gdkmm-3.0/include",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/include/giomm-2.4",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/lib/giomm-2.4/include",
+					"-I/usr/local/Cellar/pangomm/2.40.1_1/include/pangomm-1.4",
+					"-I/usr/local/Cellar/pangomm/2.40.1_1/lib/pangomm-1.4/include",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/include/glibmm-2.4",
+					"-I/usr/local/Cellar/glibmm/2.56.0_1/lib/glibmm-2.4/include",
+					"-I/usr/local/Cellar/gtk+3/3.22.30/include/gtk-3.0",
+					"-I/usr/local/Cellar/glib/2.56.1/include/gio-unix-2.0/",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/libepoxy/1.5.2/include",
+					"-I/usr/local/Cellar/pango/1.42.1/include/pango-1.0",
+					"-I/usr/local/Cellar/harfbuzz/1.8.1_1/include/harfbuzz",
+					"-I/usr/local/Cellar/graphite2/1.3.11/include",
+					"-I/usr/local/Cellar/pango/1.42.1/include/pango-1.0",
+					"-I/usr/local/Cellar/fribidi/1.0.4/include/fribidi",
+					"-I/usr/local/Cellar/atk/2.28.1_2/include/atk-1.0",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/cairomm/1.12.2/include/cairomm-1.0",
+					"-I/usr/local/Cellar/cairomm/1.12.2/lib/cairomm-1.0/include",
+					"-I/usr/local/Cellar/cairo/1.14.12/include/cairo",
+					"-I/usr/local/Cellar/pixman/0.34.0_1/include/pixman-1",
+					"-I/usr/local/Cellar/fontconfig/2.13.0/include",
+					"-I/usr/local/opt/freetype/include/freetype2",
+					"-I/usr/local/Cellar/libpng/1.6.34/include/libpng16",
+					"-I/usr/local/Cellar/libsigc++/2.10.0/include/sigc++-2.0",
+					"-I/usr/local/Cellar/libsigc++/2.10.0/lib/sigc++-2.0/include",
+					"-I/usr/local/Cellar/gdk-pixbuf/2.36.12/include/gdk-pixbuf-2.0",
+					"-I/usr/local/Cellar/libpng/1.6.34/include/libpng16",
+					"-I/usr/local/Cellar/glib/2.56.1/include/glib-2.0",
+					"-I/usr/local/Cellar/glib/2.56.1/lib/glib-2.0/include",
+					"-I/usr/local/opt/gettext/include",
+					"-I/usr/local/Cellar/pcre/8.42/include",
+					"-L/usr/local/Cellar/gtkmm3/3.22.2_1/lib",
+					"-L/usr/local/Cellar/atkmm/2.24.2_1/lib",
+					"-L/usr/local/Cellar/gtkmm3/3.22.2_1/lib",
+					"-L/usr/local/Cellar/glibmm/2.56.0_1/lib",
+					"-L/usr/local/Cellar/pangomm/2.40.1_1/lib",
+					"-L/usr/local/Cellar/glibmm/2.56.0_1/lib",
+					"-L/usr/local/Cellar/gtk+3/3.22.30/lib",
+					"-L/usr/local/Cellar/pango/1.42.1/lib",
+					"-L/usr/local/Cellar/fribidi/1.0.4/lib",
+					"-L/usr/local/Cellar/atk/2.28.1_2/lib",
+					"-L/usr/local/Cellar/cairo/1.14.12/lib",
+					"-L/usr/local/Cellar/glib/2.56.1/lib",
+					"-L/usr/local/Cellar/cairomm/1.12.2/lib",
+					"-L/usr/local/Cellar/cairo/1.14.12/lib",
+					"-L/usr/local/Cellar/libsigc++/2.10.0/lib",
+					"-L/usr/local/Cellar/gdk-pixbuf/2.36.12/lib",
+					"-L/usr/local/Cellar/glib/2.56.1/lib",
+					"-L/usr/local/opt/gettext/lib",
+					"-lgtkmm-3.0",
+					"-latkmm-1.6",
+					"-lgdkmm-3.0",
+					"-lgiomm-2.4",
+					"-lpangomm-1.4",
+					"-lglibmm-2.4",
+					"-lgtk-3",
+					"-lgdk-3",
+					"-lpangocairo-1.0",
+					"-lpango-1.0",
+					"-lfribidi",
+					"-latk-1.0",
+					"-lcairo-gobject",
+					"-lgio-2.0",
+					"-lcairomm-1.0",
+					"-lcairo",
+					"-lsigc-2.0",
+					"-lgdk_pixbuf-2.0",
+					"-lgobject-2.0",
+					"-lglib-2.0",
+					"-lintl",
+					"-Wl,-framework",
+					"-Wl,CoreFoundation\n",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

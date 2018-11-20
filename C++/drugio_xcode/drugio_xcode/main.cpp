@@ -30,22 +30,23 @@
 #include "namespaces/Drugio.cpp"
   
 int main() {
-        using namespace Drugio;
+  using namespace Drugio;
+
+  DrugList medications({
+    Drug("Ritalin", {5, 10, 15, 20})
+  , Drug("Concerta", {36, 72})
+  , Drug("Effexor", {225})
+  , Drug("Xanax", {0.125, 0.25, 0.5, 1, 1.5, 2})
+  , Drug("Akton", {1, 2, 3, 4})
+  , Drug("Zolpidem", {5, 10, 15})
+  , Drug("Pantomed", {20, 40})
+  , Drug("Dafalgan", {500, 1000})
+  , Drug("DXM", {50, 100, 150, 200, 250})
+  , Drug("Diclofenac", {25, 50, 75})
+  , Drug("Ibuprofen", {200, 300, 400, 600})
+  , Drug("Weed", {125, 250, 500})
+
+  });
         
-        DrugList medications(
-        {       Drug("Ritalin", {5, 10, 15, 20})
-        ,       Drug("Concerta", {36, 72})
-        ,       Drug("Effexor", {225})
-        ,       Drug("Xanax", {0.125, 0.25, 0.5, 1, 1.5, 2})
-        ,       Drug("Akton", {1, 2, 3, 4})
-        ,       Drug("Zolpidem", {5, 10, 15})
-        ,       Drug("Pantomed", {20, 40})
-        ,       Drug("Dafalgan", {500, 1000})
-        ,       Drug("DXM", {50, 100, 150, 200, 250})
-        ,       Drug("Diclofenac", {25, 50, 75})
-        ,       Drug("Ibuprofen", {200, 300, 400, 600})
-        ,       Drug("Weed", {125, 250, 500})
-        });
-        
-        medications.Menu();
+  medications.Menu();
 }
