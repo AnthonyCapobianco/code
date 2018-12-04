@@ -30,14 +30,14 @@
 #include "ReturnStructures.cpp"
 
 namespace Command {
-static inline void Pause() {
+static void Pause() noexcept(true) {
   std::cout << "Press the return key to go back to the main menu." << std::endl;
 
   std::cin.ignore();
   std::cin.get();
 }
 
-static inline void ClearScreen() {
+static void clear_screen() noexcept(true) {
 #if defined(_WIN32) || defined(_WIN64)
   std::system("cls");
 #else
@@ -45,12 +45,12 @@ static inline void ClearScreen() {
 #endif
 }
 
-static inline void PrintLine() {
+static void print_horizontal_separator() noexcept(true) {
   std::cout << "════════════════════════════════════════════════════════════"
             << std::endl;
 }
 
-bool DoesUserAgree(const std::string& query) {
+bool user_agrees(const std::string& query) noexcept(true) {
   std::string ua;
 
   std::cout << query << std::endl;
@@ -64,14 +64,14 @@ bool DoesUserAgree(const std::string& query) {
   }
 }
 
-inline void Info(const std::string& name) {
+void print_info(const std::string& name) noexcept(true) {
   std::cout << "Please type the letter conresponding to the " + name +
                    " taken\n"
             << "then press the return key. Type \"help\" for help.\n"
             << std::endl;
 }
 
-static inline void InfoLogs() {
+static void print_log() noexcept(true) {
   std::cout << "Please type the letter conresponding to the drug\n"
             << "you want to see the logs for then press the return key."
             << "\n> ";
@@ -79,8 +79,8 @@ static inline void InfoLogs() {
   std::cout.flush();
 }
 
-static inline void PrintHelp() {
-  PrintLine();
+static void print_help() noexcept(true) {
+  print_horizontal_separator();
 
   std::cout << "Help menu:\n\n"
             << "\tType \"exit\" or \"quit\" to exit the program\n"
@@ -91,21 +91,22 @@ static inline void PrintHelp() {
             << "\tType \"clear\" or \"cls\" to clear the screen\n"
             << "\tType \"help\" to show this menu\n\n";
 
-  PrintLine();
+  print_horizontal_separator();
 
   Pause();
 }
 
-void PrintMoreLogs(const std::string& sql_statement,
+void print_more_logs(const std::string& sql_statement,
                    const std::string& variable,
-                   bool is_short_format = false, bool is_single_screen = true) {
+                   bool is_short_format = false,
+                   bool is_single_screen = true) noexcept(false) {
   sqlite::database db(DBConfig::DBName);
 
   bool has_line = false;
 
   for (auto&& row : db << sql_statement << variable) {
     if (not has_line) {
-      PrintLine();
+      print_horizontal_separator();
       has_line = true;
     }
 
@@ -120,35 +121,34 @@ void PrintMoreLogs(const std::string& sql_statement,
     std::string header =
         (!is_short_format) ? theDate + " - " + theTime : theTime;
 
-    std::cout << "[" + header + "] " + name + " \t" << dose << " mg"
-              << std::endl;
+    std::cout << "[" + header + "] " + name + " \t" << dose << " mg\n";
   }
-  if (has_line) PrintLine();
+  if (has_line) print_horizontal_separator();
 
   if (not is_short_format and is_single_screen) Pause();
 }
 
-void PrintLogsFromToday() {
-  PrintMoreLogs(DBConfig::select_statement + "WHERE theDate IS ? ;",
+void print_todays_log() {
+  print_more_logs(DBConfig::select_statement + "WHERE theDate IS ? ;",
                 Time::DateNow(), true);
 }
 
-void PrintMoreLogsFromLast(unsigned int& limit) {
+void print_more_logs_from_last(unsigned int& limit) noexcept(false) {
   std::string limit_string = (limit <= 30) ? std::to_string(limit) : "10";
 
-  PrintMoreLogs(DBConfig::select_statement + "ORDER BY ID DESC LIMIT ?;",
+  print_more_logs(DBConfig::select_statement + "ORDER BY ID DESC LIMIT ?;",
                 limit_string);
 }
 
-void PrintLogsForDrugByName(const std::string& name_of_drug,
+void print_logs_for_drug_by_name(const std::string& name_of_drug,
                             const std::string limit = "10",
-                            bool is_short = false, bool is_excerpt = false) {
-  PrintMoreLogs(DBConfig::select_statement +
+                            bool is_short = false, bool is_excerpt = false) noexcept(false) {
+  print_more_logs(DBConfig::select_statement +
                     "WHERE name IS ? ORDER BY ID DESC LIMIT " + limit + ";",
                 name_of_drug, is_short, is_excerpt);
 }
 
-std::string GetLastNameInDatabase() {
+std::string get_last_drug_name_in_db() noexcept(false) {
   sqlite::database db(DBConfig::DBName);
   std::string name;
 
@@ -157,16 +157,16 @@ std::string GetLastNameInDatabase() {
   return name;
 }
 
-void RemoveLastLogEntry() {
+void remove_last_log_entry() noexcept(false) {
   sqlite::database db(DBConfig::DBName);
-  PrintLine();
+  print_horizontal_separator();
 
-  const std::string name = GetLastNameInDatabase();
+  const std::string name = get_last_drug_name_in_db();
 
   std::string querry = "Are you sure you want to delete the last dose of " +
                        name + " from the database? (Y/N)";
 
-  if (DoesUserAgree(querry)) {
+  if (user_agrees(querry)) {
     db << "DELETE FROM logs WHERE ID IS (SELECT MAX(ID) FROM logs);";
 
     std::cout << "The last dose of " + name +
@@ -175,7 +175,7 @@ void RemoveLastLogEntry() {
   }
 }
 
-bool ExportLogsToCsv() {
+bool export_log_to_csv_file() noexcept(false) {
   sqlite::database db(DBConfig::DBName);
 
   std::string csv_file_path = DBConfig::DBFolder + "backup.csv";
@@ -213,15 +213,17 @@ bool ExportLogsToCsv() {
  *    bool is_error;
  *  };
  */
-ReturnStructures::InputReturn Menu(std::string& command) {
+ReturnStructures::InputReturn menu(std::string& command) noexcept(false) {
   /* This is the only command which returns something different so I check for
    * it first. */
   if (command == "last") {
-    InfoLogs();
+    print_log();
     return {Actions::SHOW_LAST, true, false};
   }
 
   else if (command == "quit" or command == "exit") {
+    export_log_to_csv_file();
+    clear_screen();
     exit(EXIT_SUCCESS);
   }
 
@@ -236,25 +238,25 @@ ReturnStructures::InputReturn Menu(std::string& command) {
       std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    PrintMoreLogsFromLast(num);
+    print_more_logs_from_last(num);
   }
 
   else if (command == "cls" or command == "clear" or command == "back") {
-    ClearScreen();
+    clear_screen();
   }
 
   else if (command == "help") {
-    ClearScreen();
-    PrintHelp();
+    clear_screen();
+    print_help();
   }
 
   else if (command == "rmlast") {
-    RemoveLastLogEntry();
-    ClearScreen();
+    remove_last_log_entry();
+    clear_screen();
   }
 
   else if (command == "csv") {
-    if (ExportLogsToCsv()) {
+    if (export_log_to_csv_file()) {
       std::cout << "Success." << std::endl;
     } else {
       std::cerr << "ERROR: Couldn't open the file" << std::endl;
@@ -264,13 +266,13 @@ ReturnStructures::InputReturn Menu(std::string& command) {
   return {Actions::RUN_AGAIN, true, false};
 }
 
-ReturnStructures::InputReturn GetKey() {
+ReturnStructures::InputReturn get_key() noexcept(false) {
   std::string it;
 
   try {
     std::cin >> it;
 
-    if (it.length() > 1) return Command::Menu(it);
+    if (it.length() > 1) return Command::menu(it);
 
     return {static_cast<int>(it[0] - 'a'), false, false};
 

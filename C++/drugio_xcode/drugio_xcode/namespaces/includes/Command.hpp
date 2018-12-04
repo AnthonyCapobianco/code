@@ -25,31 +25,31 @@
 #include "../ReturnStructures.cpp"
 
 namespace Command {
-ReturnStructures::InputReturn GetKey();
+ReturnStructures::InputReturn get_key();
 
-bool DoesUserAgree(const std::string &);
+bool user_agrees(const std::string &) noexcept(true);
 
-void PrintLine();
+void print_horizontal_separator() noexcept(true);
 
-void Info(const std::string &);
+void print_info(const std::string &) noexcept(true);
 
-void InfoLogs();
+void print_log() noexcept(true);
 
-void PrintHelp();
+void print_help() noexcept(true);
 
-void ClearScreen();
+void clear_screen() noexcept(true);
 
-void PrintLogsFromToday();
+void print_todays_log() noexcept(false);
 
-void PrintLogsForDrugByName(const std::string &, const std::string, bool);
+void print_log_by_drug_name(const std::string &, const std::string, bool) noexcept(false);
 
-void PrintMoreLogs();
+void print_more_logs() noexcept(false);
 
-void PrintMoreLogsFromLast();
+void print_more_logs_from_last() noexcept(false);
 
-std::string GetLastNameInDatabase();
+std::string get_last_drug_name_in_db() noexcept(false);
 
-void RemoveLastLogEntry();
+void remove_last_log_entry() noexcept(false);
 
-ReturnStructures::InputReturn Menu(std::string &);
+ReturnStructures::InputReturn menu(std::string &) noexcept(false);
 }  // namespace Command

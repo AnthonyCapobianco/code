@@ -48,5 +48,5 @@ int main() {
 
   });
         
-  medications.Menu();
+  medications.menu();
 }

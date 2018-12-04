@@ -31,17 +31,18 @@
 namespace Drugio {
 
 class Drug {
-  const std::string _name;
-  const std::vector<double> _doses;
+private:
+  const std::string m_name;
+  const std::vector<double> m_doses;
 
-  char PrintDoses() const {
+  char print_doses() const noexcept(true) {
     // Show last 3 doses with full date
-    Command::PrintLogsForDrugByName(this->_name, "3", false, false);
+    Command::print_logs_for_drug_by_name(this->m_name, "3", false, false);
     std::cout << std::endl;
 
     char c = 'a';
 
-    for (auto it : this->GetDoses()) {
+    for (auto it : this->get_doses()) {
       std::cout << "[" << c++ << "] " << it << std::endl;
     }
 
@@ -52,46 +53,46 @@ class Drug {
 
  public:
   Drug(const std::string &drug_name,
-       const std::initializer_list<double> &dose_array)
-      : _name{drug_name}, _doses{dose_array.begin(), dose_array.end()} {}
+       const std::initializer_list<double> &dose_array) noexcept(true)
+      : m_name{drug_name}, m_doses{dose_array.begin(), dose_array.end()} {}
 
-  const std::vector<double> &GetDoses() const { return this->_doses; }
+  const std::vector<double>& get_doses() const noexcept(true) { return this->m_doses; }
 
-  const std::string &GetName() const { return this->_name; }
+  const std::string& get_name() const noexcept(true) { return this->m_name; }
 
-  double GetSelection() const {
+  double get_selection() const  noexcept(false) {
     ReturnStructures::InputReturn it;
 
-    if (this->_doses.empty()) {
+    if (this->m_doses.empty()) {
       throw DrugioException::NotDouble();
     }
 
-    else if (this->_doses.size() != 1) {
-      Command::Info("dose");
+    else if (this->m_doses.size() != 1) {
+      Command::print_info("dose");
 
-      this->PrintDoses();
-      it = Command::GetKey();
+      this->print_doses();
+      it = Command::get_key();
 
       if (it.is_action or it.is_error) {
         throw DrugioException::IsAction();
       }
 
-      return this->_doses.at(static_cast<size_t>(it.key));
+      return this->m_doses.at(static_cast<size_t>(it.key));
     }
 
-    return this->_doses.at(0);
+    return this->m_doses.at(0);
   }
 } /* class Drug */;
 
 class DrugList {
  private:
-  const std::vector<Drug> _list;
+  const std::vector<Drug> m_drug_list;
 
-  int PrintNames() const {
+  int print_drugs() const {
     char c = 'a';
 
-    for (auto d : this->_list) {
-      std::cout << "[" << c++ << "] " << d.GetName() << std::endl;
+    for (auto d : this->m_drug_list) {
+      std::cout << "[" << c++ << "] " << d.get_name() << std::endl;
     }
 
     std::cout << "\n> ";
@@ -100,17 +101,17 @@ class DrugList {
     return (c - 'a') - 1;
   }
 
-  Drug GetSelection(int &user_input) const {
-    return this->_list.at(static_cast<size_t>(user_input));
+  Drug get_selection(int& user_input) const noexcept(false) {
+    return this->m_drug_list.at(static_cast<size_t>(user_input));
   }
 
-  ReturnStructures::UserSelection GetUsedDose(int &user_input) const {
+  ReturnStructures::UserSelection get_dose_used(int &user_input) const noexcept(false) {
     try {
-      Drug d = this->GetSelection(user_input);
+      Drug d = this->get_selection(user_input);
       double dose_used;
 
       try {
-        dose_used = d.GetSelection();
+        dose_used = d.get_selection();
       } catch (DrugioException::NotDouble &nd) {
         std::cerr << "ERROR: " << nd.what() << std::endl;
       } catch (DrugioException::IsAction) {
@@ -118,7 +119,7 @@ class DrugList {
         return {"", 0.0, false};
       }
 
-      return {d.GetName(), dose_used, true};
+      return {d.get_name(), dose_used, true};
     } catch (std::out_of_range &oor) {
       std::cerr << "ERROR: Out of range (" << oor.what() << ")." << std::endl;
     }
@@ -126,47 +127,47 @@ class DrugList {
     return {"", 0.0, false};
   }
 
-  void ShowLast() const {
-    ReturnStructures::InputReturn it = Command::GetKey();
-    Command::ClearScreen();
+  void show_last() const noexcept(false) {
+    ReturnStructures::InputReturn it = Command::get_key();
+    Command::clear_screen();
 
-    int list_size = static_cast<int>(this->_list.size());
+    int list_size = static_cast<int>(this->m_drug_list.size());
 
     if (not it.is_action and not it.is_error and it.key >= 0 and
         it.key < list_size) {
-      Drug d = this->GetSelection(it.key);
-      Command::PrintLogsForDrugByName(d.GetName());
+      Drug d = this->get_selection(it.key);
+      Command::print_logs_for_drug_by_name(d.get_name());
     }
   }
 
  public:
-  DrugList(const std::initializer_list<Drug> &d) : _list{d} {}
+  DrugList(const std::initializer_list<Drug> &d) : m_drug_list{d} {}
 
-  inline void Menu() {
+   void menu() const noexcept(false) {
     while (true) {
       ReturnStructures::InputReturn it;
 
       while (true) {
-        Command::Info("drug");
-        Command::PrintLogsFromToday();
+        Command::print_info("drug");
+        Command::print_todays_log();
 
-        PrintNames();
+        print_drugs();
 
-        it = Command::GetKey();
+        it = Command::get_key();
 
         if (it.is_action and it.key == Actions::SHOW_LAST)
-          ShowLast();
+          show_last();
         else {
           if (it.is_error or (it.is_action and it.key == Actions::RUN_AGAIN))
             continue;
 
-          int list_size = static_cast<int>(this->_list.size());
+          int list_size = static_cast<int>(this->m_drug_list.size());
 
           if (it.key >= 0 and it.key < list_size) break;
         }
       } /* while (true) Input loop */
 
-      ReturnStructures::UserSelection us = this->GetUsedDose(it.key);
+      ReturnStructures::UserSelection us = this->get_dose_used(it.key);
 
       if (not us.has_dosage) continue;
 

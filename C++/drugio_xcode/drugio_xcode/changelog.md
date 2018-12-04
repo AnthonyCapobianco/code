@@ -30,3 +30,6 @@ To see previous builds reffer to the C project at: https://github.com/AnthonyCap
 
 # 1.2.3
 * Added export as csv command. Type `csv`. 
+
+# 1.2.3~1
+* Const correctness + noexcept for functions which don't/do throw. 
