@@ -10,10 +10,12 @@
  * and is provided AS IS, with NO WARRANTY. */
 
 #include <X11/Xlib.h>
-#include <cstdlib>
+#include <cstdlib> // std::exit()
 
-inline int max(int a, int b) noexcept(true) {
-  return (a > b) ? a : b;
+namespace  { // Global namespace
+  inline int max(int a, int b) noexcept(true) {
+    return (a > b) ? a : b;
+  }
 }
 
 namespace tinywm {
@@ -22,8 +24,9 @@ namespace tinywm {
   , right = 3
   };
 
-  struct key {
-    static constexpr KeySym F1 = static_cast<KeySym>(0xffbe);
+  enum key {
+    // XStringToKeysym("F1"); -> (KeySym) 0xffbe
+    F1 = static_cast<KeySym>(0xffbe)
   };
 }
 
@@ -31,8 +34,9 @@ int main() {
   using tinywm::mouse_button;
   using tinywm::key;
 
-  Display *display_ptr = XOpenDisplay(0x0);
-  if (display_ptr == nullptr) {
+  Display *display_ptr;
+  // Assignement and comparison
+  if ((display_ptr = XOpenDisplay(0x0)) == nullptr) {
     std::exit(EXIT_FAILURE);
   }
 
@@ -45,23 +49,25 @@ int main() {
     , True, GrabModeAsync, GrabModeAsync
   );
 
-  static constexpr auto click_or_motion_mask = ButtonPressMask | ButtonReleaseMask | PointerMotionMask;
+  static constexpr KeySym kClickOrMotionMask{
+    ButtonPressMask | ButtonReleaseMask | PointerMotionMask
+  };
 
   XGrabButton(display_ptr, mouse_button::left
     , Mod1Mask, DefaultRootWindow(display_ptr), True
-    , click_or_motion_mask
+    , kClickOrMotionMask
     , GrabModeAsync, GrabModeAsync, None, None
   );
 
   XGrabButton(display_ptr, mouse_button::right
     , Mod1Mask, DefaultRootWindow(display_ptr), True
-    , click_or_motion_mask
+    , kClickOrMotionMask
     , GrabModeAsync, GrabModeAsync, None, None
   );
 
   button_event.subwindow = None;
-  int xdiff = 0;
-  int ydiff = 0;
+  int x_diff{ 0 };
+  int y_diff{ 0 };
 
   while (true) {
     XNextEvent(display_ptr, &event);
@@ -74,22 +80,24 @@ int main() {
       button_event = event.xbutton;
 
     } else if (event.type == MotionNotify and button_event.subwindow != None) {
-      xdiff = event.xbutton.x_root - button_event.x_root;
-      ydiff = event.xbutton.y_root - button_event.y_root;
+      x_diff = event.xbutton.x_root - button_event.x_root;
+      y_diff = event.xbutton.y_root - button_event.y_root;
 
-      if (button_event.button == mouse_button::left) {
-        XResizeWindow(display_ptr, button_event.subwindow
-          , window_attributes.x + xdiff
-          , window_attributes.y + ydiff
-        );
-
-      } else if (button_event.button == mouse_button::right) {
-        XMoveWindow(display_ptr, button_event.subwindow
-          , max(window_attributes.width + xdiff, 1)
-          , max(window_attributes.height + ydiff, 1)
-        );
+      switch (button_event.button) {
+        case mouse_button::left:
+          XResizeWindow(display_ptr, button_event.subwindow
+            , window_attributes.x + x_diff
+            , window_attributes.y + y_diff
+          );
+          break;
+        case mouse_button::right:
+          XMoveWindow(display_ptr, button_event.subwindow
+            , max(window_attributes.width + x_diff, 1)
+            , max(window_attributes.height + y_diff, 1)
+          );
+        default:
+          break;
       }
-
     } else if (event.type == ButtonRelease) {
       button_event.subwindow = None;
     }
