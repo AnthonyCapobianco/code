@@ -1,6 +1,6 @@
 /*
- * copyleft ViralTaco_ 2018
- * This is based based on TinyWM, just a port in C++
+ * Copyleft ViralTaco_ 2018
+ * This is based on TinyWM, just a port in C++
  *
  */
 
