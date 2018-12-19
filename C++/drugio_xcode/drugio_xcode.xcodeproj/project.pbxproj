@@ -24,11 +24,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D8140F3721C872E00032698B /* Time.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Time.hpp; sourceTree = "<group>"; };
+		D8140F3821C872E00032698B /* DrugioExceptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DrugioExceptions.hpp; sourceTree = "<group>"; };
+		D8140F3921C872E00032698B /* Command.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Command.hpp; sourceTree = "<group>"; };
+		D8140F3A21C872E00032698B /* DBConfig.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DBConfig.hpp; sourceTree = "<group>"; };
+		D8140F3B21C872E00032698B /* Actions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Actions.hpp; sourceTree = "<group>"; };
+		D8140F3C21C872E00032698B /* ReturnStructures.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ReturnStructures.cpp; sourceTree = "<group>"; };
+		D8140F3D21C872E00032698B /* Time.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Time.cpp; sourceTree = "<group>"; };
+		D8140F3E21C872E00032698B /* Drugio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Drugio.cpp; sourceTree = "<group>"; };
+		D8140F3F21C872E00032698B /* Command.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Command.cpp; sourceTree = "<group>"; };
 		EA763EF1209DC6E80055AFC7 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
 		EA763EF2209DC6E80055AFC7 /* logs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = logs; sourceTree = "<group>"; };
 		EA763EF620A111FE0055AFC7 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EA8B217F20A14BAF0003FE55 /* drugio_xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = drugio_xcode; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA8B218420A4233F0003FE55 /* namespaces */ = {isa = PBXFileReference; lastKnownFileType = folder; name = namespaces; path = "/Users/tony/code/C++/drugio_xcode/drugio_xcode/namespaces"; sourceTree = "<absolute>"; };
 		EA96BFAF209DBD8500BD44F2 /* debug.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = debug.db; sourceTree = "<group>"; };
 		EA96BFB3209DBE3300BD44F2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EADC4D8720A924D200BD030A /* changelog.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
@@ -47,6 +55,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8140F3521C872E00032698B /* namespaces */ = {
+			isa = PBXGroup;
+			children = (
+				D8140F3621C872E00032698B /* includes */,
+				D8140F3C21C872E00032698B /* ReturnStructures.cpp */,
+				D8140F3D21C872E00032698B /* Time.cpp */,
+				D8140F3E21C872E00032698B /* Drugio.cpp */,
+				D8140F3F21C872E00032698B /* Command.cpp */,
+			);
+			path = namespaces;
+			sourceTree = "<group>";
+		};
+		D8140F3621C872E00032698B /* includes */ = {
+			isa = PBXGroup;
+			children = (
+				D8140F3721C872E00032698B /* Time.hpp */,
+				D8140F3821C872E00032698B /* DrugioExceptions.hpp */,
+				D8140F3921C872E00032698B /* Command.hpp */,
+				D8140F3A21C872E00032698B /* DBConfig.hpp */,
+				D8140F3B21C872E00032698B /* Actions.hpp */,
+			);
+			path = includes;
+			sourceTree = "<group>";
+		};
 		EA96BF97209DBC3E00BD44F2 = {
 			isa = PBXGroup;
 			children = (
@@ -61,7 +93,7 @@
 			children = (
 				EADC4D8720A924D200BD030A /* changelog.md */,
 				EADC4D8820A924D200BD030A /* README.md */,
-				EA8B218420A4233F0003FE55 /* namespaces */,
+				D8140F3521C872E00032698B /* namespaces */,
 				EA763EF620A111FE0055AFC7 /* main.cpp */,
 				EA763EF2209DC6E80055AFC7 /* logs */,
 				EA763EF1209DC6E80055AFC7 /* resources */,

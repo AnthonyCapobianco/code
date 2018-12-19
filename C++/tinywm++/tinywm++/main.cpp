@@ -45,8 +45,8 @@ int main() {
   XEvent event;
 
   XGrabKey(display_ptr, XKeysymToKeycode(display_ptr, key::F1)
-    , Mod1Mask, DefaultRootWindow(display_ptr)
-    , True, GrabModeAsync, GrabModeAsync
+  , Mod1Mask, DefaultRootWindow(display_ptr)
+  , True, GrabModeAsync, GrabModeAsync
   );
 
   static constexpr KeySym kClickOrMotionMask{
@@ -54,15 +54,15 @@ int main() {
   };
 
   XGrabButton(display_ptr, mouse_button::left
-    , Mod1Mask, DefaultRootWindow(display_ptr), True
-    , kClickOrMotionMask
-    , GrabModeAsync, GrabModeAsync, None, None
+  , Mod1Mask, DefaultRootWindow(display_ptr), True
+  , kClickOrMotionMask
+  , GrabModeAsync, GrabModeAsync, None, None
   );
 
   XGrabButton(display_ptr, mouse_button::right
-    , Mod1Mask, DefaultRootWindow(display_ptr), True
-    , kClickOrMotionMask
-    , GrabModeAsync, GrabModeAsync, None, None
+  , Mod1Mask, DefaultRootWindow(display_ptr), True
+  , kClickOrMotionMask
+  , GrabModeAsync, GrabModeAsync, None, None
   );
 
   button_event.subwindow = None;
@@ -86,14 +86,14 @@ int main() {
       switch (button_event.button) {
         case mouse_button::left:
           XResizeWindow(display_ptr, button_event.subwindow
-            , window_attributes.x + x_diff
-            , window_attributes.y + y_diff
+          , window_attributes.x + x_diff
+          , window_attributes.y + y_diff
           );
           break;
-        case mouse_button::right:
+        case mouse_button::right: [[fallthrough]]
           XMoveWindow(display_ptr, button_event.subwindow
-            , max(window_attributes.width + x_diff, 1)
-            , max(window_attributes.height + y_diff, 1)
+          , max(window_attributes.width + x_diff, 1)
+          , max(window_attributes.height + y_diff, 1)
           );
         default:
           break;

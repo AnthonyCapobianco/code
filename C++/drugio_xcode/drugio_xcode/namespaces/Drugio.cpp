@@ -37,7 +37,7 @@ private:
 
   char print_doses() const noexcept(true) {
     // Show last 3 doses with full date
-    Command::print_logs_for_drug_by_name(this->m_name, "3", false, false);
+    Command::print_logs_for_drug_by_name(m_name, "3", false, false);
     std::cout << std::endl;
 
     char c = 'a';
@@ -51,23 +51,28 @@ private:
     return c;
   }
 
- public:
-  Drug(const std::string &drug_name,
-       const std::initializer_list<double> &dose_array) noexcept(true)
-      : m_name{drug_name}, m_doses{dose_array.begin(), dose_array.end()} {}
+public:
+  Drug(const std::string &drug_name, const std::initializer_list<double> &dose_array) noexcept(true)
+  : m_name{drug_name}
+  , m_doses{dose_array.begin(), dose_array.end()} {
+  }
 
-  const std::vector<double>& get_doses() const noexcept(true) { return this->m_doses; }
+  const std::vector<double>& get_doses() const noexcept(true) {
+    return m_doses;
+  }
 
-  const std::string& get_name() const noexcept(true) { return this->m_name; }
+  const std::string& get_name() const noexcept(true) {
+    return m_name;
+  }
 
   double get_selection() const  noexcept(false) {
     ReturnStructures::InputReturn it;
 
-    if (this->m_doses.empty()) {
+    if (m_doses.empty()) {
       throw DrugioException::NotDouble();
     }
 
-    else if (this->m_doses.size() != 1) {
+    else if (m_doses.size() != 1) {
       Command::print_info("dose");
 
       this->print_doses();
@@ -77,10 +82,10 @@ private:
         throw DrugioException::IsAction();
       }
 
-      return this->m_doses.at(static_cast<size_t>(it.key));
+      return m_doses.at(static_cast<size_t>(it.key));
     }
 
-    return this->m_doses.at(0);
+    return m_doses.at(0);
   }
 } /* class Drug */;
 
@@ -91,7 +96,7 @@ class DrugList {
   int print_drugs() const {
     char c = 'a';
 
-    for (auto d : this->m_drug_list) {
+    for (auto d : m_drug_list) {
       std::cout << "[" << c++ << "] " << d.get_name() << std::endl;
     }
 
@@ -102,7 +107,7 @@ class DrugList {
   }
 
   Drug get_selection(int& user_input) const noexcept(false) {
-    return this->m_drug_list.at(static_cast<size_t>(user_input));
+    return m_drug_list.at(static_cast<size_t>(user_input));
   }
 
   ReturnStructures::UserSelection get_dose_used(int &user_input) const noexcept(false) {
@@ -113,7 +118,7 @@ class DrugList {
       try {
         dose_used = d.get_selection();
       } catch (DrugioException::NotDouble &nd) {
-        std::cerr << "ERROR: " << nd.what() << std::endl;
+        std::cerr << "ERROR: " << nd.what();
       } catch (DrugioException::IsAction) {
         // Just leave and return nothing (make it optional)
         return {"", 0.0, false};
@@ -121,7 +126,7 @@ class DrugList {
 
       return {d.get_name(), dose_used, true};
     } catch (std::out_of_range &oor) {
-      std::cerr << "ERROR: Out of range (" << oor.what() << ")." << std::endl;
+      std::cerr << "ERROR: Out of range (" << oor.what() << ").";
     }
 
     return {"", 0.0, false};
@@ -131,7 +136,7 @@ class DrugList {
     ReturnStructures::InputReturn it = Command::get_key();
     Command::clear_screen();
 
-    int list_size = static_cast<int>(this->m_drug_list.size());
+    int list_size = static_cast<int>(m_drug_list.size());
 
     if (not it.is_action and not it.is_error and it.key >= 0 and
         it.key < list_size) {
@@ -155,13 +160,14 @@ class DrugList {
 
         it = Command::get_key();
 
-        if (it.is_action and it.key == Actions::SHOW_LAST)
+        if (it.is_action and it.key == Actions::SHOW_LAST) {
           show_last();
-        else {
+          Command::pause();
+        } else {
           if (it.is_error or (it.is_action and it.key == Actions::RUN_AGAIN))
             continue;
 
-          int list_size = static_cast<int>(this->m_drug_list.size());
+          int list_size = static_cast<int>(m_drug_list.size());
 
           if (it.key >= 0 and it.key < list_size) break;
         }
