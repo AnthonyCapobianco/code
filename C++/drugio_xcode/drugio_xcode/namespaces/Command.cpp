@@ -165,12 +165,13 @@ noexcept(false) {
 }
 
 void print_logs_for_drug_by_name(const std::string& name_of_drug
-  , const std::string limit = "10", bool is_short = false
+  , const std::string limit = "10"
+  , bool is_short = false
   , bool is_excerpt = false)
 noexcept(false) {
 
   print_more_logs(DBConfig::select_statement
-    + "WHERE name IS ? ORDER BY ID ASC LIMIT " + limit + ";"
+    + "WHERE name IS ? ORDER BY ID DESC LIMIT " + limit + ";"
   , name_of_drug
   , is_short
   , is_excerpt
